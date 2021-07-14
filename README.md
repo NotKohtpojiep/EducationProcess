@@ -1,0 +1,2 @@
+# EducationProcess
+Automate education routine ;-;
