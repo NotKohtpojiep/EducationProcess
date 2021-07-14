@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EducationProcess.DataAccess\EducationProcess.DataAccess.csproj" />
+    <ProjectReference Include="..\EducationProcess.Domain\EducationProcess.Domain.csproj" />
+  </ItemGroup>
+
+</Project>
