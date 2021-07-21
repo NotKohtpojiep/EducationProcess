@@ -59,7 +59,7 @@ namespace EducationProcess.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "EducationProcess.Api", Version = "v1" });
             });
 
-            services.AddDbContext<ApplicationDbContext>(optionsBuilder =>
+            services.AddDbContext<EducationProcessContext>(optionsBuilder =>
                 optionsBuilder.UseMySql(Configuration.GetConnectionString("ConnectionDbContext"), new MySqlServerVersion(new Version(8, 0, 22))));
 
         }
