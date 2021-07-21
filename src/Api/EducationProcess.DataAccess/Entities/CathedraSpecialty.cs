@@ -12,6 +12,5 @@ namespace EducationProcess.DataAccess.Entities
 
         public virtual Cathedra Cathedra { get; set; }
         public virtual FsesCategoryPartition FsesCategoryPatition { get; set; }
-        public virtual Specialty FsesCategoryPatitionNavigation { get; set; }
     }
 }

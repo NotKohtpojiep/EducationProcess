@@ -17,9 +17,11 @@ namespace EducationProcess.Domain.Models
         public DateTime CreatedAt { get; set; }
         public DateTime ModifiedAt { get; set; }
         public AcademicYear AcademicYear { get; set; }
+        /*
         public FsesCategoryPartition FsesCategoryPatition { get; set; }
         public Specialty FsesCategoryPatitionNavigation { get; set; }
         public List<EducationPlanSemesterDiscipline> EducationPlanSemesterDisciplines { get; set; }
         public List<Group> Groups { get; set; }
+        */
     }
 }
