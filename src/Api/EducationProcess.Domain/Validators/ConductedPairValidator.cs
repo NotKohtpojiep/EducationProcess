@@ -12,9 +12,14 @@ namespace EducationProcess.Domain.Validators
     {
         public ConductedPairValidator()
         {
-            RuleFor(x=>x.ScheduleDisciplineId).GreaterThan(-1).WithMessage("");
-            RuleFor(x=>x.ScheduleDisciplineReplacementId).GreaterThan(-1).When(x=>x.ScheduleDisciplineReplacementId != null).WithMessage("");
+            RuleFor(x=>x.ScheduleDisciplineId)
+                .GreaterThan(-1)
+                    .WithMessage("");
 
+            RuleFor(x=>x.ScheduleDisciplineReplacementId)
+                .GreaterThan(-1)
+                    .When(x=>x.ScheduleDisciplineReplacementId != null)
+                        .WithMessage("");
         }
     }
 }

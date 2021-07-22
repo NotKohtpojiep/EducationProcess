@@ -36,7 +36,7 @@ namespace EducationProcess.Api
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
                 {
-                    options.Authority = "https://localhost:5001";
+                    options.Authority = Configuration.GetConnectionString("IdentityServerUrl");
 
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
@@ -61,7 +61,6 @@ namespace EducationProcess.Api
 
             services.AddDbContext<EducationProcessContext>(optionsBuilder =>
                 optionsBuilder.UseMySql(Configuration.GetConnectionString("ConnectionDbContext"), new MySqlServerVersion(new Version(8, 0, 22))));
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

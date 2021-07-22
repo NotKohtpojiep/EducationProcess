@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  educationprocess.api:
+    image: ${DOCKER_REGISTRY-}educationprocessapi
+    build:
+      context: .
+      dockerfile: Api/EducationProcess.Api/Dockerfile
+
+  identity.api:
+    image: ${DOCKER_REGISTRY-}identityapi
+    build:
+      context: .
+      dockerfile: Identity/Dockerfile
+
