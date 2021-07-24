@@ -12,7 +12,9 @@ namespace EducationProcess.Domain.Validators
     {
         public AudienceTypeValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Name should not be empty");
+            RuleFor(x => x.Name)
+                .NotEmpty()
+                    .WithMessage("Name should not be empty");
 
         }
     }

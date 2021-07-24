@@ -22,6 +22,10 @@ namespace EducationProcess.Domain.Validators
             RuleFor(x => x.LessonTypeId).GreaterThan(-1)
                 .WithMessage("LessonTypeId shold be greater than -1");
 
+            RuleFor(x=>x.ScheduleDisciplineReplacementId)
+                .GreaterThan(-1)
+                    .When(x=>x.ScheduleDisciplineReplacementId != null)
+                        .WithMessage("");
         }
     }
 }

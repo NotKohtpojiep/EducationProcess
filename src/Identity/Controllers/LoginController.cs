@@ -3,6 +3,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Api.Controllers
@@ -21,12 +23,12 @@ namespace Identity.Api.Controllers
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-
+            
             var disco = await client.GetDiscoveryDocumentAsync("https://localhost:5001");
             if (disco.IsError)
             {
                 Console.WriteLine(disco.Error);
-                return null;
+                return "null " + $"{this.Request.Scheme}://{this.Request.Host}";
             }
 
             // request token

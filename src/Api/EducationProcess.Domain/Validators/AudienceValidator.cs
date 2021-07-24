@@ -12,7 +12,11 @@ namespace EducationProcess.Domain.Validators
     {
         public AudienceValidator()
         {
-            RuleFor(x => x.Number).NotEmpty().WithMessage("Number should not be empty").Length(1, 5).WithMessage("Number should contain from 1 to 5 symbols");
+            RuleFor(x => x.Number)
+                .NotEmpty()
+                    .WithMessage("Number should not be empty")
+                .Length(1, 5)
+                    .WithMessage("Number should contain from 1 to 5 symbols");
         }
     }
 }
