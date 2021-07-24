@@ -23,7 +23,6 @@ namespace EducationProcess.DataAccess.Entities
 
         public virtual AcademicYear AcademicYear { get; set; }
         public virtual FsesCategoryPartition FsesCategoryPatition { get; set; }
-        public virtual Specialty FsesCategoryPatitionNavigation { get; set; }
         public virtual ICollection<EducationPlanSemesterDiscipline> EducationPlanSemesterDisciplines { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
     }

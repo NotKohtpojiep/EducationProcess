@@ -17,7 +17,6 @@ namespace EducationProcess.DataAccess.Entities
         public string Qualification { get; set; }
 
         public virtual FsesCategoryPartition FsesCategoryPatition { get; set; }
-        public virtual Specialty FsesCategoryPatitionNavigation { get; set; }
         public virtual ICollection<ReceivedEducation> ReceivedEducations { get; set; }
     }
 }

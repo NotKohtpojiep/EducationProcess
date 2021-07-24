@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using EducationProcess.Domain.Interfaces.IRepository;
+using EducationProcess.DataAccess.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace EducationProcess.DataAccess.Repositories
 {
     public abstract class RepositoryBase<TEntity> : IRepositoryBase<TEntity> where TEntity : class
     {
-        private readonly ApplicationDbContext context;
+        private readonly EducationProcessContext context;
 
         private readonly DbSet<TEntity> dbSet;
 
-        protected RepositoryBase(ApplicationDbContext context)
+        protected RepositoryBase(EducationProcessContext context)
         {
             this.context = context;
             this.dbSet = context.Set<TEntity>();

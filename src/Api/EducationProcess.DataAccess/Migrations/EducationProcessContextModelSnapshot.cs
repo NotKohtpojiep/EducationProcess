@@ -3,16 +3,14 @@ using System;
 using EducationProcess.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EducationProcess.DataAccess.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210720144146_InitDb")]
-    partial class InitDb
+    [DbContext(typeof(EducationProcessContext))]
+    partial class EducationProcessContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -433,7 +431,9 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnName("Comment_by_fixing_employee");
 
                     b.Property<DateTime?>("CoordinatedAt")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
+                        .HasDefaultValue(new DateTime(2021, 7, 21, 18, 17, 17, 803, DateTimeKind.Local).AddTicks(7924))
                         .HasColumnName("Coordinated_at");
 
                     b.Property<int>("FixerEmployeeId")
@@ -451,6 +451,12 @@ namespace EducationProcess.DataAccess.Migrations
                     b.Property<bool?>("IsAgreed")
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("Is_agreed");
+
+                    b.Property<bool>("IsWatched")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("tinyint(1)")
+                        .HasDefaultValue(false)
+                        .HasColumnName("Is_watched");
 
                     b.Property<DateTime>("PublishedAt")
                         .HasColumnType("datetime")
@@ -927,34 +933,6 @@ namespace EducationProcess.DataAccess.Migrations
                     b.ToTable("Semester_disciplines");
                 });
 
-            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Specialty", b =>
-                {
-                    b.Property<int>("SpecialtieId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("Specialtie_id");
-
-                    b.Property<string>("Abbreviation")
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)");
-
-                    b.Property<string>("ImplementedSpecialtyName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("Implemented_specialty_name");
-
-                    b.Property<string>("SpecialtieCode")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("varchar(10)")
-                        .HasColumnName("Specialtie_code");
-
-                    b.HasKey("SpecialtieId");
-
-                    b.ToTable("Specialties");
-                });
-
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.Audience", b =>
                 {
                     b.HasOne("EducationProcess.DataAccess.Entities.AudienceType", "AudienceType")
@@ -986,17 +964,9 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasConstraintName("FK_Cathedra_specialties_Fses_category_partitions")
                         .IsRequired();
 
-                    b.HasOne("EducationProcess.DataAccess.Entities.Specialty", "FsesCategoryPatitionNavigation")
-                        .WithMany("CathedraSpecialties")
-                        .HasForeignKey("FsesCategoryPatitionId")
-                        .HasConstraintName("FK_Cathedra_specialties_Specialties")
-                        .IsRequired();
-
                     b.Navigation("Cathedra");
 
                     b.Navigation("FsesCategoryPatition");
-
-                    b.Navigation("FsesCategoryPatitionNavigation");
                 });
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.ConductedPair", b =>
@@ -1066,17 +1036,9 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasConstraintName("FK_Education_plans_Fses_category_partitions")
                         .IsRequired();
 
-                    b.HasOne("EducationProcess.DataAccess.Entities.Specialty", "FsesCategoryPatitionNavigation")
-                        .WithMany("EducationPlans")
-                        .HasForeignKey("FsesCategoryPatitionId")
-                        .HasConstraintName("FK_Education_plans_Specialties")
-                        .IsRequired();
-
                     b.Navigation("AcademicYear");
 
                     b.Navigation("FsesCategoryPatition");
-
-                    b.Navigation("FsesCategoryPatitionNavigation");
                 });
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.EducationPlanSemesterDiscipline", b =>
@@ -1257,15 +1219,7 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasConstraintName("FK_Received_specialties_Fses_category_partitions")
                         .IsRequired();
 
-                    b.HasOne("EducationProcess.DataAccess.Entities.Specialty", "FsesCategoryPatitionNavigation")
-                        .WithMany("ReceivedSpecialties")
-                        .HasForeignKey("FsesCategoryPatitionId")
-                        .HasConstraintName("FK_Received_specialties_Specialties")
-                        .IsRequired();
-
                     b.Navigation("FsesCategoryPatition");
-
-                    b.Navigation("FsesCategoryPatitionNavigation");
                 });
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.ScheduleDiscipline", b =>
@@ -1528,15 +1482,6 @@ namespace EducationProcess.DataAccess.Migrations
                     b.Navigation("EducationPlanSemesterDisciplines");
 
                     b.Navigation("FixedDisciplines");
-                });
-
-            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Specialty", b =>
-                {
-                    b.Navigation("CathedraSpecialties");
-
-                    b.Navigation("EducationPlans");
-
-                    b.Navigation("ReceivedSpecialties");
                 });
 #pragma warning restore 612, 618
         }

@@ -1,19 +1,18 @@
 ﻿using System;
 using EducationProcess.DataAccess.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
 namespace EducationProcess.DataAccess
 {
-    public partial class ApplicationDbContext : DbContext
+    public partial class EducationProcessContext : DbContext
     {
-        public ApplicationDbContext()
+        public EducationProcessContext()
         {
         }
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        public EducationProcessContext(DbContextOptions<EducationProcessContext> options)
             : base(options)
         {
         }
@@ -47,7 +46,6 @@ namespace EducationProcess.DataAccess
         public virtual DbSet<ScheduleDisciplineReplacement> ScheduleDisciplineReplacements { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<SemesterDiscipline> SemesterDisciplines { get; set; }
-        public virtual DbSet<Specialty> Specialties { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -144,12 +142,6 @@ namespace EducationProcess.DataAccess
                     .HasForeignKey(d => d.FsesCategoryPatitionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Cathedra_specialties_Fses_category_partitions");
-
-                entity.HasOne(d => d.FsesCategoryPatitionNavigation)
-                    .WithMany(p => p.CathedraSpecialties)
-                    .HasForeignKey(d => d.FsesCategoryPatitionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Cathedra_specialties_Specialties");
             });
 
             modelBuilder.Entity<ConductedPair>(entity =>
@@ -320,12 +312,6 @@ namespace EducationProcess.DataAccess
                     .HasForeignKey(d => d.FsesCategoryPatitionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Education_plans_Fses_category_partitions");
-
-                entity.HasOne(d => d.FsesCategoryPatitionNavigation)
-                    .WithMany(p => p.EducationPlans)
-                    .HasForeignKey(d => d.FsesCategoryPatitionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Education_plans_Specialties");
             });
 
             modelBuilder.Entity<EducationPlanSemesterDiscipline>(entity =>
@@ -438,7 +424,8 @@ namespace EducationProcess.DataAccess
 
                 entity.Property(e => e.CoordinatedAt)
                     .HasColumnType("datetime")
-                    .HasColumnName("Coordinated_at");
+                    .HasColumnName("Coordinated_at")
+                    .HasDefaultValue(DateTime.Now);
 
                 entity.Property(e => e.FixerEmployeeId).HasColumnName("Fixer_employee_id");
 
@@ -447,6 +434,8 @@ namespace EducationProcess.DataAccess
                 entity.Property(e => e.GroupId).HasColumnName("Group_id");
 
                 entity.Property(e => e.IsAgreed).HasColumnName("Is_agreed");
+
+                entity.Property(e => e.IsWatched).HasColumnName("Is_watched").HasDefaultValue(false);
 
                 entity.Property(e => e.PublishedAt)
                     .HasColumnType("datetime")
@@ -690,12 +679,6 @@ namespace EducationProcess.DataAccess
                     .HasForeignKey(d => d.FsesCategoryPatitionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Received_specialties_Fses_category_partitions");
-
-                entity.HasOne(d => d.FsesCategoryPatitionNavigation)
-                    .WithMany(p => p.ReceivedSpecialties)
-                    .HasForeignKey(d => d.FsesCategoryPatitionId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Received_specialties_Specialties");
             });
 
             modelBuilder.Entity<ScheduleDiscipline>(entity =>
@@ -882,25 +865,6 @@ namespace EducationProcess.DataAccess
                     .HasForeignKey(d => d.SemesterId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Semesters_Disciplines_Semesters");
-            });
-
-            modelBuilder.Entity<Specialty>(entity =>
-            {
-                entity.HasKey(e => e.SpecialtieId);
-
-                entity.Property(e => e.SpecialtieId).HasColumnName("Specialtie_id");
-
-                entity.Property(e => e.Abbreviation).HasMaxLength(10);
-
-                entity.Property(e => e.ImplementedSpecialtyName)
-                    .IsRequired()
-                    .HasMaxLength(100)
-                    .HasColumnName("Implemented_specialty_name");
-
-                entity.Property(e => e.SpecialtieCode)
-                    .IsRequired()
-                    .HasMaxLength(10)
-                    .HasColumnName("Specialtie_code");
             });
 
             OnModelCreatingPartial(modelBuilder);

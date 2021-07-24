@@ -178,22 +178,6 @@ namespace EducationProcess.DataAccess.Migrations
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
 
             migrationBuilder.CreateTable(
-                name: "Specialties",
-                columns: table => new
-                {
-                    Specialtie_id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Specialtie_code = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false, collation: "Utf8_General_Ci"),
-                    Implemented_specialty_name = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false, collation: "Utf8_General_Ci"),
-                    Abbreviation = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: true, collation: "Utf8_General_Ci")
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Specialties", x => x.Specialtie_id);
-                })
-                .Annotation("Relational:Collation", "Utf8_General_Ci");
-
-            migrationBuilder.CreateTable(
                 name: "Disciplines",
                 columns: table => new
                 {
@@ -438,12 +422,6 @@ namespace EducationProcess.DataAccess.Migrations
                         principalTable: "Fses_category_partitions",
                         principalColumn: "Fses_category_patition_id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Cathedra_specialties_Specialties",
-                        column: x => x.Fses_category_patition_id,
-                        principalTable: "Specialties",
-                        principalColumn: "Specialtie_id",
-                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
 
@@ -475,12 +453,6 @@ namespace EducationProcess.DataAccess.Migrations
                         principalTable: "Fses_category_partitions",
                         principalColumn: "Fses_category_patition_id",
                         onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Education_plans_Specialties",
-                        column: x => x.Fses_category_patition_id,
-                        principalTable: "Specialties",
-                        principalColumn: "Specialtie_id",
-                        onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
 
@@ -501,12 +473,6 @@ namespace EducationProcess.DataAccess.Migrations
                         column: x => x.Fses_category_patition_id,
                         principalTable: "Fses_category_partitions",
                         principalColumn: "Fses_category_patition_id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Received_specialties_Specialties",
-                        column: x => x.Fses_category_patition_id,
-                        principalTable: "Specialties",
-                        principalColumn: "Specialtie_id",
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
@@ -619,11 +585,12 @@ namespace EducationProcess.DataAccess.Migrations
                     Semester_discipline_id = table.Column<int>(type: "int", nullable: false),
                     Group_id = table.Column<int>(type: "int", nullable: false),
                     Is_agreed = table.Column<bool>(type: "tinyint(1)", nullable: true),
+                    Is_watched = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false),
                     Fixer_employee_id = table.Column<int>(type: "int", nullable: false),
                     Comment_by_fixing_employee = table.Column<string>(type: "varchar(600)", maxLength: 600, nullable: true, collation: "Utf8_General_Ci"),
                     Comment_by_fixer_employee = table.Column<string>(type: "varchar(600)", maxLength: 600, nullable: true, collation: "Utf8_General_Ci"),
                     Published_at = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Coordinated_at = table.Column<DateTime>(type: "datetime", nullable: true)
+                    Coordinated_at = table.Column<DateTime>(type: "datetime", nullable: true, defaultValue: new DateTime(2021, 7, 21, 18, 17, 17, 803, DateTimeKind.Local).AddTicks(7924))
                 },
                 constraints: table =>
                 {
@@ -1072,9 +1039,6 @@ namespace EducationProcess.DataAccess.Migrations
 
             migrationBuilder.DropTable(
                 name: "Fses_category_partitions");
-
-            migrationBuilder.DropTable(
-                name: "Specialties");
 
             migrationBuilder.DropTable(
                 name: "Fses_categories");
