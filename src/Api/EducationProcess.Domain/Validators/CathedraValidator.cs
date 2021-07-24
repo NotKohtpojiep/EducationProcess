@@ -12,7 +12,7 @@ namespace EducationProcess.Domain.Validators
     {
         public CathedraValidator()
         {
-            RuleFor(x=>x.Name).NotEmpty().WithMessage("Name should not be empty").Length(1, 74).WithMessage("Name should contain from 1 to 75 symbols");
+            RuleFor(x=>x.Name).NotEmpty().WithMessage("Name should not be empty").Length(1, 75).WithMessage("Name should contain from 1 to 75 symbols");
             RuleFor(x=>x.NameAbbreviation).Length(1,10).WithMessage("Name abbreviation should contain from 1 to 10 symbols");
         }
     }
