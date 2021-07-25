@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace EducationProcess.Domain.Models
-
+﻿namespace EducationProcess.Domain.Models
 {
-    public partial class FederalStateEducationalStandard
+    public class FederalStateEducationalStandard
     {
-
-        public int FsesId { get; set; }
-        public short Number { get; set; }
+        public uint FsesId { get; set; }
+        public ushort Number { get; set; }
         public string Name { get; set; }
-
-        public List<FsesCategory> FsesCategories { get; set; }
     }
 }

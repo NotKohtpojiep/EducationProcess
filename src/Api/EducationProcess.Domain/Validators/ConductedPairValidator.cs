@@ -1,31 +1,23 @@
 ﻿using EducationProcess.Domain.Models;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EducationProcess.Domain.Validators
 {
-    class ConductedPairValidator : AbstractValidator<ConductedPair>
+    public class ConductedPairValidator : AbstractValidator<ConductedPair>
     {
         public ConductedPairValidator()
         {
-            RuleFor(x=>x.ScheduleDisciplineId)
-                .GreaterThan(-1)
-                .When(x => x.ScheduleDisciplineId != null)
-                .WithMessage("ScheduleDisciplineId shold be greater than -1");
-            RuleFor(x=>x.ScheduleDisciplineReplacementId).GreaterThan(-1)
-                .When(x=>x.ScheduleDisciplineReplacementId != null)
-                .WithMessage("ScheduleDisciplineReplacementId shold be greater than -1");
-            RuleFor(x => x.LessonTypeId).GreaterThan(-1)
-                .WithMessage("LessonTypeId shold be greater than -1");
+            RuleFor(x => x.ScheduleDisciplineId)
+                .NotEmpty().When(x => x.ScheduleDisciplineReplacementId == null)
+                    .WithMessage("ScheduleDisciplineId should not be empty, if ScheduleDisciplineReplacementId is null")
+                .Empty().When(x => x.ScheduleDisciplineReplacementId != null)
+                    .WithMessage("ScheduleDisciplineId should be empty, if ScheduleDisciplineReplacementId is not null");
 
-            RuleFor(x=>x.ScheduleDisciplineReplacementId)
-                .GreaterThan(-1)
-                    .When(x=>x.ScheduleDisciplineReplacementId != null)
-                        .WithMessage("");
+            RuleFor(x => x.ScheduleDisciplineReplacementId)
+                .NotEmpty().When(x => x.ScheduleDisciplineId == null)
+                .WithMessage("ScheduleDisciplineReplacementId should not be empty, if ScheduleDisciplineId is null")
+                .Empty().When(x => x.ScheduleDisciplineId != null)
+                .WithMessage("ScheduleDisciplineReplacementId should be empty, if ScheduleDisciplineId is not null");
         }
     }
 }

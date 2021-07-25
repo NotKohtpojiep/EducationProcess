@@ -32,6 +32,7 @@ namespace EducationProcess.Api
 
             services.AddControllers();
 
+            /*
             // accepts any access token issued by identity server
             services.AddAuthentication("Bearer")
                 .AddJwtBearer("Bearer", options =>
@@ -53,6 +54,7 @@ namespace EducationProcess.Api
                     policy.RequireClaim("scope", "api1");
                 });
             });
+            */
 
             services.AddSwaggerGen(c =>
             {

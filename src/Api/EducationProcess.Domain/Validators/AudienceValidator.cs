@@ -1,17 +1,16 @@
 ﻿using EducationProcess.Domain.Models;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EducationProcess.Domain.Validators
 {
-    class AudienceValidator:AbstractValidator<Audience>
+    public class AudienceValidator : AbstractValidator<Audience>
     {
         public AudienceValidator()
         {
+            RuleFor(x => x.Name)
+                .Length(1, 65).When(x => x.Name != null)
+                    .WithMessage("Name length is 1-65");
+
             RuleFor(x => x.Number)
                 .NotEmpty()
                     .WithMessage("Number should not be empty")

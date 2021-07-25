@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-
-
-namespace EducationProcess.Domain.Models
-
+﻿namespace EducationProcess.Domain.Models
 {
-    public partial class FsesCategoryPartition
+    public class FsesCategoryPartition
     {
-
-        public int FsesCategoryPatitionId { get; set; }
-        public int FirstPartNumber { get; set; }
-        public int SecondPartNumber { get; set; }
-        public short? ThirdPathNumber { get; set; }
+        public uint FsesCategoryPatitionId { get; set; }
+        public uint FirstPartNumber { get; set; }
+        public uint SecondPartNumber { get; set; }
+        public ushort? ThirdPathNumber { get; set; }
         public string Name { get; set; }
         public string NameAbbreviation { get; set; }
-        public int FsesCategoryId { get; set; }
+        public uint FsesCategoryId { get; set; }
 
-        public virtual FsesCategory FsesCategory { get; set; }
-        public List<CathedraSpecialty> CathedraSpecialties { get; set; }
-        public List<EducationPlan> EducationPlans { get; set; }
-        public List<ReceivedSpecialty> ReceivedSpecialties { get; set; }
+        public FsesCategory FsesCategory { get; set; }
     }
 }

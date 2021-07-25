@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace EducationProcess.Domain.Models
-
+﻿namespace EducationProcess.Domain.Models
 {
-    public partial class EducationPlanSemesterDiscipline
+    public class EducationPlanSemesterDiscipline
     {
-        public int EducationPlanId { get; set; }
-        public int SemesterDisciplineId { get; set; }
+        public uint EducationPlanId { get; set; }
+        public uint SemesterDisciplineId { get; set; }
 
-        public  EducationPlan EducationPlan { get; set; }
-        public  SemesterDiscipline SemesterDiscipline { get; set; }
+        public EducationPlan EducationPlan { get; set; }
+        public SemesterDiscipline SemesterDiscipline { get; set; }
     }
 }

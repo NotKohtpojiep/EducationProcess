@@ -1,14 +1,9 @@
 ﻿using EducationProcess.Domain.Models;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EducationProcess.Domain.Validators
 {
-    class CathedraValidator : AbstractValidator<Cathedra>
+    public class CathedraValidator : AbstractValidator<Cathedra>
     {
         public CathedraValidator()
         {
@@ -17,9 +12,14 @@ namespace EducationProcess.Domain.Validators
                     .WithMessage("Name should not be empty")
                 .Length(1, 75)
                     .WithMessage("Name should contain from 1 to 75 symbols");
+
             RuleFor(x=>x.NameAbbreviation)
-                .Length(1,10)
+                .Length(1,10).When(x => x.NameAbbreviation != null)
                     .WithMessage("Name abbreviation should contain from 1 to 10 symbols");
+
+            RuleFor(x=>x.Description)
+                .Length(1,300).When(x => x.Description != null)
+                    .WithMessage("Name abbreviation should contain from 1 to 300 symbols");
         }
     }
 }

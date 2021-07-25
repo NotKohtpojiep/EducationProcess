@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-
-
-namespace EducationProcess.Domain.Models
-
+﻿namespace EducationProcess.Domain.Models
 {
-    public partial class CathedraSpecialty
+    public class CathedraSpecialty
     {
-        public int CathedraId { get; set; }
-        public int FsesCategoryPatitionId { get; set; }
+        public uint CathedraId { get; set; }
+        public uint FsesCategoryPatitionId { get; set; }
 
         public Cathedra Cathedra { get; set; }
         public FsesCategoryPartition FsesCategoryPatition { get; set; }
-        public Specialty FsesCategoryPatitionNavigation { get; set; }
     }
 }
