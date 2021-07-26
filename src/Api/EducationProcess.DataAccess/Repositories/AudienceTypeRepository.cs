@@ -5,11 +5,11 @@ namespace EducationProcess.DataAccess.Repositories
 {
     public class AudienceTypeRepository : RepositoryBase<AudienceType>, IAudienceTypeRepository
     {
-        private readonly EducationProcessContext context;
+        private readonly EducationProcessContext _context;
         
         public AudienceTypeRepository(EducationProcessContext context) : base(context)
         {
-            this.context = context;
+            _context = context;
         }
     }
 }

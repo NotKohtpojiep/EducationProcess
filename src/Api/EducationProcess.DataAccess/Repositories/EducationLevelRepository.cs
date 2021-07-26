@@ -5,11 +5,11 @@ namespace EducationProcess.DataAccess.Repositories
 {
     public class EducationLevelRepository : RepositoryBase<EducationLevel>, IEducationLevelRepository
     {
-        private readonly EducationProcessContext context;
+        private readonly EducationProcessContext _context;
         
         public EducationLevelRepository(EducationProcessContext context) : base(context)
         {
-            this.context = context;
+            _context = context;
         }
     }
 }

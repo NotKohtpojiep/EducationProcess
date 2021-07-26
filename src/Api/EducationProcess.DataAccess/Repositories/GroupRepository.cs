@@ -5,11 +5,11 @@ namespace EducationProcess.DataAccess.Repositories
 {
     public class GroupRepository : RepositoryBase<Group>, IGroupRepository
     {
-        private readonly EducationProcessContext context;
+        private readonly EducationProcessContext _context;
         
         public GroupRepository(EducationProcessContext context) : base(context)
         {
-            this.context = context;
+            _context = context;
         }
     }
 }

@@ -5,11 +5,11 @@ namespace EducationProcess.DataAccess.Repositories
 {
     public class ScheduleDisciplineReplacementRepository : RepositoryBase<ScheduleDisciplineReplacement>, IScheduleDisciplineReplacementRepository
     {
-        private readonly EducationProcessContext context;
-        
+        private readonly EducationProcessContext _context;
+
         public ScheduleDisciplineReplacementRepository(EducationProcessContext context) : base(context)
         {
-            this.context = context;
+            _context = context;
         }
     }
 }

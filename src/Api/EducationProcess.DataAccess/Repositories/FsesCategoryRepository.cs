@@ -5,11 +5,11 @@ namespace EducationProcess.DataAccess.Repositories
 {
     public class FsesCategoryRepository : RepositoryBase<FsesCategory>, IFsesCategoryRepository
     {
-        private readonly EducationProcessContext context;
+        private readonly EducationProcessContext _context;
         
         public FsesCategoryRepository(EducationProcessContext context) : base(context)
         {
-            this.context = context;
+            _context = context;
         }
     }
 }

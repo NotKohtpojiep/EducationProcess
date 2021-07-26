@@ -5,11 +5,11 @@ namespace EducationProcess.DataAccess.Repositories
 {
     public class CathedraSpecialtyRepository : RepositoryBase<CathedraSpecialty>, ICathedraSpecialtyRepository
     {
-        private readonly EducationProcessContext context;
+        private readonly EducationProcessContext _context;
         
         public CathedraSpecialtyRepository(EducationProcessContext context) : base(context)
         {
-            this.context = context;
+            _context = context;
         }
     }
 }

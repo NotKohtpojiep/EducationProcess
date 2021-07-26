@@ -5,11 +5,11 @@ namespace EducationProcess.DataAccess.Repositories
 {
     public class FixedDisciplineRepository : RepositoryBase<FixedDiscipline>, IFixedDisciplineRepository
     {
-        private readonly EducationProcessContext context;
+        private readonly EducationProcessContext _context;
         
         public FixedDisciplineRepository(EducationProcessContext context) : base(context)
         {
-            this.context = context;
+            _context = context;
         }
     }
 }

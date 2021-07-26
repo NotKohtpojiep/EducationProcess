@@ -6,10 +6,3 @@ services:
     build:
       context: .
       dockerfile: Api/EducationProcess.Api/Dockerfile
-
-  identity.api:
-    image: ${DOCKER_REGISTRY-}identityapi
-    build:
-      context: .
-      dockerfile: Identity/Dockerfile
-

@@ -20,10 +20,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EducationProcess.BusinessLogic\EducationProcess.Services.csproj" />
     <ProjectReference Include="..\EducationProcess.Core\EducationProcess.Core.csproj" />
     <ProjectReference Include="..\EducationProcess.DataAccess\EducationProcess.DataAccess.csproj" />
     <ProjectReference Include="..\EducationProcess.Domain\EducationProcess.Domain.csproj" />
+    <ProjectReference Include="..\EducationProcess.Services\EducationProcess.Services.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,11 +5,11 @@ namespace EducationProcess.DataAccess.Repositories
 {
     public class AcademicYearRepository : RepositoryBase<AcademicYear>, IAcademicYearRepository
     {
-        private readonly EducationProcessContext context;
+        private readonly EducationProcessContext _context;
         
         public AcademicYearRepository(EducationProcessContext context) : base(context)
         {
-            this.context = context;
+            _context = context;
         }
     }
 }
