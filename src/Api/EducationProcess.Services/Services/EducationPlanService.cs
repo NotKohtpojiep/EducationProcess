@@ -1,14 +1,15 @@
-﻿using EducationProcess.Services.Interfaces;
+﻿using EducationProcess.DataAccess.Repositories.Interfaces;
+using EducationProcess.Services.Interfaces;
 
 namespace EducationProcess.Services.Services
 {
     public class EducationPlanService : IEducationPlanService
     {
-        private readonly IEducationPlanService _educationPlanService;
+        private readonly IEducationPlanRepository _educationPlanRepository;
 
-        public EducationPlanService(IEducationPlanService educationPlanService)
+        public EducationPlanService(IEducationPlanRepository educationPlanRepository)
         {
-            _educationPlanService = educationPlanService;
+            _educationPlanRepository = educationPlanRepository;
         }
     }
 }
