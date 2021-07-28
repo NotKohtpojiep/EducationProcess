@@ -8,9 +8,9 @@ FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 WORKDIR /src
 COPY ["Api/EducationProcess.Api/EducationProcess.Api.csproj", "Api/EducationProcess.Api/"]
 COPY ["Api/EducationProcess.Domain/EducationProcess.Domain.csproj", "Api/EducationProcess.Domain/"]
-COPY ["Api/EducationProcess.BusinessLogic/EducationProcess.Services.csproj", "Api/EducationProcess.BusinessLogic/"]
-COPY ["Api/EducationProcess.DataAccess/EducationProcess.DataAccess.csproj", "Api/EducationProcess.DataAccess/"]
 COPY ["Api/EducationProcess.Core/EducationProcess.Core.csproj", "Api/EducationProcess.Core/"]
+COPY ["Api/EducationProcess.Services/EducationProcess.Services.csproj", "Api/EducationProcess.Services/"]
+COPY ["Api/EducationProcess.DataAccess/EducationProcess.DataAccess.csproj", "Api/EducationProcess.DataAccess/"]
 RUN dotnet restore "Api/EducationProcess.Api/EducationProcess.Api.csproj"
 COPY . .
 WORKDIR "/src/Api/EducationProcess.Api"

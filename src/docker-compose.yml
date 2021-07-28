@@ -1,8 +1,11 @@
 version: '3.4'
 
 services:
+  database:
+    image: mysql:8.0.22
+
   educationprocess.api:
-    image: ${DOCKER_REGISTRY-}educationprocessapi
+    image: ${DOCKER_REGISTRY-}educationprocess.api
     build:
       context: .
       dockerfile: Api/EducationProcess.Api/Dockerfile

@@ -23,9 +23,12 @@ namespace EducationProcess.Api.Controllers
 
         [HttpGet("{id:int}")]
         [ProducesResponseType(typeof(ScheduleDiscipline), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Get([FromRoute] int id)
         {
             ScheduleDiscipline scheduleDiscipline = await _scheduleDisciplineService.GetScheduleDisciplineById(id);
+            if (scheduleDiscipline is null)
+                return NotFound();
             return Ok(scheduleDiscipline);
         }
     }

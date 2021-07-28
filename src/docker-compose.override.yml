@@ -1,12 +1,22 @@
 version: '3.4'
 
 services:
+  database:
+    image: mysql:8.0.22
+    ports:
+      - "8010:8010"
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: Abcd1234@lol
+      MYSQL_USER: newuser
+      MYSQL_PASSWORD: pass@word1234
+      MYSQL_DATABASE: EducationProcess
+
   educationprocess.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:ConnectionDbContext=server=localhost;user=root;password=1234;database=EducationProcess;"
+      - "ConnectionStrings:ConnectionDbContext=server=database;user=newuser;password=pass@word1234;database=EducationProcess;"
+    depends_on:
+      - database
     ports:
-      - "8001:80"
-    volumes:
-      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
-      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+      - "8000:80"
