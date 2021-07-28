@@ -17,7 +17,7 @@ namespace EducationProcess.DataAccess.Repositories
             _context = context;
         }
 
-        private static async Task<ScheduleDiscipline[]> GetLastFixedDisciplinesForWeek(ScheduleDiscipline[] scheduleDisciplines)
+        private static async Task<ScheduleDiscipline[]> GetLastFixedDisciplinesForWeekAsync(ScheduleDiscipline[] scheduleDisciplines)
         {
             await Task.Run(() =>
             {
@@ -39,7 +39,7 @@ namespace EducationProcess.DataAccess.Repositories
         }
 
         // Расписание всех групп по последней неделе каждой закрепленной дисциплины
-        public async Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDate(DateTime date)
+        public async Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDateAsync(DateTime date)
         {
             if (date.DayOfWeek is not DayOfWeek.Sunday)
                 date = date.AddDays(7 - (int)date.DayOfWeek);
@@ -53,12 +53,12 @@ namespace EducationProcess.DataAccess.Repositories
                     x.Date <= date)
                 .ToArrayAsync();
 
-            return await GetLastFixedDisciplinesForWeek(scheduleDisciplines);
+            return await GetLastFixedDisciplinesForWeekAsync(scheduleDisciplines);
         }
 
         // Вывод расписания за неделю.
         // Если сегодня воскресенье, выдает расписание за следующую (если таковая будет)
-        public async Task<ScheduleDiscipline[]> GetScheduleForWeekByGroupId(int groupId)
+        public async Task<ScheduleDiscipline[]> GetScheduleForWeekByGroupIdAsync(int groupId)
         {
             DateTime date = DateTime.Now;
             if (date.DayOfWeek is DayOfWeek.Sunday)
@@ -76,7 +76,7 @@ namespace EducationProcess.DataAccess.Repositories
                     x.Date <= date)
                 .ToArrayAsync();
 
-            return await GetLastFixedDisciplinesForWeek(scheduleDisciplines);
+            return await GetLastFixedDisciplinesForWeekAsync(scheduleDisciplines);
         }
     }
 }

@@ -1,4 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using EducationProcess.DataAccess;
 using EducationProcess.Domain.Models;
@@ -17,23 +20,32 @@ namespace EducationProcess.Services.Services
             _mapper = mapper;
         }
 
-        public async Task<ScheduleDiscipline> GetScheduleDisciplineById(int scheduleDisciplineId)
+        public async Task<ScheduleDiscipline> GetScheduleDisciplineByIdAsync(int scheduleDisciplineId)
         {
             DataAccess.Entities.ScheduleDiscipline scheduleDiscipline =
                 await _unitOfWork.ScheduleDisciplines.GetFirstWhereAsync(x => x.ScheduleDisciplineId == scheduleDisciplineId);
             return _mapper.Map<DataAccess.Entities.ScheduleDiscipline, ScheduleDiscipline>(scheduleDiscipline);
         }
 
-        public async Task<ScheduleDiscipline> AddScheduleDiscipline(ScheduleDiscipline newScheduleDiscipline)
+        public async Task<ScheduleDiscipline> AddScheduleDisciplineAsync(ScheduleDiscipline newScheduleDiscipline)
         {
             DataAccess.Entities.ScheduleDiscipline scheduleDiscipline =
                 _mapper.Map<ScheduleDiscipline, DataAccess.Entities.ScheduleDiscipline>(newScheduleDiscipline);
 
-            scheduleDiscipline = await _unitOfWork.ScheduleDisciplines.InsertAsync(scheduleDiscipline);
+            scheduleDiscipline = await _unitOfWork.ScheduleDisciplines.AddAsync(scheduleDiscipline);
             return _mapper.Map<DataAccess.Entities.ScheduleDiscipline, ScheduleDiscipline>(scheduleDiscipline);
         }
 
-        public async Task<ScheduleDiscipline> UpdateScheduleDiscipline(ScheduleDiscipline newScheduleDiscipline)
+        public async Task<ScheduleDiscipline[]> AddRangeScheduleDisciplineAsync(ScheduleDiscipline[] newScheduleDisciplines)
+        {
+            DataAccess.Entities.ScheduleDiscipline[] scheduleDisciplines =
+                _mapper.Map<ScheduleDiscipline[], DataAccess.Entities.ScheduleDiscipline[]>(newScheduleDisciplines);
+
+            scheduleDisciplines = await _unitOfWork.ScheduleDisciplines.AddRangeAsync(scheduleDisciplines);
+            return _mapper.Map<DataAccess.Entities.ScheduleDiscipline[], ScheduleDiscipline[]>(scheduleDisciplines);
+        }
+
+        public async Task<ScheduleDiscipline> UpdateScheduleDisciplineAsync(ScheduleDiscipline newScheduleDiscipline)
         {
             DataAccess.Entities.ScheduleDiscipline scheduleDiscipline =
                 _mapper.Map<ScheduleDiscipline, DataAccess.Entities.ScheduleDiscipline>(newScheduleDiscipline);
@@ -42,12 +54,45 @@ namespace EducationProcess.Services.Services
             return _mapper.Map<DataAccess.Entities.ScheduleDiscipline, ScheduleDiscipline>(scheduleDiscipline);
         }
 
-        public async Task DeleteScheduleDiscipline(ScheduleDiscipline scheduleDiscipline)
+        public async Task<ScheduleDiscipline[]> UpdateRangeScheduleDisciplineAsync(ScheduleDiscipline[] newScheduleDiscipline)
+        {
+            DataAccess.Entities.ScheduleDiscipline[] scheduleDiscipline =
+                _mapper.Map<ScheduleDiscipline[], DataAccess.Entities.ScheduleDiscipline[]>(newScheduleDiscipline);
+
+            scheduleDiscipline = await _unitOfWork.ScheduleDisciplines.UpdateRangeAsync(scheduleDiscipline);
+            return _mapper.Map<DataAccess.Entities.ScheduleDiscipline[], ScheduleDiscipline[]>(scheduleDiscipline);
+        }
+
+        public async Task DeleteScheduleDisciplineAsync(ScheduleDiscipline scheduleDiscipline)
         {
             DataAccess.Entities.ScheduleDiscipline mappedScheduleDiscipline =
                 _mapper.Map<ScheduleDiscipline, DataAccess.Entities.ScheduleDiscipline>(scheduleDiscipline);
 
-            await _unitOfWork.ScheduleDisciplines.Delete(mappedScheduleDiscipline);
+            await _unitOfWork.ScheduleDisciplines.DeleteAsync(mappedScheduleDiscipline);
+        }
+
+        public async Task DeleteRangeScheduleDisciplineAsync(ScheduleDiscipline[] scheduleDisciplines)
+        {
+            DataAccess.Entities.ScheduleDiscipline[] mappedScheduleDisciplines =
+                _mapper.Map<ScheduleDiscipline[], DataAccess.Entities.ScheduleDiscipline[]>(scheduleDisciplines);
+
+            await _unitOfWork.ScheduleDisciplines.DeleteRangeAsync(mappedScheduleDisciplines);
+        }
+
+        public async Task<ScheduleDiscipline[]> GetScheduleForWeekByGroupIdAsync(int groupId)
+        {
+            DataAccess.Entities.ScheduleDiscipline[] scheduleDisciplines =
+                await _unitOfWork.ScheduleDisciplines.GetScheduleForWeekByGroupIdAsync(groupId);
+
+            return _mapper.Map<DataAccess.Entities.ScheduleDiscipline[], ScheduleDiscipline[]>(scheduleDisciplines);
+        }
+
+        public async Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDateAsync(DateTime date)
+        {
+            DataAccess.Entities.ScheduleDiscipline[] scheduleDisciplines =
+                await _unitOfWork.ScheduleDisciplines.GetScheduleForWeekAndAllGroupsByDateAsync(date);
+
+            return _mapper.Map<DataAccess.Entities.ScheduleDiscipline[], ScheduleDiscipline[]>(scheduleDisciplines);
         }
     }
 }

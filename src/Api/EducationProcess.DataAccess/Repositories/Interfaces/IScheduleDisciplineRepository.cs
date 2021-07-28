@@ -6,7 +6,7 @@ namespace EducationProcess.DataAccess.Repositories.Interfaces
 {
     public interface IScheduleDisciplineRepository : IRepositoryBase<ScheduleDiscipline>
     {
-        Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDate(DateTime date);
-        Task<ScheduleDiscipline[]> GetScheduleForWeekByGroupId(int groupId);
+        Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDateAsync(DateTime date);
+        Task<ScheduleDiscipline[]> GetScheduleForWeekByGroupIdAsync(int groupId);
     }
 }

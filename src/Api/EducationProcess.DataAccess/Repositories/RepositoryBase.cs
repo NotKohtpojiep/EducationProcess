@@ -21,45 +21,9 @@ namespace EducationProcess.DataAccess.Repositories
             _dbSet = context.Set<TEntity>();
         }
 
-        public async Task Delete(TEntity entity)
+        public virtual async Task<TEntity> GetFirstWhereAsync(Expression<Func<TEntity, bool>> match)
         {
-            _context.Set<TEntity>().Remove(entity);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task DeleteRange(ICollection<TEntity> entities)
-        {
-            _context.Set<TEntity>().RemoveRange(entities);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<int> Count()
-        {
-            return await _context.Set<TEntity>().CountAsync();
-        }
-
-        public virtual async Task<List<TEntity>> GetAllAsync()
-        {
-            return await _context.Set<TEntity>().AsNoTracking().ToListAsync();
-        }
-
-        public async Task<List<TEntity>> FindAllByWhereAsync(Expression<Func<TEntity, bool>> match)
-        {
-            return await _context.Set<TEntity>().Where(match).ToListAsync();
-        }
-
-        public async Task<List<TEntity>> FindAllByWhereOrderedAscendingAsync(
-            Expression<Func<TEntity, bool>> match,
-            Expression<Func<TEntity, object>> orderBy)
-        {
-            return await _context.Set<TEntity>().Where(match).OrderBy(orderBy).ToListAsync();
-        }
-
-        public async Task<List<TEntity>> FindAllByWhereOrderedDescendingAsync(
-            Expression<Func<TEntity, bool>> match,
-            Expression<Func<TEntity, object>> orderBy)
-        {
-            return await _context.Set<TEntity>().Where(match).OrderByDescending(orderBy).ToListAsync();
+            return await _context.Set<TEntity>().FirstOrDefaultAsync(match);
         }
 
         public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> match)
@@ -67,9 +31,47 @@ namespace EducationProcess.DataAccess.Repositories
             return await _context.Set<TEntity>().AnyAsync(match);
         }
 
-        public virtual async Task<TEntity> GetFirstWhereAsync(Expression<Func<TEntity, bool>> match)
+        public virtual async Task<TEntity[]> GetAllAsync()
         {
-            return await _context.Set<TEntity>().FirstOrDefaultAsync(match);
+            return await _context.Set<TEntity>().AsNoTracking().ToArrayAsync();
+        }
+
+        public async Task<TEntity[]> FindAllByWhereAsync(Expression<Func<TEntity, bool>> match)
+        {
+            return await _context.Set<TEntity>().Where(match).ToArrayAsync();
+        }
+
+        public async Task<TEntity[]> FindAllByWhereOrderedAscendingAsync(
+            Expression<Func<TEntity, bool>> match,
+            Expression<Func<TEntity, object>> orderBy)
+        {
+            return await _context.Set<TEntity>().Where(match).OrderBy(orderBy).ToArrayAsync();
+        }
+
+        public async Task<TEntity[]> FindAllByWhereOrderedDescendingAsync(
+            Expression<Func<TEntity, bool>> match,
+            Expression<Func<TEntity, object>> orderBy)
+        {
+            return await _context.Set<TEntity>().Where(match).OrderByDescending(orderBy).ToArrayAsync();
+        }
+
+        public virtual async Task<TEntity> AddAsync(TEntity entity)
+        {
+            await _context.Set<TEntity>().AddAsync(entity);
+            await _context.SaveChangesAsync();
+
+            return entity;
+        }
+
+        public virtual async Task<TEntity[]> AddRangeAsync(ICollection<TEntity> entities, bool saveChanges = true)
+        {
+            await _context.Set<TEntity>().AddRangeAsync(entities);
+            if (saveChanges)
+            {
+                await _context.SaveChangesAsync();
+            }
+
+            return entities.ToArray();
         }
 
         public virtual async Task<TEntity> UpdateAsync(TEntity entityToUpdate)
@@ -86,7 +88,7 @@ namespace EducationProcess.DataAccess.Repositories
             return entityToUpdate;
         }
 
-        public virtual async Task<IList<TEntity>> UpdateRangeAsync(IList<TEntity> entities)
+        public virtual async Task<TEntity[]> UpdateRangeAsync(ICollection<TEntity> entities)
         {
             var detachedEntities = new List<TEntity>();
             _context.ChangeTracker.AutoDetectChangesEnabled = false;
@@ -104,26 +106,24 @@ namespace EducationProcess.DataAccess.Repositories
             await _context.SaveChangesAsync();
             _context.ChangeTracker.AutoDetectChangesEnabled = true;
 
-            return entities;
+            return entities.ToArray();
         }
 
-        public virtual async Task<TEntity> InsertAsync(TEntity entity)
+        public async Task DeleteAsync(TEntity entity)
         {
-            await _context.Set<TEntity>().AddAsync(entity);
+            _context.Set<TEntity>().Remove(entity);
             await _context.SaveChangesAsync();
-
-            return entity;
         }
 
-        public virtual async Task<IList<TEntity>> InsertRangeAsync(IList<TEntity> entities, bool saveChanges = true)
+        public async Task DeleteRangeAsync(ICollection<TEntity> entities)
         {
-            await _context.Set<TEntity>().AddRangeAsync(entities);
-            if (saveChanges)
-            {
-                await _context.SaveChangesAsync();
-            }
+            _context.Set<TEntity>().RemoveRange(entities);
+            await _context.SaveChangesAsync();
+        }
 
-            return entities;
+        public async Task<int> Count()
+        {
+            return await _context.Set<TEntity>().CountAsync();
         }
     }
 }
