@@ -163,6 +163,20 @@ namespace EducationProcess.DataAccess.Migrations
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
 
             migrationBuilder.CreateTable(
+                name: "Regions",
+                columns: table => new
+                {
+                    Region_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false, collation: "Utf8_General_Ci")
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Regions", x => x.Region_id);
+                })
+                .Annotation("Relational:Collation", "Utf8_General_Ci");
+
+            migrationBuilder.CreateTable(
                 name: "Semesters",
                 columns: table => new
                 {
@@ -253,25 +267,22 @@ namespace EducationProcess.DataAccess.Migrations
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "Cities",
                 columns: table => new
                 {
-                    Employee_id = table.Column<int>(type: "int", nullable: false)
+                    City_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Firstname = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false, collation: "Utf8_General_Ci"),
-                    Lastname = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false, collation: "Utf8_General_Ci"),
-                    Middlename = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true, collation: "Utf8_General_Ci"),
-                    Post_id = table.Column<int>(type: "int", nullable: false),
-                    Rowguid = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci")
+                    Name = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false, collation: "Utf8_General_Ci"),
+                    Region_id = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Employee_id);
+                    table.PrimaryKey("PK_Cities", x => x.City_id);
                     table.ForeignKey(
-                        name: "FK_Employees_Posts",
-                        column: x => x.Post_id,
-                        principalTable: "Posts",
-                        principalColumn: "Post_id",
+                        name: "FK_Cities_Regions",
+                        column: x => x.Region_id,
+                        principalTable: "Regions",
+                        principalColumn: "Region_id",
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
@@ -346,56 +357,22 @@ namespace EducationProcess.DataAccess.Migrations
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
 
             migrationBuilder.CreateTable(
-                name: "Audiences",
+                name: "Streets",
                 columns: table => new
                 {
-                    Audience_id = table.Column<int>(type: "int", nullable: false)
+                    Street_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "varchar(65)", maxLength: 65, nullable: true, collation: "Utf8_General_Ci"),
-                    Number = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: false, collation: "Utf8_General_Ci"),
-                    Employee_head_id = table.Column<int>(type: "int", nullable: true),
-                    Audience_type_id = table.Column<int>(type: "int", nullable: true),
-                    Seats_count = table.Column<short>(type: "smallint", nullable: true)
+                    Name = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false, collation: "Utf8_General_Ci"),
+                    City_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Audiences", x => x.Audience_id);
+                    table.PrimaryKey("PK_Streets", x => x.Street_id);
                     table.ForeignKey(
-                        name: "FK_Audiences_Audience_types",
-                        column: x => x.Audience_type_id,
-                        principalTable: "Audience_types",
-                        principalColumn: "Audience_type_id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Audiences_Employees",
-                        column: x => x.Employee_head_id,
-                        principalTable: "Employees",
-                        principalColumn: "Employee_id",
-                        onDelete: ReferentialAction.Restrict);
-                })
-                .Annotation("Relational:Collation", "Utf8_General_Ci");
-
-            migrationBuilder.CreateTable(
-                name: "Employee_cathedras",
-                columns: table => new
-                {
-                    Employee_id = table.Column<int>(type: "int", nullable: false),
-                    Cathedra_id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employee_cathedras", x => new { x.Employee_id, x.Cathedra_id });
-                    table.ForeignKey(
-                        name: "FK_Employee_cathedras_Cathedras",
-                        column: x => x.Cathedra_id,
-                        principalTable: "Cathedras",
-                        principalColumn: "Cathedra_id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_Employee_cathedras_Employees",
-                        column: x => x.Employee_id,
-                        principalTable: "Employees",
-                        principalColumn: "Employee_id",
+                        name: "FK_Streets_Cities",
+                        column: x => x.City_id,
+                        principalTable: "Cities",
+                        principalColumn: "City_id",
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
@@ -478,6 +455,31 @@ namespace EducationProcess.DataAccess.Migrations
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
 
             migrationBuilder.CreateTable(
+                name: "Departments",
+                columns: table => new
+                {
+                    Department_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(120)", maxLength: 120, nullable: false, collation: "Utf8_General_Ci"),
+                    Description = table.Column<string>(type: "varchar(400)", maxLength: 400, nullable: true, collation: "Utf8_General_Ci"),
+                    Street_id = table.Column<int>(type: "int", nullable: false),
+                    House_number = table.Column<string>(type: "char(10)", unicode: false, fixedLength: true, maxLength: 10, nullable: false, collation: "Utf8_General_Ci"),
+                    Building_number = table.Column<byte>(type: "tinyint unsigned", nullable: true),
+                    Postal_code = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departments", x => x.Department_id);
+                    table.ForeignKey(
+                        name: "FK_Departments_Streets",
+                        column: x => x.Street_id,
+                        principalTable: "Streets",
+                        principalColumn: "Street_id",
+                        onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("Relational:Collation", "Utf8_General_Ci");
+
+            migrationBuilder.CreateTable(
                 name: "Education_plan_semester_disciplines",
                 columns: table => new
                 {
@@ -539,6 +541,99 @@ namespace EducationProcess.DataAccess.Migrations
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
 
             migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Employee_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Firstname = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false, collation: "Utf8_General_Ci"),
+                    Lastname = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false, collation: "Utf8_General_Ci"),
+                    Middlename = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: true, collation: "Utf8_General_Ci"),
+                    Post_id = table.Column<int>(type: "int", nullable: false),
+                    Rowguid = table.Column<Guid>(type: "char(36)", nullable: true, collation: "ascii_general_ci"),
+                    Department_id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Employee_id);
+                    table.ForeignKey(
+                        name: "FK_Employees_Departments",
+                        column: x => x.Department_id,
+                        principalTable: "Departments",
+                        principalColumn: "Department_id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Employees_Posts",
+                        column: x => x.Post_id,
+                        principalTable: "Posts",
+                        principalColumn: "Post_id",
+                        onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("Relational:Collation", "Utf8_General_Ci");
+
+            migrationBuilder.CreateTable(
+                name: "Audiences",
+                columns: table => new
+                {
+                    Audience_id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(type: "varchar(65)", maxLength: 65, nullable: true, collation: "Utf8_General_Ci"),
+                    Number = table.Column<string>(type: "varchar(5)", maxLength: 5, nullable: false, collation: "Utf8_General_Ci"),
+                    Employee_head_id = table.Column<int>(type: "int", nullable: true),
+                    Audience_type_id = table.Column<int>(type: "int", nullable: true),
+                    Seats_count = table.Column<short>(type: "smallint", nullable: true),
+                    Department_id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Audiences", x => x.Audience_id);
+                    table.ForeignKey(
+                        name: "FK_Audiences_Audience_types",
+                        column: x => x.Audience_type_id,
+                        principalTable: "Audience_types",
+                        principalColumn: "Audience_type_id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Audiences_Departments",
+                        column: x => x.Department_id,
+                        principalTable: "Departments",
+                        principalColumn: "Department_id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Audiences_Employees",
+                        column: x => x.Employee_head_id,
+                        principalTable: "Employees",
+                        principalColumn: "Employee_id",
+                        onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("Relational:Collation", "Utf8_General_Ci");
+
+            migrationBuilder.CreateTable(
+                name: "Employee_cathedras",
+                columns: table => new
+                {
+                    Employee_id = table.Column<int>(type: "int", nullable: false),
+                    Cathedra_id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employee_cathedras", x => new { x.Employee_id, x.Cathedra_id });
+                    table.ForeignKey(
+                        name: "FK_Employee_cathedras_Cathedras",
+                        column: x => x.Cathedra_id,
+                        principalTable: "Cathedras",
+                        principalColumn: "Cathedra_id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Employee_cathedras_Employees",
+                        column: x => x.Employee_id,
+                        principalTable: "Employees",
+                        principalColumn: "Employee_id",
+                        onDelete: ReferentialAction.Restrict);
+                })
+                .Annotation("Relational:Collation", "Utf8_General_Ci");
+
+            migrationBuilder.CreateTable(
                 name: "Groups",
                 columns: table => new
                 {
@@ -549,11 +644,18 @@ namespace EducationProcess.DataAccess.Migrations
                     Curator_id = table.Column<int>(type: "int", nullable: false),
                     Received_education_id = table.Column<int>(type: "int", nullable: false),
                     Education_plan_id = table.Column<int>(type: "int", nullable: true),
-                    Receipt_year = table.Column<short>(type: "smallint", nullable: false)
+                    Receipt_year = table.Column<short>(type: "smallint", nullable: false),
+                    Department_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Groups", x => x.Group_id);
+                    table.ForeignKey(
+                        name: "FK_Groups_Departments",
+                        column: x => x.Department_id,
+                        principalTable: "Departments",
+                        principalColumn: "Department_id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Groups_Education_plans",
                         column: x => x.Education_plan_id,
@@ -585,12 +687,12 @@ namespace EducationProcess.DataAccess.Migrations
                     Semester_discipline_id = table.Column<int>(type: "int", nullable: false),
                     Group_id = table.Column<int>(type: "int", nullable: false),
                     Is_agreed = table.Column<bool>(type: "tinyint(1)", nullable: true),
-                    Is_watched = table.Column<bool>(type: "tinyint(1)", nullable: false, defaultValue: false),
+                    Is_watched = table.Column<bool>(type: "tinyint(1)", nullable: false),
                     Fixer_employee_id = table.Column<int>(type: "int", nullable: false),
                     Comment_by_fixing_employee = table.Column<string>(type: "varchar(600)", maxLength: 600, nullable: true, collation: "Utf8_General_Ci"),
                     Comment_by_fixer_employee = table.Column<string>(type: "varchar(600)", maxLength: 600, nullable: true, collation: "Utf8_General_Ci"),
                     Published_at = table.Column<DateTime>(type: "datetime", nullable: false),
-                    Coordinated_at = table.Column<DateTime>(type: "datetime", nullable: true, defaultValue: new DateTime(2021, 7, 21, 18, 17, 17, 803, DateTimeKind.Local).AddTicks(7924))
+                    Coordinated_at = table.Column<DateTime>(type: "datetime", nullable: true, defaultValueSql: "('2021-07-29T21:04:33.948')")
                 },
                 constraints: table =>
                 {
@@ -762,6 +864,11 @@ namespace EducationProcess.DataAccess.Migrations
                 column: "Audience_type_id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Audiences_Department_id",
+                table: "Audiences",
+                column: "Department_id");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Audiences_Employee_head_id",
                 table: "Audiences",
                 column: "Employee_head_id");
@@ -770,6 +877,11 @@ namespace EducationProcess.DataAccess.Migrations
                 name: "IX_Cathedra_specialties_Specialtie_id",
                 table: "Cathedra_specialties",
                 column: "Fses_category_patition_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cities_Region_id",
+                table: "Cities",
+                column: "Region_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Conducted_pairs_Lesson_type_id",
@@ -785,6 +897,11 @@ namespace EducationProcess.DataAccess.Migrations
                 name: "IX_Conducted_pairs_Schedule_discipline_replacement_id",
                 table: "Conducted_pairs",
                 column: "Schedule_discipline_replacement_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Departments_Street_id",
+                table: "Departments",
+                column: "Street_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Disciplines_Cathedra_id",
@@ -820,6 +937,11 @@ namespace EducationProcess.DataAccess.Migrations
                 name: "IX_Employee_cathedras_Cathedra_id",
                 table: "Employee_cathedras",
                 column: "Cathedra_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_Department_id",
+                table: "Employees",
+                column: "Department_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_Post_id",
@@ -860,6 +982,11 @@ namespace EducationProcess.DataAccess.Migrations
                 name: "IX_Groups_Curator_id",
                 table: "Groups",
                 column: "Curator_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Groups_Department_id",
+                table: "Groups",
+                column: "Department_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Groups_Education_plan_id",
@@ -955,6 +1082,11 @@ namespace EducationProcess.DataAccess.Migrations
                 name: "IX_Semester_disciplines_Semester_id",
                 table: "Semester_disciplines",
                 column: "Semester_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Streets_City_id",
+                table: "Streets",
+                column: "City_id");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -1017,6 +1149,9 @@ namespace EducationProcess.DataAccess.Migrations
                 name: "Academic_years");
 
             migrationBuilder.DropTable(
+                name: "Departments");
+
+            migrationBuilder.DropTable(
                 name: "Posts");
 
             migrationBuilder.DropTable(
@@ -1035,13 +1170,22 @@ namespace EducationProcess.DataAccess.Migrations
                 name: "Education_cycles_and_modules");
 
             migrationBuilder.DropTable(
+                name: "Streets");
+
+            migrationBuilder.DropTable(
                 name: "Education_forms");
 
             migrationBuilder.DropTable(
                 name: "Fses_category_partitions");
 
             migrationBuilder.DropTable(
+                name: "Cities");
+
+            migrationBuilder.DropTable(
                 name: "Fses_categories");
+
+            migrationBuilder.DropTable(
+                name: "Regions");
 
             migrationBuilder.DropTable(
                 name: "Federal_state_educational_standards");

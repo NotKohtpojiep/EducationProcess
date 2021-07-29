@@ -49,6 +49,10 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Audience_type_id");
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int")
+                        .HasColumnName("Department_id");
+
                     b.Property<int?>("EmployeeHeadId")
                         .HasColumnType("int")
                         .HasColumnName("Employee_head_id");
@@ -68,7 +72,9 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.HasKey("AudienceId");
 
-                    b.HasIndex("AudienceTypeId");
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex(new[] { "AudienceTypeId" }, "IX_Audiences_Audience_type_id");
 
                     b.HasIndex(new[] { "EmployeeHeadId" }, "IX_Audiences_Employee_head_id");
 
@@ -139,6 +145,29 @@ namespace EducationProcess.DataAccess.Migrations
                     b.ToTable("Cathedra_specialties");
                 });
 
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("City_id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<int?>("RegionId")
+                        .HasColumnType("int")
+                        .HasColumnName("Region_id");
+
+                    b.HasKey("CityId");
+
+                    b.HasIndex("RegionId");
+
+                    b.ToTable("Cities");
+                });
+
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.ConductedPair", b =>
                 {
                     b.Property<int>("ConductedPairId")
@@ -167,6 +196,49 @@ namespace EducationProcess.DataAccess.Migrations
                     b.HasIndex(new[] { "ScheduleDisciplineReplacementId" }, "IX_Conducted_pairs_Schedule_discipline_replacement_id");
 
                     b.ToTable("Conducted_pairs");
+                });
+
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Department", b =>
+                {
+                    b.Property<int>("DepartmentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Department_id");
+
+                    b.Property<byte?>("BuildingNumber")
+                        .HasColumnType("tinyint unsigned")
+                        .HasColumnName("Building_number");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(400)
+                        .HasColumnType("varchar(400)");
+
+                    b.Property<string>("HouseNumber")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .IsUnicode(false)
+                        .HasColumnType("char(10)")
+                        .HasColumnName("House_number")
+                        .IsFixedLength(true);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.Property<int?>("PostalCode")
+                        .HasColumnType("int")
+                        .HasColumnName("Postal_code");
+
+                    b.Property<int>("StreetId")
+                        .HasColumnType("int")
+                        .HasColumnName("Street_id");
+
+                    b.HasKey("DepartmentId");
+
+                    b.HasIndex("StreetId");
+
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.Discipline", b =>
@@ -348,6 +420,10 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Employee_id");
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int")
+                        .HasColumnName("Department_id");
+
                     b.Property<string>("Firstname")
                         .IsRequired()
                         .HasMaxLength(100)
@@ -370,6 +446,8 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("char(36)");
 
                     b.HasKey("EmployeeId");
+
+                    b.HasIndex("DepartmentId");
 
                     b.HasIndex(new[] { "PostId" }, "IX_Employees_Post_id");
 
@@ -433,8 +511,8 @@ namespace EducationProcess.DataAccess.Migrations
                     b.Property<DateTime?>("CoordinatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime")
-                        .HasDefaultValue(new DateTime(2021, 7, 21, 18, 17, 17, 803, DateTimeKind.Local).AddTicks(7924))
-                        .HasColumnName("Coordinated_at");
+                        .HasColumnName("Coordinated_at")
+                        .HasDefaultValueSql("('2021-07-29T21:04:33.948')");
 
                     b.Property<int>("FixerEmployeeId")
                         .HasColumnType("int")
@@ -452,10 +530,9 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("tinyint(1)")
                         .HasColumnName("Is_agreed");
 
-                    b.Property<bool>("IsWatched")
-                        .ValueGeneratedOnAdd()
+                    b.Property<bool?>("IsWatched")
+                        .IsRequired()
                         .HasColumnType("tinyint(1)")
-                        .HasDefaultValue(false)
                         .HasColumnName("Is_watched");
 
                     b.Property<DateTime>("PublishedAt")
@@ -468,9 +545,9 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.HasKey("FixedDisciplineId");
 
-                    b.HasIndex("FixerEmployeeId");
-
                     b.HasIndex(new[] { "FixingEmployeeId" }, "IX_Fixed_disciplines_Employee_id");
+
+                    b.HasIndex(new[] { "FixerEmployeeId" }, "IX_Fixed_disciplines_Fixer_employee_id");
 
                     b.HasIndex(new[] { "GroupId" }, "IX_Fixed_disciplines_Group_id");
 
@@ -561,6 +638,10 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Curator_id");
 
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int")
+                        .HasColumnName("Department_id");
+
                     b.Property<int?>("EducationPlanId")
                         .HasColumnType("int")
                         .HasColumnName("Education_plan_id");
@@ -579,6 +660,8 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnName("Received_education_id");
 
                     b.HasKey("GroupId");
+
+                    b.HasIndex("DepartmentId");
 
                     b.HasIndex(new[] { "CuratorId" }, "IX_Groups_Curator_id");
 
@@ -724,6 +807,23 @@ namespace EducationProcess.DataAccess.Migrations
                     b.ToTable("Received_specialties");
                 });
 
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Region", b =>
+                {
+                    b.Property<int>("RegionId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Region_id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.HasKey("RegionId");
+
+                    b.ToTable("Regions");
+                });
+
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.ScheduleDiscipline", b =>
                 {
                     b.Property<int>("ScheduleDisciplineId")
@@ -772,13 +872,13 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.HasKey("ScheduleDisciplineId");
 
-                    b.HasIndex("CreatedByEmployeeId");
-
-                    b.HasIndex("ModifiedByEmployeeId");
-
                     b.HasIndex(new[] { "AudienceId" }, "IX_Schedule_disciplines_Audience_id");
 
+                    b.HasIndex(new[] { "CreatedByEmployeeId" }, "IX_Schedule_disciplines_Created_by_employee_id");
+
                     b.HasIndex(new[] { "FixedDisciplineId" }, "IX_Schedule_disciplines_Fixed_discipline_id");
+
+                    b.HasIndex(new[] { "ModifiedByEmployeeId" }, "IX_Schedule_disciplines_Modified_by_employee_id");
 
                     b.ToTable("Schedule_disciplines");
                 });
@@ -831,13 +931,13 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.HasKey("ScheduleDisciplineReplacementId");
 
-                    b.HasIndex("CreatedByEmployeeId");
-
-                    b.HasIndex("ModifiedByEmployeeId");
-
                     b.HasIndex(new[] { "AudienceId" }, "IX_Schedule_discipline_replacement_Audience_id");
 
+                    b.HasIndex(new[] { "CreatedByEmployeeId" }, "IX_Schedule_discipline_replacement_Created_by_employee_id");
+
                     b.HasIndex(new[] { "FixedDisciplineId" }, "IX_Schedule_discipline_replacement_Fixed_discipline_id");
+
+                    b.HasIndex(new[] { "ModifiedByEmployeeId" }, "IX_Schedule_discipline_replacement_Modified_by_employee_id");
 
                     b.HasIndex(new[] { "ScheduleDisciplineId" }, "IX_Schedule_discipline_replacement_Schedule_discipline_id");
 
@@ -933,6 +1033,29 @@ namespace EducationProcess.DataAccess.Migrations
                     b.ToTable("Semester_disciplines");
                 });
 
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Street", b =>
+                {
+                    b.Property<int>("StreetId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("Street_id");
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int")
+                        .HasColumnName("City_id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(120)
+                        .HasColumnType("varchar(120)");
+
+                    b.HasKey("StreetId");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Streets");
+                });
+
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.Audience", b =>
                 {
                     b.HasOne("EducationProcess.DataAccess.Entities.AudienceType", "AudienceType")
@@ -940,12 +1063,20 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasForeignKey("AudienceTypeId")
                         .HasConstraintName("FK_Audiences_Audience_types");
 
+                    b.HasOne("EducationProcess.DataAccess.Entities.Department", "Department")
+                        .WithMany("Audiences")
+                        .HasForeignKey("DepartmentId")
+                        .HasConstraintName("FK_Audiences_Departments")
+                        .IsRequired();
+
                     b.HasOne("EducationProcess.DataAccess.Entities.Employee", "EmployeeHead")
                         .WithMany("Audiences")
                         .HasForeignKey("EmployeeHeadId")
                         .HasConstraintName("FK_Audiences_Employees");
 
                     b.Navigation("AudienceType");
+
+                    b.Navigation("Department");
 
                     b.Navigation("EmployeeHead");
                 });
@@ -967,6 +1098,16 @@ namespace EducationProcess.DataAccess.Migrations
                     b.Navigation("Cathedra");
 
                     b.Navigation("FsesCategoryPatition");
+                });
+
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.City", b =>
+                {
+                    b.HasOne("EducationProcess.DataAccess.Entities.Region", "Region")
+                        .WithMany("Cities")
+                        .HasForeignKey("RegionId")
+                        .HasConstraintName("FK_Cities_Regions");
+
+                    b.Navigation("Region");
                 });
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.ConductedPair", b =>
@@ -992,6 +1133,17 @@ namespace EducationProcess.DataAccess.Migrations
                     b.Navigation("ScheduleDiscipline");
 
                     b.Navigation("ScheduleDisciplineReplacement");
+                });
+
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Department", b =>
+                {
+                    b.HasOne("EducationProcess.DataAccess.Entities.Street", "Street")
+                        .WithMany("Departments")
+                        .HasForeignKey("StreetId")
+                        .HasConstraintName("FK_Departments_Streets")
+                        .IsRequired();
+
+                    b.Navigation("Street");
                 });
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.Discipline", b =>
@@ -1062,11 +1214,19 @@ namespace EducationProcess.DataAccess.Migrations
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.Employee", b =>
                 {
+                    b.HasOne("EducationProcess.DataAccess.Entities.Department", "Department")
+                        .WithMany("Employees")
+                        .HasForeignKey("DepartmentId")
+                        .HasConstraintName("FK_Employees_Departments")
+                        .IsRequired();
+
                     b.HasOne("EducationProcess.DataAccess.Entities.Post", "Post")
                         .WithMany("Employees")
                         .HasForeignKey("PostId")
                         .HasConstraintName("FK_Employees_Posts")
                         .IsRequired();
+
+                    b.Navigation("Department");
 
                     b.Navigation("Post");
                 });
@@ -1155,6 +1315,12 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasConstraintName("FK_Groups_Employees")
                         .IsRequired();
 
+                    b.HasOne("EducationProcess.DataAccess.Entities.Department", "Department")
+                        .WithMany("Groups")
+                        .HasForeignKey("DepartmentId")
+                        .HasConstraintName("FK_Groups_Departments")
+                        .IsRequired();
+
                     b.HasOne("EducationProcess.DataAccess.Entities.EducationPlan", "EducationPlan")
                         .WithMany("Groups")
                         .HasForeignKey("EducationPlanId")
@@ -1167,6 +1333,8 @@ namespace EducationProcess.DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("Curator");
+
+                    b.Navigation("Department");
 
                     b.Navigation("EducationPlan");
 
@@ -1323,6 +1491,17 @@ namespace EducationProcess.DataAccess.Migrations
                     b.Navigation("Semester");
                 });
 
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Street", b =>
+                {
+                    b.HasOne("EducationProcess.DataAccess.Entities.City", "City")
+                        .WithMany("Streets")
+                        .HasForeignKey("CityId")
+                        .HasConstraintName("FK_Streets_Cities")
+                        .IsRequired();
+
+                    b.Navigation("City");
+                });
+
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.AcademicYear", b =>
                 {
                     b.Navigation("EducationPlans");
@@ -1347,6 +1526,20 @@ namespace EducationProcess.DataAccess.Migrations
                     b.Navigation("Disciplines");
 
                     b.Navigation("EmployeeCathedras");
+                });
+
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.City", b =>
+                {
+                    b.Navigation("Streets");
+                });
+
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Department", b =>
+                {
+                    b.Navigation("Audiences");
+
+                    b.Navigation("Employees");
+
+                    b.Navigation("Groups");
                 });
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.Discipline", b =>
@@ -1460,6 +1653,11 @@ namespace EducationProcess.DataAccess.Migrations
                     b.Navigation("ReceivedEducations");
                 });
 
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Region", b =>
+                {
+                    b.Navigation("Cities");
+                });
+
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.ScheduleDiscipline", b =>
                 {
                     b.Navigation("ConductedPairs");
@@ -1482,6 +1680,11 @@ namespace EducationProcess.DataAccess.Migrations
                     b.Navigation("EducationPlanSemesterDisciplines");
 
                     b.Navigation("FixedDisciplines");
+                });
+
+            modelBuilder.Entity("EducationProcess.DataAccess.Entities.Street", b =>
+                {
+                    b.Navigation("Departments");
                 });
 #pragma warning restore 612, 618
         }

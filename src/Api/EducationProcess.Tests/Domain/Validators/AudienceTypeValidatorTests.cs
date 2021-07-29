@@ -15,7 +15,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("", "2020")]
         [InlineData("1000", "")]
-        public async Task Validate_AudienceTypeIsNotValid_ShouldHaveErrors(string name, string description)
+        public void Validate_AudienceTypeIsNotValid_ShouldHaveErrors(string name, string description)
         {
             // arrange
             AudienceType audienceType = new AudienceType()
@@ -37,7 +37,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("2021", "2020")]
         [InlineData("1000", null)]
-        public async Task Validate_AudienceTypeIsValid_ShouldNotHaveErrors(string name, string description)
+        public void Validate_AudienceTypeIsValid_ShouldNotHaveErrors(string name, string description)
         {
             // arrange
             AudienceType audienceType = new AudienceType()

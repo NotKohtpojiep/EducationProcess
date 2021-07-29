@@ -22,7 +22,9 @@ namespace EducationProcess.DataAccess
         public virtual DbSet<AudienceType> AudienceTypes { get; set; }
         public virtual DbSet<Cathedra> Cathedras { get; set; }
         public virtual DbSet<CathedraSpecialty> CathedraSpecialties { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<ConductedPair> ConductedPairs { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
         public virtual DbSet<Discipline> Disciplines { get; set; }
         public virtual DbSet<EducationCyclesAndModule> EducationCyclesAndModules { get; set; }
         public virtual DbSet<EducationForm> EducationForms { get; set; }
@@ -42,10 +44,12 @@ namespace EducationProcess.DataAccess
         public virtual DbSet<ReceivedEducation> ReceivedEducations { get; set; }
         public virtual DbSet<ReceivedEducationForm> ReceivedEducationForms { get; set; }
         public virtual DbSet<ReceivedSpecialty> ReceivedSpecialties { get; set; }
+        public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<ScheduleDiscipline> ScheduleDisciplines { get; set; }
         public virtual DbSet<ScheduleDisciplineReplacement> ScheduleDisciplineReplacements { get; set; }
         public virtual DbSet<Semester> Semesters { get; set; }
         public virtual DbSet<SemesterDiscipline> SemesterDisciplines { get; set; }
+        public virtual DbSet<Street> Streets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -64,11 +68,15 @@ namespace EducationProcess.DataAccess
 
             modelBuilder.Entity<Audience>(entity =>
             {
+                entity.HasIndex(e => e.AudienceTypeId, "IX_Audiences_Audience_type_id");
+
                 entity.HasIndex(e => e.EmployeeHeadId, "IX_Audiences_Employee_head_id");
 
                 entity.Property(e => e.AudienceId).HasColumnName("Audience_id");
 
                 entity.Property(e => e.AudienceTypeId).HasColumnName("Audience_type_id");
+
+                entity.Property(e => e.DepartmentId).HasColumnName("Department_id");
 
                 entity.Property(e => e.EmployeeHeadId).HasColumnName("Employee_head_id");
 
@@ -84,6 +92,12 @@ namespace EducationProcess.DataAccess
                     .WithMany(p => p.Audiences)
                     .HasForeignKey(d => d.AudienceTypeId)
                     .HasConstraintName("FK_Audiences_Audience_types");
+
+                entity.HasOne(d => d.Department)
+                    .WithMany(p => p.Audiences)
+                    .HasForeignKey(d => d.DepartmentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Audiences_Departments");
 
                 entity.HasOne(d => d.EmployeeHead)
                     .WithMany(p => p.Audiences)
@@ -144,6 +158,22 @@ namespace EducationProcess.DataAccess
                     .HasConstraintName("FK_Cathedra_specialties_Fses_category_partitions");
             });
 
+            modelBuilder.Entity<City>(entity =>
+            {
+                entity.Property(e => e.CityId).HasColumnName("City_id");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(120);
+
+                entity.Property(e => e.RegionId).HasColumnName("Region_id");
+
+                entity.HasOne(d => d.Region)
+                    .WithMany(p => p.Cities)
+                    .HasForeignKey(d => d.RegionId)
+                    .HasConstraintName("FK_Cities_Regions");
+            });
+
             modelBuilder.Entity<ConductedPair>(entity =>
             {
                 entity.ToTable("Conducted_pairs");
@@ -177,6 +207,36 @@ namespace EducationProcess.DataAccess
                     .WithMany(p => p.ConductedPairs)
                     .HasForeignKey(d => d.ScheduleDisciplineReplacementId)
                     .HasConstraintName("FK_Conducted_pairs_Schedule_discipline_replacement");
+            });
+
+            modelBuilder.Entity<Department>(entity =>
+            {
+                entity.Property(e => e.DepartmentId).HasColumnName("Department_id");
+
+                entity.Property(e => e.BuildingNumber).HasColumnName("Building_number");
+
+                entity.Property(e => e.Description).HasMaxLength(400);
+
+                entity.Property(e => e.HouseNumber)
+                    .IsRequired()
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("House_number")
+                    .IsFixedLength(true);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(120);
+
+                entity.Property(e => e.PostalCode).HasColumnName("Postal_code");
+
+                entity.Property(e => e.StreetId).HasColumnName("Street_id");
+
+                entity.HasOne(d => d.Street)
+                    .WithMany(p => p.Departments)
+                    .HasForeignKey(d => d.StreetId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Departments_Streets");
             });
 
             modelBuilder.Entity<Discipline>(entity =>
@@ -345,6 +405,8 @@ namespace EducationProcess.DataAccess
 
                 entity.Property(e => e.EmployeeId).HasColumnName("Employee_id");
 
+                entity.Property(e => e.DepartmentId).HasColumnName("Department_id");
+
                 entity.Property(e => e.Firstname)
                     .IsRequired()
                     .HasMaxLength(100);
@@ -356,6 +418,12 @@ namespace EducationProcess.DataAccess
                 entity.Property(e => e.Middlename).HasMaxLength(100);
 
                 entity.Property(e => e.PostId).HasColumnName("Post_id");
+
+                entity.HasOne(d => d.Department)
+                    .WithMany(p => p.Employees)
+                    .HasForeignKey(d => d.DepartmentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Employees_Departments");
 
                 entity.HasOne(d => d.Post)
                     .WithMany(p => p.Employees)
@@ -408,6 +476,8 @@ namespace EducationProcess.DataAccess
 
                 entity.HasIndex(e => e.FixingEmployeeId, "IX_Fixed_disciplines_Employee_id");
 
+                entity.HasIndex(e => e.FixerEmployeeId, "IX_Fixed_disciplines_Fixer_employee_id");
+
                 entity.HasIndex(e => e.GroupId, "IX_Fixed_disciplines_Group_id");
 
                 entity.HasIndex(e => e.SemesterDisciplineId, "IX_Fixed_disciplines_Semester_discipline_id");
@@ -425,7 +495,7 @@ namespace EducationProcess.DataAccess
                 entity.Property(e => e.CoordinatedAt)
                     .HasColumnType("datetime")
                     .HasColumnName("Coordinated_at")
-                    .HasDefaultValue(DateTime.Now);
+                    .HasDefaultValueSql("('2021-07-29T21:04:33.948')");
 
                 entity.Property(e => e.FixerEmployeeId).HasColumnName("Fixer_employee_id");
 
@@ -435,7 +505,10 @@ namespace EducationProcess.DataAccess
 
                 entity.Property(e => e.IsAgreed).HasColumnName("Is_agreed");
 
-                entity.Property(e => e.IsWatched).HasColumnName("Is_watched").HasDefaultValue(false);
+                entity.Property(e => e.IsWatched)
+                    .IsRequired()
+                    .HasColumnName("Is_watched");
+                    //.HasDefaultValueSql("(CONVERT([bit],(0)))");  TODO:fix default value (mysql server doesn't working with it)
 
                 entity.Property(e => e.PublishedAt)
                     .HasColumnType("datetime")
@@ -537,6 +610,8 @@ namespace EducationProcess.DataAccess
 
                 entity.Property(e => e.CuratorId).HasColumnName("Curator_id");
 
+                entity.Property(e => e.DepartmentId).HasColumnName("Department_id");
+
                 entity.Property(e => e.EducationPlanId).HasColumnName("Education_plan_id");
 
                 entity.Property(e => e.Name)
@@ -552,6 +627,12 @@ namespace EducationProcess.DataAccess
                     .HasForeignKey(d => d.CuratorId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Groups_Employees");
+
+                entity.HasOne(d => d.Department)
+                    .WithMany(p => p.Groups)
+                    .HasForeignKey(d => d.DepartmentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Groups_Departments");
 
                 entity.HasOne(d => d.EducationPlan)
                     .WithMany(p => p.Groups)
@@ -681,13 +762,26 @@ namespace EducationProcess.DataAccess
                     .HasConstraintName("FK_Received_specialties_Fses_category_partitions");
             });
 
+            modelBuilder.Entity<Region>(entity =>
+            {
+                entity.Property(e => e.RegionId).HasColumnName("Region_id");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(120);
+            });
+
             modelBuilder.Entity<ScheduleDiscipline>(entity =>
             {
                 entity.ToTable("Schedule_disciplines");
 
                 entity.HasIndex(e => e.AudienceId, "IX_Schedule_disciplines_Audience_id");
 
+                entity.HasIndex(e => e.CreatedByEmployeeId, "IX_Schedule_disciplines_Created_by_employee_id");
+
                 entity.HasIndex(e => e.FixedDisciplineId, "IX_Schedule_disciplines_Fixed_discipline_id");
+
+                entity.HasIndex(e => e.ModifiedByEmployeeId, "IX_Schedule_disciplines_Modified_by_employee_id");
 
                 entity.Property(e => e.ScheduleDisciplineId).HasColumnName("Schedule_discipline_id");
 
@@ -745,7 +839,11 @@ namespace EducationProcess.DataAccess
 
                 entity.HasIndex(e => e.AudienceId, "IX_Schedule_discipline_replacement_Audience_id");
 
+                entity.HasIndex(e => e.CreatedByEmployeeId, "IX_Schedule_discipline_replacement_Created_by_employee_id");
+
                 entity.HasIndex(e => e.FixedDisciplineId, "IX_Schedule_discipline_replacement_Fixed_discipline_id");
+
+                entity.HasIndex(e => e.ModifiedByEmployeeId, "IX_Schedule_discipline_replacement_Modified_by_employee_id");
 
                 entity.HasIndex(e => e.ScheduleDisciplineId, "IX_Schedule_discipline_replacement_Schedule_discipline_id");
 
@@ -865,6 +963,23 @@ namespace EducationProcess.DataAccess
                     .HasForeignKey(d => d.SemesterId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Semesters_Disciplines_Semesters");
+            });
+
+            modelBuilder.Entity<Street>(entity =>
+            {
+                entity.Property(e => e.StreetId).HasColumnName("Street_id");
+
+                entity.Property(e => e.CityId).HasColumnName("City_id");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(120);
+
+                entity.HasOne(d => d.City)
+                    .WithMany(p => p.Streets)
+                    .HasForeignKey(d => d.CityId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Streets_Cities");
             });
 
             OnModelCreatingPartial(modelBuilder);

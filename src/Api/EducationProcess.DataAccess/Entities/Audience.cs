@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 #nullable disable
 
@@ -19,8 +18,10 @@ namespace EducationProcess.DataAccess.Entities
         public int? EmployeeHeadId { get; set; }
         public int? AudienceTypeId { get; set; }
         public short? SeatsCount { get; set; }
+        public int DepartmentId { get; set; }
 
         public virtual AudienceType AudienceType { get; set; }
+        public virtual Department Department { get; set; }
         public virtual Employee EmployeeHead { get; set; }
         public virtual ICollection<ScheduleDisciplineReplacement> ScheduleDisciplineReplacements { get; set; }
         public virtual ICollection<ScheduleDiscipline> ScheduleDisciplines { get; set; }

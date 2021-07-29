@@ -4,12 +4,13 @@ namespace EducationProcess.Domain.Models
 {
     public class FixedDiscipline
     {
-        public uint FixedDisciplineId { get; set; }
-        public uint FixingEmployeeId { get; set; }
-        public uint SemesterDisciplineId { get; set; }
-        public uint GroupId { get; set; }
+        public int FixedDisciplineId { get; set; }
+        public int FixingEmployeeId { get; set; }
+        public int SemesterDisciplineId { get; set; }
+        public int GroupId { get; set; }
         public bool? IsAgreed { get; set; }
-        public uint FixerEmployeeId { get; set; }
+        public bool? IsWatched { get; set; }
+        public int FixerEmployeeId { get; set; }
         public string CommentByFixingEmployee { get; set; }
         public string CommentByFixerEmployee { get; set; }
         public DateTime PublishedAt { get; set; }

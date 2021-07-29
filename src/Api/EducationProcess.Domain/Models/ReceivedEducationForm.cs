@@ -2,8 +2,8 @@
 {
     public class ReceivedEducationForm
     {
-        public uint ReceivedEducationFormId { get; set; }
-        public uint EducationFormId { get; set; }
+        public int ReceivedEducationFormId { get; set; }
+        public int EducationFormId { get; set; }
         public string AdditionalInfo { get; set; }
 
         public EducationForm EducationForm { get; set; }

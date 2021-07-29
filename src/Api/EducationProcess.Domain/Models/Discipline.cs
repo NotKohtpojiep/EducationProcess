@@ -4,10 +4,10 @@ namespace EducationProcess.Domain.Models
 {
     public class Discipline
     {
-        public uint DisciplineId { get; set; }
+        public int DisciplineId { get; set; }
         public string DisciplineIndex { get; set; }
-        public uint? CathedraId { get; set; }
-        public uint EducationCycleId { get; set; }
+        public int? CathedraId { get; set; }
+        public int EducationCycleId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTime CreatedAt { get; set; }

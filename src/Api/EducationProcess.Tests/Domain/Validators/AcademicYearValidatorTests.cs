@@ -17,7 +17,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData(1000, 2020)]
         [InlineData(2090, 2020)]
         [InlineData(1233, 2020)]
-        public async Task Validate_AcademicYearIsNotValid_ShouldHaveErrors(ushort beginingYear, ushort endingYear)
+        public void Validate_AcademicYearIsNotValid_ShouldHaveErrors(short beginingYear, short endingYear)
         {
             // arrange - подготавливаем данные
             AcademicYear academicYear = new AcademicYear()
@@ -40,7 +40,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData(2021, 2021)]
         [InlineData(2021, 2022)]
         [InlineData(2030, 2031)]
-        public async Task Validate_AcademicYearIsValid_ShouldNotHaveErrors(ushort beginingYear, ushort endingYear)
+        public void Validate_AcademicYearIsValid_ShouldNotHaveErrors(short beginingYear, short endingYear)
         {
             // arrange
             AcademicYear academicYear = new AcademicYear()

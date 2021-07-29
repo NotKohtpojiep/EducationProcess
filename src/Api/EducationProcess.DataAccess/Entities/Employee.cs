@@ -26,7 +26,9 @@ namespace EducationProcess.DataAccess.Entities
         public string Middlename { get; set; }
         public int PostId { get; set; }
         public Guid? Rowguid { get; set; }
+        public int DepartmentId { get; set; }
 
+        public virtual Department Department { get; set; }
         public virtual Post Post { get; set; }
         public virtual ICollection<Audience> Audiences { get; set; }
         public virtual ICollection<EmployeeCathedra> EmployeeCathedras { get; set; }

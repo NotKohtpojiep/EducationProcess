@@ -1,8 +1,8 @@
 ﻿namespace EducationProcess.Domain.Models
 {
-    public class LessonType
+    public class Region
     {
-        public int LessonTypeId { get; set; }
+        public int RegionId { get; set; }
         public string Name { get; set; }
     }
 }
