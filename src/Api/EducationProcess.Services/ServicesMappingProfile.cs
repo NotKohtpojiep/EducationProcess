@@ -11,6 +11,7 @@ namespace EducationProcess.Services
             CreateMap<Domain.Models.AudienceType, DataAccess.Entities.AudienceType>().ReverseMap();
             CreateMap<Domain.Models.Cathedra, DataAccess.Entities.Cathedra>().ReverseMap();
             CreateMap<Domain.Models.CathedraSpecialty, DataAccess.Entities.CathedraSpecialty>().ReverseMap();
+            CreateMap<Domain.Models.City, DataAccess.Entities.City>().ReverseMap();
             CreateMap<Domain.Models.ConductedPair, DataAccess.Entities.ConductedPair>().ReverseMap();
             CreateMap<Domain.Models.Discipline, DataAccess.Entities.Discipline>().ReverseMap();
             CreateMap<Domain.Models.EducationCyclesAndModule, DataAccess.Entities.EducationCyclesAndModule>().ReverseMap();
@@ -31,10 +32,12 @@ namespace EducationProcess.Services
             CreateMap<Domain.Models.ReceivedEducation, DataAccess.Entities.ReceivedEducation>().ReverseMap();
             CreateMap<Domain.Models.ReceivedEducationForm, DataAccess.Entities.ReceivedEducationForm>().ReverseMap();
             CreateMap<Domain.Models.ReceivedSpecialty, DataAccess.Entities.ReceivedSpecialty>().ReverseMap();
+            CreateMap<Domain.Models.Region, DataAccess.Entities.Region>().ReverseMap();
             CreateMap<Domain.Models.ScheduleDiscipline, DataAccess.Entities.ScheduleDiscipline>().ReverseMap();
             CreateMap<Domain.Models.ScheduleDisciplineReplacement, DataAccess.Entities.ScheduleDisciplineReplacement>().ReverseMap();
-            CreateMap<Domain.Models.Semester, DataAccess.Entities.Semester>().ReverseMap();
             CreateMap<Domain.Models.SemesterDiscipline, DataAccess.Entities.SemesterDiscipline>().ReverseMap();
+            CreateMap<Domain.Models.Semester, DataAccess.Entities.Semester>().ReverseMap();
+            CreateMap<Domain.Models.Street, DataAccess.Entities.Street>().ReverseMap();
         }
     }
 }

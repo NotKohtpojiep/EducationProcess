@@ -10,16 +10,18 @@ namespace EducationProcess.DataAccess
         IAudienceTypeRepository AudienceTypes { get; }
         ICathedraRepository Cathedras { get; }
         ICathedraSpecialtyRepository CathedraSpecialties { get; }
+        ICityRepository Cities { get; }
         IConductedPairRepository ConductedPairs { get; }
+        IDepartmentRepository Departments { get; }
         IDisciplineRepository Disciplines { get; }
         IEducationCyclesAndModuleRepository EducationCyclesAndModules { get; }
         IEducationFormRepository EducationForms { get; }
         IEducationLevelRepository EducationLevels { get; }
         IEducationPlanRepository EducationPlans { get; }
         IEducationPlanSemesterDisciplineRepository EducationPlanSemesterDisciplines { get; }
-        IEmployeeCathedraRepository EmployeeCathedra { get; }
+        IEmployeeCathedraRepository EmployeeCathedras { get; }
         IEmployeeRepository Employees { get; }
-        IFederalStateEducationalStandardRepository FederalStateEducationalStandard { get; }
+        IFederalStateEducationalStandardRepository FederalStateEducationalStandards { get; }
         IFixedDisciplineRepository FixedDisciplines { get; }
         IFsesCategoryPartitionRepository FsesCategoryPartitions { get; }
         IFsesCategoryRepository FsesCategories { get; }
@@ -30,10 +32,12 @@ namespace EducationProcess.DataAccess
         IReceivedEducationFormRepository ReceivedEducationForms { get; }
         IReceivedEducationRepository ReceivedEducations { get; }
         IReceivedSpecialtyRepository ReceivedSpecialties { get; }
+        IRegionRepository Regions { get; }
         IScheduleDisciplineReplacementRepository ScheduleDisciplineReplacements { get; }
         IScheduleDisciplineRepository ScheduleDisciplines { get; }
         ISemesterDisciplineRepository SemesterDisciplines { get; }
         ISemesterRepository Semesters { get; }
+        IStreetRepository Streets { get; }
 
         void Save();
     }

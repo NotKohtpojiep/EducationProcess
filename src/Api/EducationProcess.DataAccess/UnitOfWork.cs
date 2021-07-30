@@ -14,7 +14,9 @@ namespace EducationProcess.DataAccess
         private IAudienceTypeRepository _audienceTypeRepository;
         private ICathedraRepository _cathedraRepository;
         private ICathedraSpecialtyRepository _cathedraSpecialtyRepository;
+        private ICityRepository _cityRepository;
         private IConductedPairRepository _conductedPairRepository;
+        private IDepartmentRepository _departmentRepository;
         private IDisciplineRepository _disciplineRepository;
         private IEducationCyclesAndModuleRepository _educationCyclesAndModuleRepository;
         private IEducationFormRepository _educationFormRepository;
@@ -34,10 +36,12 @@ namespace EducationProcess.DataAccess
         private IReceivedEducationFormRepository _receivedEducationFormRepository;
         private IReceivedEducationRepository _receivedEducationRepository;
         private IReceivedSpecialtyRepository _receivedSpecialtyRepository;
+        private IRegionRepository _regionRepository;
         private IScheduleDisciplineReplacementRepository _scheduleDisciplineReplacementRepository;
         private IScheduleDisciplineRepository _scheduleDisciplineRepository;
         private ISemesterDisciplineRepository _semesterDisciplineRepository;
         private ISemesterRepository _semesterRepository;
+        private IStreetRepository _streetRepository;
 
         public UnitOfWork(EducationProcessContext context)
         {
@@ -49,16 +53,18 @@ namespace EducationProcess.DataAccess
         public IAudienceTypeRepository AudienceTypes => _audienceTypeRepository ??= new AudienceTypeRepository(_context);
         public ICathedraRepository Cathedras => _cathedraRepository ??= new CathedraRepository(_context);
         public ICathedraSpecialtyRepository CathedraSpecialties => _cathedraSpecialtyRepository ??= new CathedraSpecialtyRepository(_context);
+        public ICityRepository Cities => _cityRepository ??= new CityRepository(_context);
         public IConductedPairRepository ConductedPairs => _conductedPairRepository ??= new ConductedPairRepository(_context);
+        public IDepartmentRepository Departments => _departmentRepository ??= new DepartmentRepository(_context);
         public IDisciplineRepository Disciplines => _disciplineRepository ??= new DisciplineRepository(_context);
         public IEducationCyclesAndModuleRepository EducationCyclesAndModules => _educationCyclesAndModuleRepository ??= new EducationCyclesAndModuleRepository(_context);
         public IEducationFormRepository EducationForms => _educationFormRepository ??= new EducationFormRepository(_context);
         public IEducationLevelRepository EducationLevels => _educationLevelRepository ??= new EducationLevelRepository(_context);
         public IEducationPlanRepository EducationPlans => _educationPlanRepository ??= new EducationPlanRepository(_context);
         public IEducationPlanSemesterDisciplineRepository EducationPlanSemesterDisciplines => _educationPlanSemesterDisciplineRepository ??= new EducationPlanSemesterDisciplineRepository(_context);
-        public IEmployeeCathedraRepository EmployeeCathedra => _employeeCathedraRepository ??= new EmployeeCathedraRepository(_context);
+        public IEmployeeCathedraRepository EmployeeCathedras => _employeeCathedraRepository ??= new EmployeeCathedraRepository(_context);
         public IEmployeeRepository Employees => _employeeRepository ??= new EmployeeRepository(_context);
-        public IFederalStateEducationalStandardRepository FederalStateEducationalStandard => _federalStateEducationalStandardRepository ??= new FederalStateEducationalStandardRepository(_context);
+        public IFederalStateEducationalStandardRepository FederalStateEducationalStandards => _federalStateEducationalStandardRepository ??= new FederalStateEducationalStandardRepository(_context);
         public IFixedDisciplineRepository FixedDisciplines => _fixedDisciplineRepository ??= new FixedDisciplineRepository(_context);
         public IFsesCategoryPartitionRepository FsesCategoryPartitions => _fsesCategoryPartitionRepository ??= new FsesCategoryPartitionRepository(_context);
         public IFsesCategoryRepository FsesCategories => _fsesCategoryRepository ??= new FsesCategoryRepository(_context);
@@ -69,10 +75,12 @@ namespace EducationProcess.DataAccess
         public IReceivedEducationFormRepository ReceivedEducationForms => _receivedEducationFormRepository ??= new ReceivedEducationFormRepository(_context);
         public IReceivedEducationRepository ReceivedEducations => _receivedEducationRepository ??= new ReceivedEducationRepository(_context);
         public IReceivedSpecialtyRepository ReceivedSpecialties => _receivedSpecialtyRepository ??= new ReceivedSpecialtyRepository(_context);
+        public IRegionRepository Regions => _regionRepository ??= new RegionRepository(_context);
         public IScheduleDisciplineReplacementRepository ScheduleDisciplineReplacements => _scheduleDisciplineReplacementRepository ??= new ScheduleDisciplineReplacementRepository(_context);
         public IScheduleDisciplineRepository ScheduleDisciplines => _scheduleDisciplineRepository ??= new ScheduleDisciplineRepository(_context);
         public ISemesterDisciplineRepository SemesterDisciplines => _semesterDisciplineRepository ??= new SemesterDisciplineRepository(_context);
         public ISemesterRepository Semesters => _semesterRepository ??= new SemesterRepository(_context);
+        public IStreetRepository Streets => _streetRepository ??= new StreetRepository(_context);
 
         public void Save()
         {
