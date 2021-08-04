@@ -31,7 +31,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(federalStateEducationalStandard);
         }
 
-        [HttpGet("range")]
+        [HttpGet("array")]
         [ProducesResponseType(typeof(FederalStateEducationalStandard[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetRange()
@@ -53,7 +53,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(addedFederalStateEducationalStandard);
         }
 
-        [HttpPost("range")]
+        [HttpPost("array")]
         [ProducesResponseType(typeof(FederalStateEducationalStandard[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> FederalStateEducationalStandardRange([FromBody] FederalStateEducationalStandard[] federalStateEducationalStandards)
@@ -75,7 +75,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(updatedFederalStateEducationalStandard);
         }
 
-        [HttpPut("range")]
+        [HttpPut("array")]
         [ProducesResponseType(typeof(FederalStateEducationalStandard[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PutRange([FromBody] FederalStateEducationalStandard[] federalStateEducationalStandards)
@@ -95,7 +95,7 @@ namespace EducationProcess.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("range")]
+        [HttpDelete("array")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteRange([FromBody] FederalStateEducationalStandard[] federalStateEducationalStandards)

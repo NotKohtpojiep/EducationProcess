@@ -31,7 +31,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(scheduleDisciplineReplacement);
         }
 
-        [HttpGet("range")]
+        [HttpGet("array")]
         [ProducesResponseType(typeof(ScheduleDisciplineReplacement[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetRange()
@@ -53,7 +53,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(addedScheduleDisciplineReplacement);
         }
 
-        [HttpPost("range")]
+        [HttpPost("array")]
         [ProducesResponseType(typeof(ScheduleDisciplineReplacement[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> ScheduleDisciplineReplacementRange([FromBody] ScheduleDisciplineReplacement[] scheduleDisciplineReplacements)
@@ -75,7 +75,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(updatedScheduleDisciplineReplacement);
         }
 
-        [HttpPut("range")]
+        [HttpPut("array")]
         [ProducesResponseType(typeof(ScheduleDisciplineReplacement[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PutRange([FromBody] ScheduleDisciplineReplacement[] scheduleDisciplineReplacements)
@@ -95,7 +95,7 @@ namespace EducationProcess.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("range")]
+        [HttpDelete("array")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteRange([FromBody] ScheduleDisciplineReplacement[] scheduleDisciplineReplacements)

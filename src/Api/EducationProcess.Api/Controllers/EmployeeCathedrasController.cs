@@ -42,7 +42,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(employeeCathedras);
         }
 
-        [HttpGet("range")]
+        [HttpGet("array")]
         [ProducesResponseType(typeof(EmployeeCathedra[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetRange()
@@ -64,7 +64,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(addedEmployeeCathedra);
         }
 
-        [HttpPost("range")]
+        [HttpPost("array")]
         [ProducesResponseType(typeof(EmployeeCathedra[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> EmployeeCathedraRange([FromBody] EmployeeCathedra[] employeeCathedras)
@@ -86,7 +86,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(updatedEmployeeCathedra);
         }
 
-        [HttpPut("range")]
+        [HttpPut("array")]
         [ProducesResponseType(typeof(EmployeeCathedra[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PutRange([FromBody] EmployeeCathedra[] employeeCathedras)
@@ -106,7 +106,7 @@ namespace EducationProcess.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("range")]
+        [HttpDelete("array")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteRange([FromBody] EmployeeCathedra[] employeeCathedras)

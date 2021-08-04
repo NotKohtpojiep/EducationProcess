@@ -31,7 +31,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(audienceType);
         }
 
-        [HttpGet("range")]
+        [HttpGet("array")]
         [ProducesResponseType(typeof(AudienceType[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetRange()
@@ -53,7 +53,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(addedAudienceType);
         }
 
-        [HttpPost("range")]
+        [HttpPost("array")]
         [ProducesResponseType(typeof(AudienceType[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> AudienceTypeRange([FromBody] AudienceType[] audienceTypes)
@@ -75,7 +75,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(updatedAudienceType);
         }
 
-        [HttpPut("range")]
+        [HttpPut("array")]
         [ProducesResponseType(typeof(AudienceType[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PutRange([FromBody] AudienceType[] audienceTypes)
@@ -95,7 +95,7 @@ namespace EducationProcess.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("range")]
+        [HttpDelete("array")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteRange([FromBody] AudienceType[] audienceTypes)

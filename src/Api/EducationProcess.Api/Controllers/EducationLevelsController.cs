@@ -31,7 +31,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(educationLevel);
         }
 
-        [HttpGet("range")]
+        [HttpGet("array")]
         [ProducesResponseType(typeof(EducationLevel[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetRange()
@@ -53,7 +53,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(addedEducationLevel);
         }
 
-        [HttpPost("range")]
+        [HttpPost("array")]
         [ProducesResponseType(typeof(EducationLevel[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> EducationLevelRange([FromBody] EducationLevel[] educationLevels)
@@ -75,7 +75,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(updatedEducationLevel);
         }
 
-        [HttpPut("range")]
+        [HttpPut("array")]
         [ProducesResponseType(typeof(EducationLevel[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PutRange([FromBody] EducationLevel[] educationLevels)
@@ -95,7 +95,7 @@ namespace EducationProcess.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("range")]
+        [HttpDelete("array")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteRange([FromBody] EducationLevel[] educationLevels)

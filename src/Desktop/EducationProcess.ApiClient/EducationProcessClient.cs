@@ -1,11 +1,11 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using EducationProcess.ApiClient.Clients;
+using EducationProcess.ApiClient.Clients.Interfaces;
 using EducationProcess.ApiClient.Models.Oauth.Requests;
-using EducationProcess.ApiClient;
 using EducationProcess.ApiClient.Internal.Http;
 using EducationProcess.ApiClient.Internal.Http.Serialization;
-using EducationProcess.ApiClient.Internal.Queries;
 using EducationProcess.ApiClient.Internal.Utilities;
 using EducationProcess.ApiClient.Models.Oauth.Responses;
 
@@ -29,10 +29,12 @@ namespace EducationProcess.ApiClient
                 httpMessageHandler,
                 clientTimeout);
 
-            Connection = new ConnectionClient(_httpFacade);
+            Issues = new SchedulesClient(_httpFacade);
+            Posts = new PostsClient(_httpFacade);
         }
 
-        public ConnectionClient Connection { get; }
+        public ISchedulesClient Issues { get; }
+        public IPostsClient Posts { get; }
 
         public string HostUrl { get; }
 

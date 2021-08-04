@@ -14,7 +14,6 @@ namespace EducationProcess.ApiClient.Internal.Http
     {
         private readonly HttpClient _httpClient;
         private EducationProcessApiRequestor _requestor;
-        private EducationProcessApiPagedRequestor _pagedRequestor;
 
         private EducationProcessHttpFacade(string hostUrl, RequestsJsonSerializer jsonSerializer, HttpMessageHandler httpMessageHandler, TimeSpan? clientTimeout = null)
         {
@@ -42,11 +41,7 @@ namespace EducationProcess.ApiClient.Internal.Http
         {
             ServicePointManager.SecurityProtocol |= SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
             _requestor = new EducationProcessApiRequestor(_httpClient, jsonSerializer);
-            _pagedRequestor = new EducationProcessApiPagedRequestor(_requestor);
         }
-
-        public Task<IList<T>> GetPagedList<T>(string uri) =>
-            _pagedRequestor.GetPagedList<T>(uri);
 
         public Task<T> Get<T>(string uri) =>
             _requestor.Get<T>(uri);

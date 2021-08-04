@@ -42,7 +42,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(cathedraSpecialties);
         }
 
-        [HttpGet("range")]
+        [HttpGet("array")]
         [ProducesResponseType(typeof(CathedraSpecialty[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetRange()
@@ -64,7 +64,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(addedCathedraSpecialty);
         }
 
-        [HttpPost("range")]
+        [HttpPost("array")]
         [ProducesResponseType(typeof(CathedraSpecialty[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> CathedraSpecialtyRange([FromBody] CathedraSpecialty[] cathedraSpecialties)
@@ -86,7 +86,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(updatedCathedraSpecialty);
         }
 
-        [HttpPut("range")]
+        [HttpPut("array")]
         [ProducesResponseType(typeof(CathedraSpecialty[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PutRange([FromBody] CathedraSpecialty[] cathedraSpecialties)
@@ -106,7 +106,7 @@ namespace EducationProcess.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("range")]
+        [HttpDelete("array")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteRange([FromBody] CathedraSpecialty[] cathedraSpecialties)
