@@ -25,7 +25,6 @@ namespace EducationProcess.ApiClient.Clients.Interfaces
         Task<ScheduleDiscipline[]> UpdateScheduleDisciplineArrayAsync(ScheduleDisciplineRequest[] scheduleDisciplines);
         Task<ScheduleDisciplineReplacement[]> UpdateScheduleDisciplineReplacementArrayAsync(ScheduleDisciplineReplacementRequest[] scheduleDisciplineReplacements);
 
-
         Task DeleteScheduleDisciplineAsync(ScheduleDisciplineRequest scheduleDiscipline);
         Task DeleteScheduleDisciplineReplacementAsync(ScheduleDisciplineReplacementRequest scheduleDisciplineReplacement);
         Task DeleteScheduleDisciplineArrayAsync(ScheduleDisciplineRequest[] scheduleDisciplines);

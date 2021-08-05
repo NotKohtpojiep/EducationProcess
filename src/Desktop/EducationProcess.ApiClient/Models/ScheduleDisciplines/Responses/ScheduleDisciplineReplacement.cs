@@ -1,5 +1,6 @@
 ﻿using System;
 using EducationProcess.ApiClient.Models.Audiences.Responses;
+using EducationProcess.ApiClient.Models.Employees.Responses;
 using EducationProcess.ApiClient.Models.FixedDisciplines.Responses;
 
 namespace EducationProcess.ApiClient.Models

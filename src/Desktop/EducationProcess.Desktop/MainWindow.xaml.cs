@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Windows;
 using EducationProcess.ApiClient;
-using EducationProcess.ApiClient.Models;
+using EducationProcess.ApiClient.Models.Employees.Responses;
 
 namespace EducationProcess.Desktop
 {

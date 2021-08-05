@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using EducationProcess.ApiClient.Clients.Interfaces;
 using EducationProcess.ApiClient.Internal.Http;
-using EducationProcess.ApiClient.Models;
 using EducationProcess.ApiClient.Models.Employees.Requests;
+using EducationProcess.ApiClient.Models.Employees.Responses;
 
 namespace EducationProcess.ApiClient.Clients
 {

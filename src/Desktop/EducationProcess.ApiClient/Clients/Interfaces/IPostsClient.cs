@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
-using EducationProcess.ApiClient.Models;
 using EducationProcess.ApiClient.Models.Employees.Requests;
+using EducationProcess.ApiClient.Models.Employees.Responses;
 
 namespace EducationProcess.ApiClient.Clients.Interfaces
 {
@@ -14,7 +14,6 @@ namespace EducationProcess.ApiClient.Clients.Interfaces
 
         Task<Post> UpdatePostAsync(PostRequest post);
         Task<Post[]> UpdatePostArrayAsync(PostRequest[] posts);
-
 
         Task DeletePostAsync(PostRequest post);
         Task DeletePostArrayAsync(PostRequest[] posts);

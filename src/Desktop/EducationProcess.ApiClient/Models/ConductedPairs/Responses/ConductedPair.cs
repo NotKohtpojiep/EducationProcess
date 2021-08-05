@@ -1,4 +1,4 @@
-﻿namespace EducationProcess.ApiClient.Models
+﻿namespace EducationProcess.ApiClient.Models.ConductedPairs.Responses
 {
     public class ConductedPair
     {

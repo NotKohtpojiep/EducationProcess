@@ -1,4 +1,6 @@
-﻿namespace EducationProcess.ApiClient.Models
+﻿using EducationProcess.ApiClient.Models.Departments.Responses;
+
+namespace EducationProcess.ApiClient.Models
 {
     public class Street
     {

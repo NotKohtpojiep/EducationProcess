@@ -1,6 +1,6 @@
 ﻿using EducationProcess.ApiClient.Models.Cathedras.Responses;
 
-namespace EducationProcess.ApiClient.Models
+namespace EducationProcess.ApiClient.Models.Employees.Responses
 {
     public class EmployeeCathedra
     {

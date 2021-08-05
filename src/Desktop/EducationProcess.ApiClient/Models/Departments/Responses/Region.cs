@@ -1,4 +1,4 @@
-﻿namespace EducationProcess.ApiClient.Models
+﻿namespace EducationProcess.ApiClient.Models.Departments.Responses
 {
     public class Region
     {

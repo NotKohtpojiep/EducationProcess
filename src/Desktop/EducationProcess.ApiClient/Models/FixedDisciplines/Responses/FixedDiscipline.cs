@@ -1,4 +1,5 @@
 ﻿using System;
+using EducationProcess.ApiClient.Models.Employees.Responses;
 using EducationProcess.ApiClient.Models.Groups.Responses;
 using EducationProcess.ApiClient.Models.SemesterDisciplines.Responses;
 

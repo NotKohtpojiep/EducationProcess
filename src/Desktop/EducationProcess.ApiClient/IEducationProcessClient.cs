@@ -6,8 +6,20 @@ namespace EducationProcess.ApiClient
 {
     public interface IEducationProcessClient
     {
-        ISchedulesClient Issues { get; }
+        IAudiencesClient Audiences { get; }
+        ICathedrasClient Cathedras { get; }
+        IConductedPairsClient ConductedPairs { get; }
+        IDepartmentsClient Departments { get; }
+        IEducationPlansClient EducationPlans { get; }
+        IEmployeesClient Employees { get; }
+        IFederalStateEducationalStandardsClient FederalStateEducationalStandards { get; }
+        IFixedDisciplinesClient FixedDisciplines { get; }
+        IGroupsClient Groups { get; }
         IPostsClient Posts { get; }
+        IReceivedEducationsClient ReceivedEducations { get; }
+        ISchedulesClient Schedules { get; }
+        ISemesterDisciplinesClient SemesterDisciplines { get; }
+        IWeatherForecastsClient WeatherForecasts { get; }
 
         string HostUrl { get; }
 

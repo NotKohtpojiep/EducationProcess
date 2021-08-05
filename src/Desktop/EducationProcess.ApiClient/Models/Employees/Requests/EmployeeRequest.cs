@@ -1,9 +1,8 @@
 ﻿using System;
-using EducationProcess.ApiClient.Models.Departments.Responses;
 
-namespace EducationProcess.ApiClient.Models.Employees.Responses
+namespace EducationProcess.ApiClient.Models.Employees.Requests
 {
-    public class Employee
+    public class EmployeeRequest
     {
         public int EmployeeId { get; set; }
         public string Firstname { get; set; }
@@ -12,8 +11,5 @@ namespace EducationProcess.ApiClient.Models.Employees.Responses
         public int PostId { get; set; }
         public Guid? Rowguid { get; set; }
         public int DepartmentId { get; set; }
-
-        public Department Department { get; set; }
-        public Post Post { get; set; }
     }
 }

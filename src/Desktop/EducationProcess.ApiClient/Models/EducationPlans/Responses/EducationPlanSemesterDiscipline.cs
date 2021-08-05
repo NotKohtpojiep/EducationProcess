@@ -1,7 +1,6 @@
-﻿using EducationProcess.ApiClient.Models.EducationPlans.Responses;
-using EducationProcess.ApiClient.Models.SemesterDisciplines.Responses;
+﻿using EducationProcess.ApiClient.Models.SemesterDisciplines.Responses;
 
-namespace EducationProcess.ApiClient.Models
+namespace EducationProcess.ApiClient.Models.EducationPlans.Responses
 {
     public class EducationPlanSemesterDiscipline
     {

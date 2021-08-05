@@ -1,4 +1,7 @@
-﻿namespace EducationProcess.ApiClient.Models.Audiences.Responses
+﻿using EducationProcess.ApiClient.Models.Departments.Responses;
+using EducationProcess.ApiClient.Models.Employees.Responses;
+
+namespace EducationProcess.ApiClient.Models.Audiences.Responses
 {
     public class Audience
     {

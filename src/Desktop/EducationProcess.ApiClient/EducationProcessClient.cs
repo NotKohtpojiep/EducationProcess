@@ -29,12 +29,36 @@ namespace EducationProcess.ApiClient
                 httpMessageHandler,
                 clientTimeout);
 
-            Issues = new SchedulesClient(_httpFacade);
+            Audiences = new AudiencesClient(_httpFacade);
+            Cathedras = new CathedrasClient(_httpFacade);
+            ConductedPairs = new ConductedPairsClient(_httpFacade);
+            Departments = new DepartmentsClient(_httpFacade);
+            EducationPlans = new EducationPlansClient(_httpFacade);
+            Employees = new EmployeesClient(_httpFacade);
+            FederalStateEducationalStandards = new FederalStateEducationalStandardsClient(_httpFacade);
+            FixedDisciplines = new FixedDisciplinesClient(_httpFacade);
+            Groups = new GroupsClient(_httpFacade);
             Posts = new PostsClient(_httpFacade);
+            ReceivedEducations = new ReceivedEducationsClient(_httpFacade);
+            Schedules = new SchedulesClient(_httpFacade);
+            SemesterDisciplines = new SemesterDisciplinesClient(_httpFacade);
+            WeatherForecasts = new WeatherForecastsClient(_httpFacade);
         }
 
-        public ISchedulesClient Issues { get; }
+        public IAudiencesClient Audiences { get; }
+        public ICathedrasClient Cathedras { get; }
+        public IConductedPairsClient ConductedPairs { get; }
+        public IDepartmentsClient Departments { get; }
+        public IEducationPlansClient EducationPlans { get; }
+        public IEmployeesClient Employees { get; }
+        public IFederalStateEducationalStandardsClient FederalStateEducationalStandards { get; }
+        public IFixedDisciplinesClient FixedDisciplines { get; }
+        public IGroupsClient Groups { get; }
         public IPostsClient Posts { get; }
+        public IReceivedEducationsClient ReceivedEducations { get; }
+        public ISchedulesClient Schedules { get; }
+        public ISemesterDisciplinesClient SemesterDisciplines { get; }
+        public IWeatherForecastsClient WeatherForecasts { get; }
 
         public string HostUrl { get; }
 

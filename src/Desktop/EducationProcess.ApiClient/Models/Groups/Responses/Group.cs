@@ -1,4 +1,6 @@
-﻿using EducationProcess.ApiClient.Models.EducationPlans.Responses;
+﻿using EducationProcess.ApiClient.Models.Departments.Responses;
+using EducationProcess.ApiClient.Models.EducationPlans.Responses;
+using EducationProcess.ApiClient.Models.Employees.Responses;
 using EducationProcess.ApiClient.Models.ReceivedEducations.Responses;
 
 namespace EducationProcess.ApiClient.Models.Groups.Responses
