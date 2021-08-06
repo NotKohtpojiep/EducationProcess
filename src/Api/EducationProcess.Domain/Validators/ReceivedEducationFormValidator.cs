@@ -9,7 +9,7 @@ namespace EducationProcess.Domain.Validators
         {
             RuleFor(x => x.AdditionalInfo)
                 .Length(1, 300).When(x => x.AdditionalInfo != null)
-                    .WithMessage("AdditionalInfo  length should contain from 000 to 000 symbols");
+                    .WithMessage("AdditionalInfo  length should contain from 1 to 300 symbols");
         }
     }
 }

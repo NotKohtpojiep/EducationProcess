@@ -11,7 +11,7 @@ namespace EducationProcess.Domain.Validators
                 .NotEmpty()
                     .WithMessage("Qualification should not be empty")
                 .Length(1, 100)
-                    .WithMessage("Qualification length should contain from 000 to 000 symbols");
+                    .WithMessage("Qualification length should contain from 1 to 100 symbols");
         }
     }
 }

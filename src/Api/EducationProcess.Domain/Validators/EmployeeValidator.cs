@@ -11,17 +11,17 @@ namespace EducationProcess.Domain.Validators
                 .NotEmpty()
                     .WithMessage("Firstname should not be empty")
                 .Length(1,75)
-                    .WithMessage("Firstname  length should contain from 000 to 000 symbols");
+                    .WithMessage("Firstname  length should contain from 1 to 75 symbols");
 
 			RuleFor(x => x.Lastname)
                 .NotEmpty()
                     .WithMessage("Lastname should not be empty")
                 .Length(1,75)
-                    .WithMessage("Lastname  length should contain from 000 to 000 symbols");
+                    .WithMessage("Lastname  length should contain from 1 to 75 symbols");
 
             RuleFor(x => x.Middlename)
                 .Length(1, 75).When(x => x.Middlename != null)
-                    .WithMessage("Middlename  length should contain from 000 to 000 symbols");
+                    .WithMessage("Middlename  length should contain from 1 to 75 symbols");
         }
 	}
 }
