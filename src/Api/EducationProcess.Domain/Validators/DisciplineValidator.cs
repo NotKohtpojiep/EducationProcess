@@ -17,11 +17,11 @@ namespace EducationProcess.Domain.Validators
                 .NotEmpty()
                     .WithMessage("DisciplineIndex should not be empty")
                 .Length(1, 10)
-                    .WithMessage("DisciplineIndex length should contain from 0 to 10 symbols");
+                    .WithMessage("DisciplineIndex length should contain from 1 to 10 symbols");
 
             RuleFor(x => x.Description)
-                .Length(0, 500).When(x => x.Description != null)
-                    .WithMessage("Description length should contain from 0 to 500 symbols");
+                .Length(1, 500).When(x => x.Description != null)
+                    .WithMessage("Description length should contain from 1 to 500 symbols");
         }
     }
 }

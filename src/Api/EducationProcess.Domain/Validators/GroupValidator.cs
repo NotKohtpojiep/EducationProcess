@@ -17,7 +17,7 @@ namespace EducationProcess.Domain.Validators
                 .GreaterThanOrEqualTo((byte)1)
                     .WithMessage("CourseNumber should be greater than - 1")
                 .LessThan((byte)10)
-                    .WithMessage("CourseNumber should be less than - 1");
+                    .WithMessage("CourseNumber should be less than - 10");
         }
     }
 }

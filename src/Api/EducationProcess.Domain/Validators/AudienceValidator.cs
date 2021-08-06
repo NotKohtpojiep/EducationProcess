@@ -10,7 +10,7 @@ namespace EducationProcess.Domain.Validators
             RuleFor(x => x.Name)
                 .Length(1, 65).When(x => x.Name != null)
                     .WithMessage("Name length is 1-65");
-
+           
             RuleFor(x => x.Number)
                 .NotEmpty()
                     .WithMessage("Number should not be empty")
