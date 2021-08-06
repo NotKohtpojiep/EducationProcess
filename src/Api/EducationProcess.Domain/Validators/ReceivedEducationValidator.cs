@@ -8,7 +8,7 @@ namespace EducationProcess.Domain.Validators
         public ReceivedEducationValidator()
         {
             RuleFor(x => x.StudyPeriodMonths)
-                .LessThan((ushort)100)
+                .LessThan((short)100)
                     .WithMessage("StudyPeriodMonths should be less than - 100");
         }
     }

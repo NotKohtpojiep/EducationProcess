@@ -43,7 +43,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(addedScheduleDiscipline);
         }
 
-        [HttpPost("range")]
+        [HttpPost("array")]
         [ProducesResponseType(typeof(ScheduleDiscipline[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PostRange([FromBody] ScheduleDiscipline[] scheduleDisciplines)
@@ -65,7 +65,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(updatedScheduleDiscipline);
         }
 
-        [HttpPut("range")]
+        [HttpPut("array")]
         [ProducesResponseType(typeof(ScheduleDiscipline[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PutRange([FromBody] ScheduleDiscipline[] scheduleDisciplines)
@@ -85,7 +85,7 @@ namespace EducationProcess.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("range")]
+        [HttpDelete("array")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteRange([FromBody] ScheduleDiscipline[] scheduleDisciplines)
@@ -97,7 +97,7 @@ namespace EducationProcess.Api.Controllers
         [HttpGet("for-all/{date:DateTime}")]
         [ProducesResponseType(typeof(ScheduleDiscipline[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetForAllGroups([FromBody] DateTime dateTime)
+        public async Task<IActionResult> GetForAllGroupsForWeekByDate([FromBody] DateTime dateTime)
         {
             ScheduleDiscipline[] updatedScheduleDiscipline = await _scheduleDisciplineService.GetScheduleForWeekAndAllGroupsByDateAsync(dateTime);
             if (updatedScheduleDiscipline is null)
@@ -108,7 +108,7 @@ namespace EducationProcess.Api.Controllers
         [HttpGet("for/{groupId:int}")]
         [ProducesResponseType(typeof(ScheduleDiscipline[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetForGroup([FromBody] int groupId)
+        public async Task<IActionResult> GetCurrentForGroup([FromBody] int groupId)
         {
             ScheduleDiscipline[] updatedScheduleDisciplines = await _scheduleDisciplineService.GetScheduleForWeekByGroupIdAsync(groupId);
             if (updatedScheduleDisciplines is null)

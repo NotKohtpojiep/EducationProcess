@@ -2,10 +2,10 @@
 {
     public class ConductedPair
     {
-        public uint ConductedPairId { get; set; }
-        public uint? ScheduleDisciplineId { get; set; }
-        public uint? ScheduleDisciplineReplacementId { get; set; }
-        public uint LessonTypeId { get; set; }
+        public int ConductedPairId { get; set; }
+        public int? ScheduleDisciplineId { get; set; }
+        public int? ScheduleDisciplineReplacementId { get; set; }
+        public int LessonTypeId { get; set; }
 
         public LessonType LessonType { get; set; }
         public ScheduleDiscipline ScheduleDiscipline { get; set; }

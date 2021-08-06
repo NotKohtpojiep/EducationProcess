@@ -2,7 +2,7 @@
 {
     public class EducationForm
     {
-        public uint EducationFormId { get; set; }
+        public int EducationFormId { get; set; }
         public string Name { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 #nullable disable
 
@@ -19,8 +18,10 @@ namespace EducationProcess.DataAccess.Entities
         public int ReceivedEducationId { get; set; }
         public int? EducationPlanId { get; set; }
         public short ReceiptYear { get; set; }
+        public int DepartmentId { get; set; }
 
         public virtual Employee Curator { get; set; }
+        public virtual Department Department { get; set; }
         public virtual EducationPlan EducationPlan { get; set; }
         public virtual ReceivedEducation ReceivedEducation { get; set; }
         public virtual ICollection<FixedDiscipline> FixedDisciplines { get; set; }

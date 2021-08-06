@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\EducationProcess.Domain\EducationProcess.Domain.csproj" />
     <ProjectReference Include="..\EducationProcess.Services\EducationProcess.Services.csproj" />
   </ItemGroup>

@@ -2,8 +2,8 @@
 {
     public class AcademicYear
     {
-        public uint AcademicYearId { get; set; }
-        public ushort BeginingYear { get; set; }
-        public ushort EndingYear { get; set; }
+        public int AcademicYearId { get; set; }
+        public short BeginingYear { get; set; }
+        public short EndingYear { get; set; }
     }
 }

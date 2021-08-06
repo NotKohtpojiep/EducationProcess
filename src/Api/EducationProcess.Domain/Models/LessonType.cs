@@ -2,7 +2,7 @@
 {
     public class LessonType
     {
-        public uint LessonTypeId { get; set; }
+        public int LessonTypeId { get; set; }
         public string Name { get; set; }
     }
 }

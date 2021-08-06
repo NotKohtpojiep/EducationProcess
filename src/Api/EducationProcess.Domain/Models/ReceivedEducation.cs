@@ -2,11 +2,11 @@
 {
     public class ReceivedEducation
     {
-        public uint ReceivedEducationId { get; set; }
-        public uint ReceivedSpecialtyId { get; set; }
-        public uint ReceivedEducationFormId { get; set; }
-        public uint EducationLevelId { get; set; }
-        public ushort StudyPeriodMonths { get; set; }
+        public int ReceivedEducationId { get; set; }
+        public int ReceivedSpecialtyId { get; set; }
+        public int ReceivedEducationFormId { get; set; }
+        public int EducationLevelId { get; set; }
+        public short StudyPeriodMonths { get; set; }
         public bool IsBudget { get; set; }
 
         public EducationLevel EducationLevel { get; set; }

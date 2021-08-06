@@ -2,10 +2,10 @@
 {
     public class FsesCategory
     {
-        public uint FsesCategoryId { get; set; }
-        public ushort Number { get; set; }
+        public int FsesCategoryId { get; set; }
+        public short Number { get; set; }
         public string Name { get; set; }
-        public uint FsesId { get; set; }
+        public int FsesId { get; set; }
 
         public FederalStateEducationalStandard Fses { get; set; }
     }

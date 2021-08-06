@@ -2,7 +2,7 @@
 {
     public class AudienceType
     {
-        public uint AudienceTypeId { get; set; }
+        public int AudienceTypeId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     }

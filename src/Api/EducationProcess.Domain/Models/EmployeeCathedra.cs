@@ -2,8 +2,8 @@
 {
     public class EmployeeCathedra
     {
-        public uint EmployeeId { get; set; }
-        public uint CathedraId { get; set; }
+        public int EmployeeId { get; set; }
+        public int CathedraId { get; set; }
 
         public Cathedra Cathedra { get; set; }
         public Employee Employee { get; set; }
