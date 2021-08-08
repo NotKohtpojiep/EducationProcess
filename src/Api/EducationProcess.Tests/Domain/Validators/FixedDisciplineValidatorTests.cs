@@ -13,7 +13,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData(null, "")]
         [InlineData("", null)]
 
-        public async Task Validate_FixedDisciplineIsNotValid_ShouldHaveErrors(string commentByFixingEmployee, string commentByFixerEmployee)
+        public void Validate_FixedDisciplineIsNotValid_ShouldHaveErrors(string commentByFixingEmployee, string commentByFixerEmployee)
         {
             // arrange
             FixedDiscipline FixedDiscipline = new FixedDiscipline()
@@ -39,7 +39,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("sgwsegw", null)]
         [InlineData(null, "clkm")]
 
-        public async Task Validate_FixedDisciplineIsValid_ShouldHaveNoErrors(string commentByFixingEmployee, string commentByFixerEmployee)
+        public void Validate_FixedDisciplineIsValid_ShouldHaveNoErrors(string commentByFixingEmployee, string commentByFixerEmployee)
         {
             // arrange
             FixedDiscipline FixedDiscipline = new FixedDiscipline()
@@ -56,7 +56,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(FixedDiscipline);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

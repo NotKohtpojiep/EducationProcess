@@ -12,7 +12,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData(null, null)]
         [InlineData(1, 2)]
 
-        public async Task Validate_ConductedPairIsNotValid_ShouldHaveErrors(uint? scheduleDisciplineId, uint? scheduleDisciplineReplacementId)
+        public void Validate_ConductedPairIsNotValid_ShouldHaveErrors(int? scheduleDisciplineId, int? scheduleDisciplineReplacementId)
         {
             // arrange
             ConductedPair ConductedPair = new ConductedPair()
@@ -33,7 +33,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData(1, null)]
         [InlineData(null, 1)]
-        public async Task Validate_ConductedPairIsValid_ShouldHaveNoErrors(uint? scheduleDisciplineId, uint? scheduleDisciplineReplacementId)
+        public void Validate_ConductedPairIsValid_ShouldHaveNoErrors(int? scheduleDisciplineId, int? scheduleDisciplineReplacementId)
         {
             // arrange
             ConductedPair ConductedPair = new ConductedPair()
@@ -49,7 +49,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(ConductedPair);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

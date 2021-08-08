@@ -2,7 +2,7 @@
 {
     public class FsesCategoryPartition
     {
-        public int FsesCategoryPatitionId { get; set; }
+        public int FsesCategoryPartitionId { get; set; }
         public int FirstPartNumber { get; set; }
         public int SecondPartNumber { get; set; }
         public short? ThirdPathNumber { get; set; }

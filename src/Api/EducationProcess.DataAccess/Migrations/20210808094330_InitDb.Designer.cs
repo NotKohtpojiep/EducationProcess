@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EducationProcess.DataAccess.Migrations
 {
     [DbContext(typeof(EducationProcessContext))]
-    [Migration("20210729205234_InitDb")]
+    [Migration("20210808094330_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -136,13 +136,13 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Cathedra_id");
 
-                    b.Property<int>("FsesCategoryPatitionId")
+                    b.Property<int>("FsesCategoryPartitionId")
                         .HasColumnType("int")
-                        .HasColumnName("Fses_category_patition_id");
+                        .HasColumnName("Fses_category_partition_id");
 
-                    b.HasKey("CathedraId", "FsesCategoryPatitionId");
+                    b.HasKey("CathedraId", "FsesCategoryPartitionId");
 
-                    b.HasIndex(new[] { "FsesCategoryPatitionId" }, "IX_Cathedra_specialties_Specialtie_id");
+                    b.HasIndex(new[] { "FsesCategoryPartitionId" }, "IX_Cathedra_specialties_Specialtie_id");
 
                     b.ToTable("Cathedra_specialties");
                 });
@@ -376,9 +376,9 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("varchar(300)");
 
-                    b.Property<int>("FsesCategoryPatitionId")
+                    b.Property<int>("FsesCategoryPartitionId")
                         .HasColumnType("int")
-                        .HasColumnName("Fses_category_patition_id");
+                        .HasColumnName("Fses_category_partition_id");
 
                     b.Property<DateTime>("ModifiedAt")
                         .HasColumnType("datetime")
@@ -393,7 +393,7 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.HasIndex(new[] { "AcademicYearId" }, "IX_Education_plans_Academic_year_id");
 
-                    b.HasIndex(new[] { "FsesCategoryPatitionId" }, "IX_Education_plans_Specialtie_id");
+                    b.HasIndex(new[] { "FsesCategoryPartitionId" }, "IX_Education_plans_Specialtie_id");
 
                     b.ToTable("Education_plans");
                 });
@@ -586,10 +586,10 @@ namespace EducationProcess.DataAccess.Migrations
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.FsesCategoryPartition", b =>
                 {
-                    b.Property<int>("FsesCategoryPatitionId")
+                    b.Property<int>("FsesCategoryPartitionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("Fses_category_patition_id");
+                        .HasColumnName("Fses_category_partition_id");
 
                     b.Property<int>("FirstPartNumber")
                         .HasColumnType("int")
@@ -618,7 +618,7 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("smallint")
                         .HasColumnName("Third_path_number");
 
-                    b.HasKey("FsesCategoryPatitionId");
+                    b.HasKey("FsesCategoryPartitionId");
 
                     b.HasIndex(new[] { "FsesCategoryId" }, "IX_Fses_category_partitions_Fses_category_id");
 
@@ -793,9 +793,9 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Received_specialty_id");
 
-                    b.Property<int>("FsesCategoryPatitionId")
+                    b.Property<int>("FsesCategoryPartitionId")
                         .HasColumnType("int")
-                        .HasColumnName("Fses_category_patition_id");
+                        .HasColumnName("Fses_category_partition_id");
 
                     b.Property<string>("Qualification")
                         .IsRequired()
@@ -804,7 +804,7 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.HasKey("ReceivedSpecialtyId");
 
-                    b.HasIndex(new[] { "FsesCategoryPatitionId" }, "IX_Received_specialties_Specialtie_id");
+                    b.HasIndex(new[] { "FsesCategoryPartitionId" }, "IX_Received_specialties_Specialtie_id");
 
                     b.ToTable("Received_specialties");
                 });
@@ -1093,7 +1093,7 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.HasOne("EducationProcess.DataAccess.Entities.FsesCategoryPartition", "FsesCategoryPatition")
                         .WithMany("CathedraSpecialties")
-                        .HasForeignKey("FsesCategoryPatitionId")
+                        .HasForeignKey("FsesCategoryPartitionId")
                         .HasConstraintName("FK_Cathedra_specialties_Fses_category_partitions")
                         .IsRequired();
 
@@ -1186,7 +1186,7 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.HasOne("EducationProcess.DataAccess.Entities.FsesCategoryPartition", "FsesCategoryPatition")
                         .WithMany("EducationPlans")
-                        .HasForeignKey("FsesCategoryPatitionId")
+                        .HasForeignKey("FsesCategoryPartitionId")
                         .HasConstraintName("FK_Education_plans_Fses_category_partitions")
                         .IsRequired();
 
@@ -1385,7 +1385,7 @@ namespace EducationProcess.DataAccess.Migrations
                 {
                     b.HasOne("EducationProcess.DataAccess.Entities.FsesCategoryPartition", "FsesCategoryPatition")
                         .WithMany("ReceivedSpecialties")
-                        .HasForeignKey("FsesCategoryPatitionId")
+                        .HasForeignKey("FsesCategoryPartitionId")
                         .HasConstraintName("FK_Received_specialties_Fses_category_partitions")
                         .IsRequired();
 

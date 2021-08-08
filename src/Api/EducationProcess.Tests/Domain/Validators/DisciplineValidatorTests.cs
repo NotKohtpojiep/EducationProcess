@@ -10,9 +10,9 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("", "", null)]
         [InlineData("         ", "      ", "   ")]
-        [InlineData("dfg", "rewtyeryryewyeyreywery", null)]
+        [InlineData("dfg", null, null)]
 
-        public async Task Validate_DisciplineIsNotValid_ShouldHaveErrors(string disciplineIndex, string name, string description)
+        public void Validate_DisciplineIsNotValid_ShouldHaveErrors(string disciplineIndex, string name, string description)
         {
             // arrange
             Discipline Discipline = new Discipline()
@@ -36,7 +36,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("dfg", "fhrh", null)]
 
 
-        public async Task Validate_DisciplineIsValid_ShouldHaveNoErrors(string disciplineIndex, string name, string description)
+        public void Validate_DisciplineIsValid_ShouldHaveNoErrors(string disciplineIndex, string name, string description)
         {
             // arrange
             Discipline Discipline = new Discipline()
@@ -53,7 +53,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(Discipline);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

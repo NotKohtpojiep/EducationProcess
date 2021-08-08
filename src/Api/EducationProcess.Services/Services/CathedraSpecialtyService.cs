@@ -27,7 +27,7 @@ namespace EducationProcess.Services.Services
         public async Task<CathedraSpecialty[]> GetAllCathedraSpecialtiesBySpecialtyIdAsync(int fsesCategoryPatitionId)
         {
             DataAccess.Entities.CathedraSpecialty[] cathedraSpecialty =
-                await _unitOfWork.CathedraSpecialties.FindAllByWhereAsync(x => x.FsesCategoryPatitionId == fsesCategoryPatitionId);
+                await _unitOfWork.CathedraSpecialties.FindAllByWhereAsync(x => x.FsesCategoryPartitionId == fsesCategoryPatitionId);
             return _mapper.Map<DataAccess.Entities.CathedraSpecialty[], CathedraSpecialty[]>(cathedraSpecialty);
         }
 

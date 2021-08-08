@@ -10,7 +10,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("")]
         [InlineData("khjrglhkrptkhrkjpfgkjhproikthporjtpohjmrpobkrpkbdhbdkfghlkhdlndlbsdmnkseowjefhjvsnsdfmflaajifwqpqwrhj")]
-        public async Task Validate_ReceivedSpecialtyIsNotValid_ShouldHaveErrors(string qualification)
+        public void Validate_ReceivedSpecialtyIsNotValid_ShouldHaveErrors(string qualification)
         {
             // arrange
             ReceivedSpecialty ReceivedSpecialty = new ReceivedSpecialty()
@@ -30,7 +30,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("khjrglhkrptkhrkjpfgkjhpr")]
-        public async Task Validate_ReceivedSpecialtyIsValid_ShouldHaveNoErrors(string qualification)
+        public void Validate_ReceivedSpecialtyIsValid_ShouldHaveNoErrors(string qualification)
         {
             // arrange
             ReceivedSpecialty ReceivedSpecialty = new ReceivedSpecialty()
@@ -45,7 +45,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(ReceivedSpecialty);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

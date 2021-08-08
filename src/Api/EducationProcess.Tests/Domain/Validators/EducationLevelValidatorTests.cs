@@ -13,7 +13,7 @@ namespace EducationProcess.Tests.Domain.Validators
         //в строке данной ниже около 102-103 символов
         [InlineData("dkfjguimprjfghtklanbdhfgjaqprmvnqiowieuryzpamdnfbydddddddddddddddddddddddddddjhaaaaaaapppqoiuyuiopaoooo")]
 
-        public async Task Validate_EducationLevelIsNotValid_ShouldHaveErrors(string name)
+        public void Validate_EducationLevelIsNotValid_ShouldHaveErrors(string name)
         {
             // arrange
             EducationLevel EducationLevel = new EducationLevel()
@@ -25,7 +25,7 @@ namespace EducationProcess.Tests.Domain.Validators
             EducationLevelValidator validator = new EducationLevelValidator();
 
             // act
-            var result = validator.Validate(EducationLevel);
+            var result =  validator.Validate(EducationLevel);
 
             // assert
             Assert.False(result.Errors.Count == 0);
@@ -33,7 +33,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("dkfh")]
-        public async Task Validate_EducationLevelIsValid_ShouldHaveNoErrors(string name)
+        public void Validate_EducationLevelIsValid_ShouldHaveNoErrors(string name)
         {
             // arrange
             EducationLevel EducationLevel = new EducationLevel()
@@ -48,7 +48,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(EducationLevel);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

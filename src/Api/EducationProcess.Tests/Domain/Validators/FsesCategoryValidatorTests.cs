@@ -13,7 +13,7 @@ namespace EducationProcess.Tests.Domain.Validators
         //this line contains 82 symbols
         [InlineData("Dfjgkdhbbhwhslsfoeirutyrpovnvcmqkdfrpqmcvbfuiquuuuhuumcnbqiswefoojfhaepqxmcnskdfje")]
 
-        public async Task Validate_FsesCategoryIsNotValid_ShouldHaveErrors(string name)
+        public void Validate_FsesCategoryIsNotValid_ShouldHaveErrors(string name)
         {
             // arrange
             FsesCategory FsesCategory = new FsesCategory()
@@ -33,7 +33,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("sdjobxlms")]
-        public async Task Validate_FsesCategoryIsValid_ShouldHaveNoErrors(string name)
+        public void Validate_FsesCategoryIsValid_ShouldHaveNoErrors(string name)
         {
             // arrange
             FsesCategory FsesCategory = new FsesCategory()
@@ -48,7 +48,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(FsesCategory);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

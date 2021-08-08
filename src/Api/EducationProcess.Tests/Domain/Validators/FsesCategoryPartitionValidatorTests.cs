@@ -13,12 +13,12 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("dsgswe", "")]
         [InlineData("", "khv")]
 
-        public async Task Validate_FsesCategoryPartitionIsNotValid_ShouldHaveErrors(string name, string nameAbbreviation)
+        public void Validate_FsesCategoryPartitionIsNotValid_ShouldHaveErrors(string name, string nameAbbreviation)
         {
             // arrange
             FsesCategoryPartition FsesCategoryPartition = new FsesCategoryPartition()
             {
-                FsesCategoryPatitionId = 0,
+                FsesCategoryPartitionId = 0,
                 Name = name,
                 NameAbbreviation = nameAbbreviation
             };
@@ -35,12 +35,12 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("ddsg", "vlogkmelel")]
 
-        public async Task Validate_FsesCategoryPartitionIsValid_ShouldHaveNoErrors(string name, string nameAbbreviation)
+        public void Validate_FsesCategoryPartitionIsValid_ShouldHaveNoErrors(string name, string nameAbbreviation)
         {
             // arrange
             FsesCategoryPartition FsesCategoryPartition = new FsesCategoryPartition()
             {
-                FsesCategoryPatitionId = 0,
+                FsesCategoryPartitionId = 0,
                 Name = name,
                 NameAbbreviation = nameAbbreviation
             };
@@ -51,7 +51,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(FsesCategoryPartition);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

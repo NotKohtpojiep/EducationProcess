@@ -16,7 +16,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("sdbbb", "", null)]
         [InlineData("", "sdfw", null)]
 
-        public async Task Validate_EmployeeIsNotValid_ShouldHaveErrors(string firstname, string lastname, string middlename)
+        public void Validate_EmployeeIsNotValid_ShouldHaveErrors(string firstname, string lastname, string middlename)
         {
             // arrange
             Employee Employee = new Employee()
@@ -39,7 +39,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("sdbbb", "fgdfg", null)]
         [InlineData("ererge", "sdfw", "lkjg")]
-        public async Task Validate_EmployeeIsValid_ShouldHaveNoErrors(string firstname, string lastname, string middlename)
+        public void Validate_EmployeeIsValid_ShouldHaveNoErrors(string firstname, string lastname, string middlename)
         {
             // arrange
             Employee Employee = new Employee()
@@ -56,7 +56,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(Employee);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

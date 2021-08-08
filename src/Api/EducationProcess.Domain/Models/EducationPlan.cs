@@ -5,7 +5,7 @@ namespace EducationProcess.Domain.Models
     public class EducationPlan
     {
         public int EducationPlanId { get; set; }
-        public int FsesCategoryPatitionId { get; set; }
+        public int FsesCategoryPartitionId { get; set; }
         public string Name { get; set; }
         public int AcademicYearId { get; set; }
         public string Description { get; set; }

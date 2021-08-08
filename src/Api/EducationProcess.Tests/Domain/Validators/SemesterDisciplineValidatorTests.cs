@@ -10,7 +10,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("")]
         [InlineData("ptprglhkrptkhrkjpfgkjhproikthporjtpohjmrpobkrpkbdhbdkfghlkhdlndlbsdmnkseowjefhjvsnsdfmflaajifwqpqwrhjfpdsjgejpoigpslkgpqewetigjgneknrkgeioruqwrqnensdjlskjgejtowiefrsjkhdkfghsidufiquwrbmzxczmvbhvbsgdfakwroqwrpqrqposdgnkvbisgefwherwygeuwuwuwuwuwuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu")]
-        public async Task Validate_SemesterDisciplineIsNotValid_ShouldHaveErrors(string description)
+        public void Validate_SemesterDisciplineIsNotValid_ShouldHaveErrors(string description)
         {
             // arrange
             SemesterDiscipline SemesterDiscipline = new SemesterDiscipline()
@@ -30,7 +30,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("ehetenattayo")]
-        public async Task Validate_SemesterDisciplineIsValid_ShouldHaveNoErrors(string description)
+        public void Validate_SemesterDisciplineIsValid_ShouldHaveNoErrors(string description)
         {
             // arrange
             SemesterDiscipline SemesterDiscipline = new SemesterDiscipline()
@@ -45,7 +45,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(SemesterDiscipline);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

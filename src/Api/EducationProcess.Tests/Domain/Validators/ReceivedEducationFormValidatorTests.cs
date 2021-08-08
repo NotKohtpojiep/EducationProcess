@@ -9,7 +9,7 @@ namespace EducationProcess.Tests.Domain.Validators
     {
         [Theory]
         [InlineData("")]
-        public async Task Validate_ReceivedEducationFormIsNotValid_ShouldHaveErrors(string additionalInfo)
+        public void Validate_ReceivedEducationFormIsNotValid_ShouldHaveErrors(string additionalInfo)
         {
             // arrange
             ReceivedEducationForm ReceivedEducationForm = new ReceivedEducationForm()
@@ -30,7 +30,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("sjkfhv")]
         [InlineData(null)]
-        public async Task Validate_ReceivedEducationFormIsValid_ShouldHaveNoErrors(string additionalInfo)
+        public void Validate_ReceivedEducationFormIsValid_ShouldHaveNoErrors(string additionalInfo)
         {
             // arrange
             ReceivedEducationForm ReceivedEducationForm = new ReceivedEducationForm()
@@ -45,7 +45,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(ReceivedEducationForm);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

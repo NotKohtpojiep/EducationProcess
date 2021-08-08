@@ -13,7 +13,7 @@ namespace EducationProcess.Tests.Domain.Validators
         //в строке 137 символов
         [InlineData("Fdkdkjfhgbeierjbejnfeijnfi3eurfhoeijvoeijvoerjiiojgoergergldfkjneoowpwiriririruthgtgjslalasjdnbfwejrkbvkejhgekjnekmvenpweggvyuwubcmakabqq")]
 
-        public async Task Validate_FederalStateEducationalStandardIsNotValid_ShouldHaveErrors(string name)
+        public void Validate_FederalStateEducationalStandardIsNotValid_ShouldHaveErrors(string name)
         {
             // arrange
             FederalStateEducationalStandard FederalStateEducationalStandard = new FederalStateEducationalStandard()
@@ -34,7 +34,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("sdfwg")]
-        public async Task Validate_FederalStateEducationalStandardIsValid_ShouldHaveNoErrors(string name)
+        public void Validate_FederalStateEducationalStandardIsValid_ShouldHaveNoErrors(string name)
         {
             // arrange
             FederalStateEducationalStandard FederalStateEducationalStandard = new FederalStateEducationalStandard()
@@ -50,7 +50,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(FederalStateEducationalStandard);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

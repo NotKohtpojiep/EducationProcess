@@ -13,7 +13,7 @@ namespace EducationProcess.DataAccess.Entities
             ReceivedSpecialties = new HashSet<ReceivedSpecialty>();
         }
 
-        public int FsesCategoryPatitionId { get; set; }
+        public int FsesCategoryPartitionId { get; set; }
         public int FirstPartNumber { get; set; }
         public int SecondPartNumber { get; set; }
         public short? ThirdPathNumber { get; set; }

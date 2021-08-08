@@ -14,7 +14,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData(null, "         ")]
         [InlineData(null, null)]
         [InlineData("Вася", "")]
-        public async Task Validate_AudienceIsNotValid_ShouldHaveErrors(string name, string number)
+        public void Validate_AudienceIsNotValid_ShouldHaveErrors(string name, string number)
         {
             // arrange
             Audience Audience = new Audience()
@@ -36,7 +36,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData(null, "29Б")]
         [InlineData("ворона", "29А")]
         [InlineData(null, "202")]
-        public async Task Validate_AudienceIsValid_ShouldHaveNoErrors(string name, string number)
+        public void Validate_AudienceIsValid_ShouldHaveNoErrors(string name, string number)
         {
             // arrange
             Audience Audience = new Audience()

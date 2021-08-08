@@ -8,16 +8,18 @@ namespace EducationProcess.Domain.Validators
         public ConductedPairValidator()
         {
             RuleFor(x => x.ScheduleDisciplineId)
-                .NotEmpty().When(x => x.ScheduleDisciplineReplacementId == null)
-                    .WithMessage("ScheduleDisciplineId should not be empty, if ScheduleDisciplineReplacementId is null")
-                .Empty().When(x => x.ScheduleDisciplineReplacementId != null)
+                .NotNull().When(x => x.ScheduleDisciplineReplacementId == null)
+                    .WithMessage("ScheduleDisciplineId should not be empty, if ScheduleDisciplineReplacementId is null");
+            RuleFor(x => x.ScheduleDisciplineId)
+                .Null().When(x => x.ScheduleDisciplineReplacementId != null)
                     .WithMessage("ScheduleDisciplineId should be empty, if ScheduleDisciplineReplacementId is not null");
 
             RuleFor(x => x.ScheduleDisciplineReplacementId)
-                .NotEmpty().When(x => x.ScheduleDisciplineId == null)
-                .WithMessage("ScheduleDisciplineReplacementId should not be empty, if ScheduleDisciplineId is null")
-                .Empty().When(x => x.ScheduleDisciplineId != null)
-                .WithMessage("ScheduleDisciplineReplacementId should be empty, if ScheduleDisciplineId is not null");
+                .NotNull().When(x => x.ScheduleDisciplineId == null)
+                    .WithMessage("ScheduleDisciplineReplacementId should not be empty, if ScheduleDisciplineId is null");
+            RuleFor(x => x.ScheduleDisciplineReplacementId)
+                .Null().When(x => x.ScheduleDisciplineId != null)
+                    .WithMessage("ScheduleDisciplineReplacementId should be empty, if ScheduleDisciplineId is not null");
         }
     }
 }

@@ -12,7 +12,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("         ")]
         [InlineData("uuuhuumcnbqiswefoojfhaepqxmcnskdfjesdjfnoirernbieowvnsjkalqqfqbbbdfjgkervnsmsdhfw")]
 
-        public async Task Validate_PostIsNotValid_ShouldHaveErrors(string name)
+        public void Validate_PostIsNotValid_ShouldHaveErrors(string name)
         {
             // arrange
             Post Post = new Post()
@@ -32,7 +32,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("fonjo")]
-        public async Task Validate_PostIsValid_ShouldHaveNoErrors(string name)
+        public void Validate_PostIsValid_ShouldHaveNoErrors(string name)
         {
             // arrange
             Post Post = new Post()
@@ -47,7 +47,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(Post);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

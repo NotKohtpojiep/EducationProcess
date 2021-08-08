@@ -13,7 +13,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("Dfjgkdhbbhwhslsfoeirutyrpovnvcmqkdfrpqmcvbfuiquuuuhuumcnbqiswefoojfhaepqxmcnskdfje", 3)]
         [InlineData("Dfjgkd", 13)]
 
-        public async Task Validate_GroupIsNotValid_ShouldHaveErrors(string name, byte courseNumber)
+        public void Validate_GroupIsNotValid_ShouldHaveErrors(string name, byte courseNumber)
         {
             // arrange
             Group Group = new Group()
@@ -34,7 +34,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("PB", 1)]
-        public async Task Validate_GroupIsValid_ShouldHaveNoErrors(string name, byte courseNumber)
+        public void Validate_GroupIsValid_ShouldHaveNoErrors(string name, byte courseNumber)
         {
             // arrange
             Group Group = new Group()
@@ -50,7 +50,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(Group);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

@@ -16,7 +16,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("     ", "    ", "   ")]
         [InlineData("", null, "bruh")]
 
-        public async Task Validate_CathedraIsNotValid_ShouldHaveErrors(string name, string nameAbbrevation, string description)
+        public void Validate_CathedraIsNotValid_ShouldHaveErrors(string name, string nameAbbrevation, string description)
         {
             // arrange
             Cathedra Cathedra = new Cathedra()
@@ -41,7 +41,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("var", "202020", null)]
         [InlineData("var", null, "2020")]
 
-        public async Task Validate_CathedraIsValid_ShouldHaveNoErrors(string name, string nameAbbrevation, string description)
+        public void Validate_CathedraIsValid_ShouldHaveNoErrors(string name, string nameAbbrevation, string description)
         {
             // arrange
             Cathedra Cathedra = new Cathedra()
@@ -58,7 +58,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(Cathedra);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

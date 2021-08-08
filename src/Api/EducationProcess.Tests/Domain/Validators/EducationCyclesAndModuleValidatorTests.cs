@@ -14,7 +14,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("", "rewty", null)]
         [InlineData("rewty", "", null)]
 
-        public async Task Validate_EducationCyclesAndModuleIsNotValid_ShouldHaveErrors(string educationCycleIndex, string name, string description)
+        public void Validate_EducationCyclesAndModuleIsNotValid_ShouldHaveErrors(string educationCycleIndex, string name, string description)
         {
             // arrange
             EducationCyclesAndModule EducationCyclesAndModule = new EducationCyclesAndModule()
@@ -37,7 +37,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("raw", "low", null)]
         [InlineData("high", "youth", "lalala")]
-        public async Task Validate_EducationCyclesAndModuleIsValid_ShouldHaveNoErrors(string educationCycleIndex, string name, string description)
+        public void Validate_EducationCyclesAndModuleIsValid_ShouldHaveNoErrors(string educationCycleIndex, string name, string description)
         {
             // arrange
             EducationCyclesAndModule EducationCyclesAndModule = new EducationCyclesAndModule()
@@ -54,7 +54,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(EducationCyclesAndModule);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

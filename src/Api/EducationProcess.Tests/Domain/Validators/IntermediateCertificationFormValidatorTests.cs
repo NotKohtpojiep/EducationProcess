@@ -12,7 +12,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("         ")]
         [InlineData("Dfjgkdhbbhwhslsfoeirutyrpovnvcmqkdfrpqmcvbfuiquuuuhuumcnbqiswefoojfhaepqxmcnskdfjesdjfnoirernbieowvnsjkalqqfqbbbdfjgkervnsmsdhfw")]
 
-        public async Task Validate_IntermediateCertificationFormIsNotValid_ShouldHaveErrors(string name)
+        public void Validate_IntermediateCertificationFormIsNotValid_ShouldHaveErrors(string name)
         {
             // arrange
             IntermediateCertificationForm IntermediateCertificationForm = new IntermediateCertificationForm()
@@ -32,7 +32,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("rrikt")]
-        public async Task Validate_IntermediateCertificationFormIsValid_ShouldHaveNoErrors(string name)
+        public void Validate_IntermediateCertificationFormIsValid_ShouldHaveNoErrors(string name)
         {
             // arrange
             IntermediateCertificationForm IntermediateCertificationForm = new IntermediateCertificationForm()
@@ -47,7 +47,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(IntermediateCertificationForm);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

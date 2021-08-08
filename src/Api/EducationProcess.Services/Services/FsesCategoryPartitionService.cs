@@ -20,7 +20,7 @@ namespace EducationProcess.Services.Services
         public async Task<FsesCategoryPartition> GetFsesCategoryPartitionByIdAsync(int fsesCategoryPartitionId)
         {
             DataAccess.Entities.FsesCategoryPartition fsesCategoryPartition =
-                await _unitOfWork.FsesCategoryPartitions.GetFirstWhereAsync(x => x.FsesCategoryPatitionId == fsesCategoryPartitionId);
+                await _unitOfWork.FsesCategoryPartitions.GetFirstWhereAsync(x => x.FsesCategoryPartitionId == fsesCategoryPartitionId);
             return _mapper.Map<DataAccess.Entities.FsesCategoryPartition, FsesCategoryPartition>(fsesCategoryPartition);
         }
 

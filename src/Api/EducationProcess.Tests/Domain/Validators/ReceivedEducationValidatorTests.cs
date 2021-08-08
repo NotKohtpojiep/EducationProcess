@@ -9,7 +9,7 @@ namespace EducationProcess.Tests.Domain.Validators
     {
         [Theory]
         [InlineData(101)]
-        public async Task Validate_ReceivedEducationIsNotValid_ShouldHaveErrors(ushort studyPeriodMonths)
+        public void Validate_ReceivedEducationIsNotValid_ShouldHaveErrors(short studyPeriodMonths)
         {
             // arrange
             ReceivedEducation ReceivedEducation = new ReceivedEducation()
@@ -29,7 +29,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData(45)]
-        public async Task Validate_ReceivedEducationIsValid_ShouldHaveNoErrors(ushort studyPeriodMonths)
+        public void Validate_ReceivedEducationIsValid_ShouldHaveNoErrors(short studyPeriodMonths)
         {
             // arrange
             ReceivedEducation ReceivedEducation = new ReceivedEducation()
@@ -44,7 +44,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(ReceivedEducation);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

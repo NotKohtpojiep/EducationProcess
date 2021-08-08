@@ -12,7 +12,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("         ")]
         [InlineData("hbbhwhslsfoeirutyrpovnvcmqkdfrpqmcvbfuiquuuuhuumcnbqiswefoojfhaepqxmcnskdfjesdjfnoirernbieowvnsjkalqqfqbbbdfjgkervnsmsdhfw")]
 
-        public async Task Validate_LessonTypeIsNotValid_ShouldHaveErrors(string name)
+        public void Validate_LessonTypeIsNotValid_ShouldHaveErrors(string name)
         {
             // arrange
             LessonType LessonType = new LessonType()
@@ -32,7 +32,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("dfghet")]
-        public async Task Validate_LessonTypeIsValid_ShouldHaveNoErrors(string name)
+        public void Validate_LessonTypeIsValid_ShouldHaveNoErrors(string name)
         {
             // arrange
             LessonType LessonType = new LessonType()
@@ -47,7 +47,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(LessonType);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

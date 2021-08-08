@@ -12,7 +12,7 @@ namespace EducationProcess.DataAccess.Entities
         }
 
         public int ReceivedSpecialtyId { get; set; }
-        public int FsesCategoryPatitionId { get; set; }
+        public int FsesCategoryPartitionId { get; set; }
         public string Qualification { get; set; }
 
         public virtual FsesCategoryPartition FsesCategoryPatition { get; set; }

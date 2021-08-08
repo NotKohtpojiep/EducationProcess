@@ -15,7 +15,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("ывы", "")]
         [InlineData("", null)]
 
-        public async Task Validate_EducationPlanIsNotValid_ShouldHaveErrors(string name, string description)
+        public void Validate_EducationPlanIsNotValid_ShouldHaveErrors(string name, string description)
         {
             // arrange
             EducationPlan EducationPlan = new EducationPlan()
@@ -37,7 +37,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [Theory]
         [InlineData("dfjgh", "fdger")]
         [InlineData("dfjgh", null)]
-        public async Task Validate_EducationPlanIsValid_ShouldHaveNoErrors(string name, string description)
+        public void Validate_EducationPlanIsValid_ShouldHaveNoErrors(string name, string description)
         {
             // arrange
             EducationPlan EducationPlan = new EducationPlan()
@@ -53,7 +53,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(EducationPlan);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

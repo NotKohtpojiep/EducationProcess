@@ -11,7 +11,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData(32, 101)]
         [InlineData(13, 103)]
         [InlineData(133, 100)]
-        public async Task Validate_SemesterIsNotValid_ShouldHaveErrors(byte number, byte weeksCount)
+        public void Validate_SemesterIsNotValid_ShouldHaveErrors(byte number, byte weeksCount)
         {
             // arrange
             Semester Semester = new Semester()
@@ -32,7 +32,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData(12, 60)]
-        public async Task Validate_SemesterIsValid_ShouldHaveNoErrors(byte number, byte weeksCount)
+        public void Validate_SemesterIsValid_ShouldHaveNoErrors(byte number, byte weeksCount)
         {
             // arrange
             Semester Semester = new Semester()
@@ -48,7 +48,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(Semester);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }

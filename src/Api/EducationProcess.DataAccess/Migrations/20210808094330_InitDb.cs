@@ -335,7 +335,7 @@ namespace EducationProcess.DataAccess.Migrations
                 name: "Fses_category_partitions",
                 columns: table => new
                 {
-                    Fses_category_patition_id = table.Column<int>(type: "int", nullable: false)
+                    Fses_category_partition_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     First_part_number = table.Column<int>(type: "int", nullable: false),
                     Second_part_number = table.Column<int>(type: "int", nullable: false),
@@ -346,7 +346,7 @@ namespace EducationProcess.DataAccess.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Fses_category_partitions", x => x.Fses_category_patition_id);
+                    table.PrimaryKey("PK_Fses_category_partitions", x => x.Fses_category_partition_id);
                     table.ForeignKey(
                         name: "FK_Fses_category_partitions_Fses_categories",
                         column: x => x.Fses_category_id,
@@ -382,11 +382,11 @@ namespace EducationProcess.DataAccess.Migrations
                 columns: table => new
                 {
                     Cathedra_id = table.Column<int>(type: "int", nullable: false),
-                    Fses_category_patition_id = table.Column<int>(type: "int", nullable: false)
+                    Fses_category_partition_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Cathedra_specialties", x => new { x.Cathedra_id, x.Fses_category_patition_id });
+                    table.PrimaryKey("PK_Cathedra_specialties", x => new { x.Cathedra_id, x.Fses_category_partition_id });
                     table.ForeignKey(
                         name: "FK_Cathedra_specialties_Cathedras",
                         column: x => x.Cathedra_id,
@@ -395,9 +395,9 @@ namespace EducationProcess.DataAccess.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Cathedra_specialties_Fses_category_partitions",
-                        column: x => x.Fses_category_patition_id,
+                        column: x => x.Fses_category_partition_id,
                         principalTable: "Fses_category_partitions",
-                        principalColumn: "Fses_category_patition_id",
+                        principalColumn: "Fses_category_partition_id",
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
@@ -408,7 +408,7 @@ namespace EducationProcess.DataAccess.Migrations
                 {
                     Education_plan_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Fses_category_patition_id = table.Column<int>(type: "int", nullable: false),
+                    Fses_category_partition_id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "varchar(65)", maxLength: 65, nullable: false, collation: "Utf8_General_Ci"),
                     Academic_year_id = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "varchar(300)", maxLength: 300, nullable: true, collation: "Utf8_General_Ci"),
@@ -426,9 +426,9 @@ namespace EducationProcess.DataAccess.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Education_plans_Fses_category_partitions",
-                        column: x => x.Fses_category_patition_id,
+                        column: x => x.Fses_category_partition_id,
                         principalTable: "Fses_category_partitions",
-                        principalColumn: "Fses_category_patition_id",
+                        principalColumn: "Fses_category_partition_id",
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
@@ -439,7 +439,7 @@ namespace EducationProcess.DataAccess.Migrations
                 {
                     Received_specialty_id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Fses_category_patition_id = table.Column<int>(type: "int", nullable: false),
+                    Fses_category_partition_id = table.Column<int>(type: "int", nullable: false),
                     Qualification = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false, collation: "Utf8_General_Ci")
                 },
                 constraints: table =>
@@ -447,9 +447,9 @@ namespace EducationProcess.DataAccess.Migrations
                     table.PrimaryKey("PK_Received_specialties", x => x.Received_specialty_id);
                     table.ForeignKey(
                         name: "FK_Received_specialties_Fses_category_partitions",
-                        column: x => x.Fses_category_patition_id,
+                        column: x => x.Fses_category_partition_id,
                         principalTable: "Fses_category_partitions",
-                        principalColumn: "Fses_category_patition_id",
+                        principalColumn: "Fses_category_partition_id",
                         onDelete: ReferentialAction.Restrict);
                 })
                 .Annotation("Relational:Collation", "Utf8_General_Ci");
@@ -876,7 +876,7 @@ namespace EducationProcess.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Cathedra_specialties_Specialtie_id",
                 table: "Cathedra_specialties",
-                column: "Fses_category_patition_id");
+                column: "Fses_category_partition_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Cities_Region_id",
@@ -931,7 +931,7 @@ namespace EducationProcess.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Education_plans_Specialtie_id",
                 table: "Education_plans",
-                column: "Fses_category_patition_id");
+                column: "Fses_category_partition_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Employee_cathedras_Cathedra_id",
@@ -1021,7 +1021,7 @@ namespace EducationProcess.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Received_specialties_Specialtie_id",
                 table: "Received_specialties",
-                column: "Fses_category_patition_id");
+                column: "Fses_category_partition_id");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Schedule_discipline_replacement_Audience_id",

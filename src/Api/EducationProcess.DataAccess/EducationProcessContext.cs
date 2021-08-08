@@ -135,15 +135,15 @@ namespace EducationProcess.DataAccess
 
             modelBuilder.Entity<CathedraSpecialty>(entity =>
             {
-                entity.HasKey(e => new { e.CathedraId, e.FsesCategoryPatitionId });
+                entity.HasKey(e => new { e.CathedraId, e.FsesCategoryPartitionId });
 
                 entity.ToTable("Cathedra_specialties");
 
-                entity.HasIndex(e => e.FsesCategoryPatitionId, "IX_Cathedra_specialties_Specialtie_id");
+                entity.HasIndex(e => e.FsesCategoryPartitionId, "IX_Cathedra_specialties_Specialtie_id");
 
                 entity.Property(e => e.CathedraId).HasColumnName("Cathedra_id");
 
-                entity.Property(e => e.FsesCategoryPatitionId).HasColumnName("Fses_category_patition_id");
+                entity.Property(e => e.FsesCategoryPartitionId).HasColumnName("Fses_category_partition_id");
 
                 entity.HasOne(d => d.Cathedra)
                     .WithMany(p => p.CathedraSpecialties)
@@ -153,7 +153,7 @@ namespace EducationProcess.DataAccess
 
                 entity.HasOne(d => d.FsesCategoryPatition)
                     .WithMany(p => p.CathedraSpecialties)
-                    .HasForeignKey(d => d.FsesCategoryPatitionId)
+                    .HasForeignKey(d => d.FsesCategoryPartitionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Cathedra_specialties_Fses_category_partitions");
             });
@@ -339,7 +339,7 @@ namespace EducationProcess.DataAccess
 
                 entity.HasIndex(e => e.AcademicYearId, "IX_Education_plans_Academic_year_id");
 
-                entity.HasIndex(e => e.FsesCategoryPatitionId, "IX_Education_plans_Specialtie_id");
+                entity.HasIndex(e => e.FsesCategoryPartitionId, "IX_Education_plans_Specialtie_id");
 
                 entity.Property(e => e.EducationPlanId).HasColumnName("Education_plan_id");
 
@@ -351,7 +351,7 @@ namespace EducationProcess.DataAccess
 
                 entity.Property(e => e.Description).HasMaxLength(300);
 
-                entity.Property(e => e.FsesCategoryPatitionId).HasColumnName("Fses_category_patition_id");
+                entity.Property(e => e.FsesCategoryPartitionId).HasColumnName("Fses_category_partition_id");
 
                 entity.Property(e => e.ModifiedAt)
                     .HasColumnType("datetime")
@@ -369,7 +369,7 @@ namespace EducationProcess.DataAccess
 
                 entity.HasOne(d => d.FsesCategoryPatition)
                     .WithMany(p => p.EducationPlans)
-                    .HasForeignKey(d => d.FsesCategoryPatitionId)
+                    .HasForeignKey(d => d.FsesCategoryPartitionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Education_plans_Fses_category_partitions");
             });
@@ -564,13 +564,13 @@ namespace EducationProcess.DataAccess
 
             modelBuilder.Entity<FsesCategoryPartition>(entity =>
             {
-                entity.HasKey(e => e.FsesCategoryPatitionId);
+                entity.HasKey(e => e.FsesCategoryPartitionId);
 
                 entity.ToTable("Fses_category_partitions");
 
                 entity.HasIndex(e => e.FsesCategoryId, "IX_Fses_category_partitions_Fses_category_id");
 
-                entity.Property(e => e.FsesCategoryPatitionId).HasColumnName("Fses_category_patition_id");
+                entity.Property(e => e.FsesCategoryPartitionId).HasColumnName("Fses_category_partition_id");
 
                 entity.Property(e => e.FirstPartNumber).HasColumnName("First_part_number");
 
@@ -745,11 +745,11 @@ namespace EducationProcess.DataAccess
             {
                 entity.ToTable("Received_specialties");
 
-                entity.HasIndex(e => e.FsesCategoryPatitionId, "IX_Received_specialties_Specialtie_id");
+                entity.HasIndex(e => e.FsesCategoryPartitionId, "IX_Received_specialties_Specialtie_id");
 
                 entity.Property(e => e.ReceivedSpecialtyId).HasColumnName("Received_specialty_id");
 
-                entity.Property(e => e.FsesCategoryPatitionId).HasColumnName("Fses_category_patition_id");
+                entity.Property(e => e.FsesCategoryPartitionId).HasColumnName("Fses_category_partition_id");
 
                 entity.Property(e => e.Qualification)
                     .IsRequired()
@@ -757,7 +757,7 @@ namespace EducationProcess.DataAccess
 
                 entity.HasOne(d => d.FsesCategoryPatition)
                     .WithMany(p => p.ReceivedSpecialties)
-                    .HasForeignKey(d => d.FsesCategoryPatitionId)
+                    .HasForeignKey(d => d.FsesCategoryPartitionId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Received_specialties_Fses_category_partitions");
             });

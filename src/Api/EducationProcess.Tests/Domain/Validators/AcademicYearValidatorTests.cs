@@ -19,7 +19,7 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData(1233, 2020)]
         public void Validate_AcademicYearIsNotValid_ShouldHaveErrors(short beginingYear, short endingYear)
         {
-            // arrange - подготавливаем данные
+            // arrange
             AcademicYear academicYear = new AcademicYear()
             {
                 AcademicYearId = 0,
@@ -29,10 +29,10 @@ namespace EducationProcess.Tests.Domain.Validators
 
             AcademicYearValidator validator = new AcademicYearValidator();
 
-            // act - запускаем тестируемый метод
+            // act
             var result = validator.Validate(academicYear);
 
-            // assert - проверяем/валидируем результаты теста
+            // assert
             Assert.False(result.Errors.Count == 0);
         }
 

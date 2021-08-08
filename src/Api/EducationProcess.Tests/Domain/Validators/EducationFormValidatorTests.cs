@@ -13,7 +13,7 @@ namespace EducationProcess.Tests.Domain.Validators
         //в строке данной ниже около 102-103 символов
         [InlineData("dkfjguimprjfghtklanbdhfgjaqprmvnqiowieuryzpamdnfbydddddddddddddddddddddddddddjhaaaaaaapppqoiuyuiopaoooo")]
 
-        public async Task Validate_EducationFormIsNotValid_ShouldHaveErrors(string name)
+        public void Validate_EducationFormIsNotValid_ShouldHaveErrors(string name)
         {
             // arrange
             EducationForm EducationForm = new EducationForm()
@@ -33,7 +33,7 @@ namespace EducationProcess.Tests.Domain.Validators
 
         [Theory]
         [InlineData("dfgea")]
-        public async Task Validate_EducationFormIsValid_ShouldHaveNoErrors(string name)
+        public void Validate_EducationFormIsValid_ShouldHaveNoErrors(string name)
         {
             // arrange
             EducationForm EducationForm = new EducationForm()
@@ -48,7 +48,7 @@ namespace EducationProcess.Tests.Domain.Validators
             var result = validator.Validate(EducationForm);
 
             // assert
-            Assert.False(result.Errors.Count == 0);
+            Assert.True(result.Errors.Count == 0);
         }
     }
 }
