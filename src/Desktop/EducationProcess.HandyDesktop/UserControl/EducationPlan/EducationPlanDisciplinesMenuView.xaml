@@ -1,0 +1,110 @@
+﻿<UserControl x:Class="EducationProcess.HandyDesktop.UserControl.EducationPlanDisciplinesMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <Button Command="{Binding PageBackCommand}"  Margin="10" Background="{DynamicResource MahApps.Brushes.Accent}" >
+                    <iconPacks:PackIconMicrons Width="20" Height="20" Kind="Undo" VerticalAlignment="Center" Foreground="White" />
+                </Button>
+                <Label  Content="Выберите дисциплину" VerticalAlignment="Center" FontSize="24"></Label>
+                <Label  Content="{Binding SelectedRole}" VerticalAlignment="Center" FontSize="24"></Label>
+            </StackPanel>
+            <Grid Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0"
+                             Margin="10"
+                             HorizontalContentAlignment="Stretch"
+                             SpellCheck.IsEnabled="True"
+                             ToolTip="Введите слово для поиска">
+                    </TextBox>
+                    <ComboBox Grid.Column="1" Margin="10" />
+                </Grid>
+                <DockPanel Grid.Column="1" LastChildFill="False" >
+                    <Button DockPanel.Dock="Right" Margin="10" Background="Tomato"
+                            Command="{Binding RemoveSemesterDisciplineCommand}">
+                        <iconPacks:PackIconModern Width="20" Height="20" Kind="Delete" Foreground="White"  />
+                    </Button>
+                    <Button DockPanel.Dock="Right" Margin="10" Background="LightSkyBlue"
+                            Command="{Binding ViewSemesterDisciplineCommand}">
+                        <iconPacks:PackIconModern Width="20" Height="20" Kind="Eye" Foreground="White" />
+                    </Button>
+                    <Button DockPanel.Dock="Right" Margin="10" Background="DarkOrange"
+                            Command="{Binding EditSemesterDisciplineCommand}">
+                        <iconPacks:PackIconModern Width="20" Height="20" Kind="Edit" Foreground="White"  />
+                    </Button>
+                    <Button DockPanel.Dock="Right" Margin="10" Background="LimeGreen"
+                            Command="{Binding AddSemesterDisciplineCommand}">
+                        <iconPacks:PackIconModern Width="20" Height="20" Kind="Add" Foreground="White" />
+                    </Button>
+                </DockPanel>
+            </Grid>
+        </Grid>
+
+        <DataGrid x:Name="DisciplinesDataGrid" 
+                  Grid.Row="1" 
+                  IsReadOnly="True" 
+                  ItemsSource="{Binding SemesterDisciplines}" 
+                  SelectedValue="{Binding SelectedSemesterDiscipline}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="false" 
+                  Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Семестр" Binding="{Binding  Semester.Number}"/>
+                <DataGridTextColumn Header="Индекс" Binding="{Binding  Discipline.DisciplineIndex}"/>
+                <DataGridTextColumn Header="Дисциплина" Width="*" Binding="{Binding   Discipline.Name}"/>
+                <DataGridTextColumn Header="Теор." Binding="{Binding TheoryLessonHours}"/>
+                <DataGridTextColumn Header="Сам." Binding="{Binding  IndependentWorkHours}"/>
+                <DataGridTextColumn Header="Прак." Binding="{Binding PracticeWorkHours}"/>
+                <DataGridTextColumn Header="Контр." Binding="{Binding  ControlWorkHours}"/>
+                <DataGridTextColumn Header="Конс." Binding="{Binding  ConsultationHours}"/>
+                <DataGridTextColumn Header="Экз." Binding="{Binding  ExamHours}"/>
+                <DataGridTextColumn Header="Уч. пр." Binding="{Binding  EducationalPracticeHours}"/>
+                <DataGridTextColumn Header="Пр. пр." Binding="{Binding  ProductionPracticeHours}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Row="2" Height="50">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Command="{Binding ConvertToExcelCommand}"  Margin="10" Background="LightCyan">
+                <StackPanel Orientation="Horizontal" Margin="-5">
+                    <Label Content="Экспортировать в таблицу" VerticalAlignment="Center"></Label>
+                    <iconPacks:PackIconModern Width="20" Height="20" Kind="OfficeExcel" VerticalAlignment="Center" Foreground="Green" />
+                </StackPanel>
+            </Button>
+            <TextBlock Grid.Column="1" Grid.ColumnSpan="3" Margin="5"
+                TextWrapping="Wrap" Text="{Binding EducationPlanInfo}"></TextBlock>
+        </Grid>
+    </Grid>
+</UserControl>

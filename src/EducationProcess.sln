@@ -19,13 +19,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationProcess.Tests", "A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationProcess.DataAccess", "Api\EducationProcess.DataAccess\EducationProcess.DataAccess.csproj", "{9BFBB86B-70CB-4C8D-BA69-C409106C0E50}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationProcess.Desktop", "Desktop\EducationProcess.Desktop\EducationProcess.Desktop.csproj", "{C19162C8-9642-4113-8C3C-F56154D9BEE1}"
-EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{1D8598ED-6E56-4768-8935-B6753200EE79}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationProcess.Services", "Api\EducationProcess.Services\EducationProcess.Services.csproj", "{24F651A4-EC9A-40C9-8767-B8B499AE3DA1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationProcess.ApiClient", "Desktop\EducationProcess.ApiClient\EducationProcess.ApiClient.csproj", "{45CAB946-17D8-44B3-8B4B-5395BA6F01AE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EducationProcess.HandyDesktop", "Desktop\EducationProcess.HandyDesktop\EducationProcess.HandyDesktop.csproj", "{AD25C27B-5F69-42F1-A7B8-9E8513595BD4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,6 @@ Global
 		{9BFBB86B-70CB-4C8D-BA69-C409106C0E50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BFBB86B-70CB-4C8D-BA69-C409106C0E50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BFBB86B-70CB-4C8D-BA69-C409106C0E50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C19162C8-9642-4113-8C3C-F56154D9BEE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C19162C8-9642-4113-8C3C-F56154D9BEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C19162C8-9642-4113-8C3C-F56154D9BEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C19162C8-9642-4113-8C3C-F56154D9BEE1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D8598ED-6E56-4768-8935-B6753200EE79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D8598ED-6E56-4768-8935-B6753200EE79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D8598ED-6E56-4768-8935-B6753200EE79}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -69,6 +65,10 @@ Global
 		{45CAB946-17D8-44B3-8B4B-5395BA6F01AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45CAB946-17D8-44B3-8B4B-5395BA6F01AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45CAB946-17D8-44B3-8B4B-5395BA6F01AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD25C27B-5F69-42F1-A7B8-9E8513595BD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD25C27B-5F69-42F1-A7B8-9E8513595BD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD25C27B-5F69-42F1-A7B8-9E8513595BD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD25C27B-5F69-42F1-A7B8-9E8513595BD4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,9 +81,9 @@ Global
 		{FED659FC-E456-4CF1-8297-2B6F33D1B459} = {E4A39983-B8D2-4ECB-9843-BCA5427F18D9}
 		{8DD3A4A3-D3F8-4552-8C53-D07E30291F55} = {E4A39983-B8D2-4ECB-9843-BCA5427F18D9}
 		{9BFBB86B-70CB-4C8D-BA69-C409106C0E50} = {E4A39983-B8D2-4ECB-9843-BCA5427F18D9}
-		{C19162C8-9642-4113-8C3C-F56154D9BEE1} = {CEE95801-E687-4ACE-8E19-8E4C144F14C0}
 		{24F651A4-EC9A-40C9-8767-B8B499AE3DA1} = {E4A39983-B8D2-4ECB-9843-BCA5427F18D9}
 		{45CAB946-17D8-44B3-8B4B-5395BA6F01AE} = {CEE95801-E687-4ACE-8E19-8E4C144F14C0}
+		{AD25C27B-5F69-42F1-A7B8-9E8513595BD4} = {CEE95801-E687-4ACE-8E19-8E4C144F14C0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {93174CA7-FC5E-4D5E-AE8D-06C920589544}
