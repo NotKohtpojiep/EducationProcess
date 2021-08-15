@@ -11,30 +11,27 @@
         CornerRadius="0,0,10,0"
         Effect="{StaticResource EffectShadow4}">
     <DockPanel>
-        <Label DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="10,10,10,4" Content="Меню" BorderThickness="0" Background="{DynamicResource SecondaryRegionBrush}"/>
-        <ListBox Margin="10" Name="ListBoxDemo" ScrollViewer.CanContentScroll="False" VirtualizingStackPanel.IsVirtualizing="True" ItemsSource="{Binding HeadSideMenuModels}" BorderThickness="0" SelectionMode="Single" Style="{StaticResource ListBoxCustom}">
+        <Label DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="10,10,10,4" 
+               Content="{ex:Lang Key={x:Static langs:LangKeys.Menu}}" BorderThickness="0" Background="{DynamicResource SecondaryRegionBrush}"/>
+
+        <ListBox Margin="10,0,10,0" Name="ListBoxDemo" ScrollViewer.CanContentScroll="False" 
+                 VirtualizingStackPanel.IsVirtualizing="True" 
+                 ItemsSource="{Binding SideMenuModels}" 
+                 BorderThickness="0" 
+                 SelectionMode="Single" 
+                 Style="{StaticResource ListBoxTransparent}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel Margin="5">
-                        <StackPanel Orientation="Horizontal" Margin="5,0,5,5">
-                            <Image Width="20" Height="20" Source="{Binding ImgPath}"/>
-                            <TextBlock Margin="10,0,0,0" Text="{Binding Name}" Style="{StaticResource TextBlockBoldBaseStyle}"/>
-                            <Path Visibility="{Binding IsNew,Converter={StaticResource Boolean2VisibilityConverter}}" VerticalAlignment="Center" Data="{StaticResource NewGeometry}" Stretch="Uniform" Margin="10,0,0,0" Width="30" Height="14" Fill="{DynamicResource DangerBrush}"/>
-                        </StackPanel>
-                        <ListBox Margin="10,0,10,0" Name="ListBoxDemo" ScrollViewer.CanContentScroll="False" VirtualizingStackPanel.IsVirtualizing="True" SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding SideMenuList}" BorderThickness="0" SelectionMode="Single" Style="{StaticResource ListBoxTransparent}">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Width="16" Height="16" Source="{Binding ImgPath}"/>
-                                        <TextBlock Margin="6,0,0,0" Text="{ex:Lang Key={Binding Name}}"/>
-                                        <Path Visibility="{Binding IsNew,Converter={StaticResource Boolean2VisibilityConverter}}" VerticalAlignment="Center" Data="{StaticResource NewGeometry}" Stretch="Uniform" Margin="10,0,0,0" Width="30" Height="14" Fill="{DynamicResource DangerBrush}"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="16" Height="16" Source="{Binding ImgPath}"/>
+                        <TextBlock Margin="6,0,0,0" Text="{ex:Lang Key={Binding Name}}"/>
+                        <Path Visibility="{Binding IsNew,Converter={StaticResource Boolean2VisibilityConverter}}" VerticalAlignment="Center" Data="{StaticResource NewGeometry}" Stretch="Uniform" Margin="10,0,0,0" Width="30" Height="14" Fill="{DynamicResource DangerBrush}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
+            <ListBox.GroupStyle>
+                <GroupStyle ContainerStyle="{StaticResource DemoGroupItemStyle}"/>
+            </ListBox.GroupStyle>
             <hc:Interaction.Triggers>
                 <hc:EventTrigger EventName="SelectionChanged">
                     <hc:EventToCommand Command="{Binding SwitchDemoCmd}" PassEventArgsToCommand="True" />

@@ -33,24 +33,43 @@ namespace EducationProcess.HandyDesktop.Service
             return list;
         }
 
-        internal List<HeadSideMenuModel> GetDemoInfo(string title)
+        internal List<SideMenuModel> GetDemoInfo(string title)
         {
             HeadSideMenuModel model1 = new HeadSideMenuModel()
             {
-                Name = "Model1",
+                Name = "EducationPlan",
                 ImgPath = "",
                 IsNew = true,
-                SideMenuList = new List<SideMenuModel>()
             };
 
             HeadSideMenuModel model2 = new HeadSideMenuModel()
             {
-                Name = "Model2",
+                Name = "Disciplines",
                 ImgPath = "",
                 IsNew = false,
-                SideMenuList = new List<SideMenuModel>()
             };
-            return new List<HeadSideMenuModel> { model1, model2 };
+
+            List<SideMenuModel> sideMenuModels = new List<SideMenuModel>()
+            {
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "EducationPlanMenu",
+                    TargetCtlName = "EducationPlanMainCtl",
+                    IsVisible = true,
+                    HeadSideMenu = model1
+                },
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "DisciplinesMenu",
+                    TargetCtlName = "DisciplinesMenuView",
+                    IsVisible = true,
+                    HeadSideMenu = model2
+                }
+            };
+
+            return sideMenuModels;
         }
     }
 }

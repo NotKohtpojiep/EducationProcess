@@ -10,6 +10,7 @@ namespace EducationProcess.HandyDesktop.Data
         public bool IsSelected { get; set; }
         public string ImgPath { get; set; }
         public bool IsNew { get; set; }
+        public HeadSideMenuModel HeadSideMenu {get; set; }
         private bool _isVisible = true;
         public bool IsVisible
         {

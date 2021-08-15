@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EducationProcess.DataAccess.Migrations
 {
     [DbContext(typeof(EducationProcessContext))]
-    [Migration("20210808094330_InitDb")]
+    [Migration("20210815194937_InitDb")]
     partial class InitDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -636,7 +636,7 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("tinyint unsigned")
                         .HasColumnName("Course_number");
 
-                    b.Property<int>("CuratorId")
+                    b.Property<int?>("CuratorId")
                         .HasColumnType("int")
                         .HasColumnName("Curator_id");
 
@@ -1314,8 +1314,7 @@ namespace EducationProcess.DataAccess.Migrations
                     b.HasOne("EducationProcess.DataAccess.Entities.Employee", "Curator")
                         .WithMany("Groups")
                         .HasForeignKey("CuratorId")
-                        .HasConstraintName("FK_Groups_Employees")
-                        .IsRequired();
+                        .HasConstraintName("FK_Groups_Employees");
 
                     b.HasOne("EducationProcess.DataAccess.Entities.Department", "Department")
                         .WithMany("Groups")

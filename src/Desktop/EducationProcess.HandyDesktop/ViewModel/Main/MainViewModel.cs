@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -19,6 +20,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
     {
         private object _contentTitle;
         private object _subContent;
+        private SideMenuModel _sideMenuCurrent;
 
         private readonly DataService _dataService;
 
@@ -30,7 +32,11 @@ namespace EducationProcess.HandyDesktop.ViewModel
             UpdateLeftContent();
         }
 
-        public SideMenuModel SideMenuCurrent { get; private set; }
+        public SideMenuModel SideMenuCurrent
+        {
+            get => _sideMenuCurrent;
+            set => Set(ref _sideMenuCurrent, value);
+        }
 
         public object SubContent
         {
@@ -44,7 +50,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
             set => Set(ref _contentTitle, value);
         }
 
-        public ObservableCollection<HeadSideMenuModel> HeadSideMenuModels { get; set; }
+        public ObservableCollection<SideMenuModel> SideMenuModels { get; set; }
 
         public RelayCommand<SelectionChangedEventArgs> SwitchDemoCmd => new(SwitchDemo);
 
@@ -67,18 +73,21 @@ namespace EducationProcess.HandyDesktop.ViewModel
 
         private void UpdateLeftContent()
         {
-            Messenger.Default.Register<object>(this, MessageToken.ClearLeftSelected, obj =>
+            Messenger.Default.Register<SideMenuModel>(this, MessageToken.ClearLeftSelected, obj =>
             {
                 SideMenuCurrent = null;
+            });
+            Messenger.Default.Register<SideMenuModel>(this, MessageToken.SetLeftSelected, obj =>
+            {
+                SideMenuCurrent = obj;
             });
             Messenger.Default.Register<object>(this, MessageToken.LangUpdated, obj =>
             {
                 if (SideMenuCurrent == null) return;
                 ContentTitle = LangProvider.GetLang(SideMenuCurrent.Name);
             });
-
             //load items
-            HeadSideMenuModels = new ObservableCollection<HeadSideMenuModel>();
+            SideMenuModels = new ObservableCollection<SideMenuModel>();
 
             Task.Run(() =>
             {
@@ -86,7 +95,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
                 {
                     Application.Current.Dispatcher.BeginInvoke(new Action(() =>
                     {
-                        HeadSideMenuModels.Add(item);
+                        SideMenuModels.Add(item);
                     }), DispatcherPriority.ApplicationIdle);
                 }
             });

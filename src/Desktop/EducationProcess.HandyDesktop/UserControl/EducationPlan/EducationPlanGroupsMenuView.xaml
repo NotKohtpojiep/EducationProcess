@@ -20,16 +20,6 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Row="0" Orientation="Horizontal">
-                <Button 
-                    Command="{Binding PageBackCommand}" 
-                    Margin="10" 
-                    Background="{DynamicResource MahApps.Brushes.Accent}"
-                    ToolTip="К предыдущей странице">
-                    <iconPacks:PackIconMicrons Width="20" Height="20" Kind="Undo" VerticalAlignment="Center" Foreground="White" />
-                </Button>
-                <Label Content="Закрепленные группы" VerticalAlignment="Center" FontSize="24"></Label>
-            </StackPanel>
             <Grid Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

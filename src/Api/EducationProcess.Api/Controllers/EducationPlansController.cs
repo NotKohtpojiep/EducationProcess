@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Threading.Tasks;
@@ -47,7 +48,11 @@ namespace EducationProcess.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> EducationPlan([FromBody] EducationPlan educationPlan)
         {
-            EducationPlan addedEducationPlan = await _educationPlanService.AddEducationPlanAsync(educationPlan);
+            EducationPlan educationPlanNew = educationPlan;
+            educationPlanNew.CreatedAt = DateTime.Now;
+            educationPlanNew.ModifiedAt = DateTime.Now;
+
+            EducationPlan addedEducationPlan = await _educationPlanService.AddEducationPlanAsync(educationPlanNew);
             if (addedEducationPlan is null)
                 return NotFound();
             return Ok(addedEducationPlan);

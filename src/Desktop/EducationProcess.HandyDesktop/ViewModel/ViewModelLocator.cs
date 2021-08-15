@@ -1,7 +1,8 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows;
+using EducationProcess.ApiClient;
 using GalaSoft.MvvmLight.Ioc;
-using EducationProcess.HandyDesktop.Data;
 using EducationProcess.HandyDesktop.Service;
 
 namespace EducationProcess.HandyDesktop.ViewModel
@@ -10,11 +11,16 @@ namespace EducationProcess.HandyDesktop.ViewModel
     {
         public ViewModelLocator()
         {
+            string hostUrl = ConfigurationManager.ConnectionStrings["HostUrl"].ConnectionString;
+            SimpleIoc.Default.Register<IEducationProcessClient>(() => new EducationProcessClient(hostUrl, clientTimeout: new TimeSpan(0,0,0,30)));
+
             SimpleIoc.Default.Register<DataService>();
-            var dataService = SimpleIoc.Default.GetInstance<DataService>();
+            SimpleIoc.Default.Register<IEducationPlanService, EducationPlanService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<NonClientAreaViewModel>();
+            SimpleIoc.Default.Register<EducationPlanMainViewModel>();
+            SimpleIoc.Default.Register<EducationPlanMenuViewModel>();
         }
 
         public static ViewModelLocator Instance = new Lazy<ViewModelLocator>(() =>
@@ -23,13 +29,12 @@ namespace EducationProcess.HandyDesktop.ViewModel
         #region Vm
 
         public MainViewModel Main => SimpleIoc.Default.GetInstance<MainViewModel>();
+
         public ItemsDisplayViewModel ContributorsView => new(SimpleIoc.Default.GetInstance<DataService>().GetContributorDataList);
 
-        public ItemsDisplayViewModel BlogsView => SimpleIoc.Default.GetInstance<ItemsDisplayViewModel>("Blogs");
+        public EducationPlanMainViewModel EducationPlanView => SimpleIoc.Default.GetInstance<EducationPlanMainViewModel>();
 
-        public ItemsDisplayViewModel ProjectsView => SimpleIoc.Default.GetInstance<ItemsDisplayViewModel>("Projects");
-
-        public ItemsDisplayViewModel WebsitesView => SimpleIoc.Default.GetInstance<ItemsDisplayViewModel>("Websites");
+        public EducationPlanMenuViewModel EducationPlanMenuView => SimpleIoc.Default.GetInstance<EducationPlanMenuViewModel>();
         
         public NonClientAreaViewModel NoUser => SimpleIoc.Default.GetInstance<NonClientAreaViewModel>();
 

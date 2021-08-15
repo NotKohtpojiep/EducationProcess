@@ -60,7 +60,7 @@ namespace EducationProcess.Api
 
             services.AddDbContext<EducationProcessContext>(optionsBuilder =>
                 optionsBuilder.UseMySql(Configuration.GetConnectionString("ConnectionDbContext"), new MySqlServerVersion(new Version(8, 0, 22))));
-            services.BuildServiceProvider().GetService<EducationProcessContext>()?.Database.Migrate();
+            //services.BuildServiceProvider().GetService<EducationProcessContext>()?.Database.Migrate();
 
             #region Repositories implementation
 

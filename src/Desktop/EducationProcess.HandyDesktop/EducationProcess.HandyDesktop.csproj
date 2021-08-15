@@ -16,6 +16,7 @@
     <PackageReference Include="MvvmLight" Version="5.4.1.1" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
   </ItemGroup>
 
 
@@ -27,13 +28,26 @@
 
 
   <ItemGroup>
-    <Folder Include="UserControl\Teachers\" />
-    <Folder Include="UserControl\Disciplines\" />
-    <Folder Include="UserControl\Schedules\" />
+    <ProjectReference Include="..\EducationProcess.ApiClient\EducationProcess.ApiClient.csproj" />
   </ItemGroup>
 
 
   <ItemGroup>
-    <ProjectReference Include="..\EducationProcess.ApiClient\EducationProcess.ApiClient.csproj" />
+    <Compile Update="Properties\Langs\Lang.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Lang.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Langs\Lang.en.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Langs\Lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Lang.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

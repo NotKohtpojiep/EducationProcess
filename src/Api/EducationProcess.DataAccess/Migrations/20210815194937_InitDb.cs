@@ -641,7 +641,7 @@ namespace EducationProcess.DataAccess.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(type: "varchar(10)", maxLength: 10, nullable: false, collation: "Utf8_General_Ci"),
                     Course_number = table.Column<byte>(type: "tinyint unsigned", nullable: false),
-                    Curator_id = table.Column<int>(type: "int", nullable: false),
+                    Curator_id = table.Column<int>(type: "int", nullable: true),
                     Received_education_id = table.Column<int>(type: "int", nullable: false),
                     Education_plan_id = table.Column<int>(type: "int", nullable: true),
                     Receipt_year = table.Column<short>(type: "smallint", nullable: false),

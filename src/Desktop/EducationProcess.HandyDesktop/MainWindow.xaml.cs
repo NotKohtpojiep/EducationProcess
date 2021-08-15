@@ -13,7 +13,10 @@ namespace EducationProcess.HandyDesktop
 {
     public partial class MainWindow
     {
-        public MainWindow() => InitializeComponent();
+        public MainWindow()
+        {
+            InitializeComponent();
+        }   
 
         protected override void OnContentRendered(EventArgs e)
         {
@@ -32,7 +35,7 @@ namespace EducationProcess.HandyDesktop
             Dialog.SetToken(this, MessageToken.MainWindow);
             WindowAttach.SetIgnoreAltF4(this, true);
 
-            Messenger.Default.Send(AssemblyHelper.CreateInternalInstance($"UserControl.{MessageToken.ContributorsView}"), MessageToken.LoadShowContent);
+            Messenger.Default.Send(AssemblyHelper.CreateInternalInstance($"UserControl.ChainDisciplineToTeacherMenuView"), MessageToken.LoadShowContent);
         }
     }
 }

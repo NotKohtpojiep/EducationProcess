@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             DataContext="{Binding NoUser, Source={StaticResource Locator}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -19,7 +20,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Согласовываемые дисциплины" FontSize="24" Margin="5"></Label>
-            <Button Grid.Row="0" HorizontalAlignment="Right" Margin="10" Background="LimeGreen" Command="{Binding SuggestDisciplineCommand}">
+            <Button Grid.Row="0" HorizontalAlignment="Right" Margin="10" Height="35" Background="LimeGreen" Command="{Binding CreateNewViewCmd}" CommandParameter="ContributorsView" Style="{StaticResource ButtonBaseStyle}">
                 <iconPacks:PackIconForkAwesome Width="20" Height="20" Kind="Plus" Foreground="White" />
             </Button>
         </Grid>

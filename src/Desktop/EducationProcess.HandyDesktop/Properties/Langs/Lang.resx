@@ -120,4 +120,31 @@
   <data name="About" xml:space="preserve">
     <value>О приложении</value>
   </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Участники</value>
+  </data>
+  <data name="Discipline" xml:space="preserve">
+    <value>Дисциплина</value>
+  </data>
+  <data name="Disciplines" xml:space="preserve">
+    <value>Дисциплины</value>
+  </data>
+  <data name="DisciplinesMenu" xml:space="preserve">
+    <value>Меню дисциплин</value>
+  </data>
+  <data name="EducationPlan" xml:space="preserve">
+    <value>Учебный план</value>
+  </data>
+  <data name="EducationPlanDisciplineMenu" xml:space="preserve">
+    <value>Дисциплины учебного плана</value>
+  </data>
+  <data name="EducationPlanMenu" xml:space="preserve">
+    <value>Список учебных планов</value>
+  </data>
+  <data name="Menu" xml:space="preserve">
+    <value>Меню</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Другое</value>
+  </data>
 </root>

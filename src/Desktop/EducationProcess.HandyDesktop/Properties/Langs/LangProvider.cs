@@ -38,8 +38,26 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
         private void UpdateLangs()
         {
             OnPropertyChanged(nameof(About));
+            OnPropertyChanged(nameof(Contributors));
+            OnPropertyChanged(nameof(EducationPlan));
+            OnPropertyChanged(nameof(Other));
+            OnPropertyChanged(nameof(EducationPlanMenu));
+            OnPropertyChanged(nameof(EducationPlanDisciplineMenu));
+            OnPropertyChanged(nameof(Menu));
+            OnPropertyChanged(nameof(DisciplinesMenu));
+            OnPropertyChanged(nameof(Disciplines));
+            OnPropertyChanged(nameof(Discipline));
         }
         public string About => Lang.About;
+        public string Contributors => Lang.Contributors;
+        public string EducationPlan => Lang.EducationPlan;
+        public string Other => Lang.Other;
+        public string EducationPlanMenu => Lang.EducationPlanMenu;
+        public string EducationPlanDisciplineMenu => Lang.EducationPlanDisciplineMenu;
+        public string Menu => Lang.Menu;
+        public string DisciplinesMenu => Lang.DisciplinesMenu;
+        public string Disciplines => Lang.Disciplines;
+        public string Discipline => Lang.Discipline;
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -51,5 +69,14 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
     public class LangKeys
     {
         public static string About = nameof(About);
+        public static string Contributors = nameof(Contributors);
+        public static string EducationPlan = nameof(EducationPlan);
+        public static string Other = nameof(Other);
+        public static string EducationPlanMenu = nameof(EducationPlanMenu);
+        public static string EducationPlanDisciplineMenu = nameof(EducationPlanDisciplineMenu);
+        public static string Menu = nameof(Menu);
+        public static string DisciplinesMenu = nameof(DisciplinesMenu);
+        public static string Disciplines = nameof(Disciplines);
+        public static string Discipline = nameof(Discipline);
     }
 }

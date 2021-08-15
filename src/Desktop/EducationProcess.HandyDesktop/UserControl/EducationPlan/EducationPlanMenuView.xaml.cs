@@ -1,8 +1,8 @@
 ﻿namespace EducationProcess.HandyDesktop.UserControl
 {
-    public partial class EducationPlansMenuView
+    public partial class EducationPlanMenuView
     {
-        public EducationPlansMenuView()
+        public EducationPlanMenuView()
         {
             InitializeComponent();
         }

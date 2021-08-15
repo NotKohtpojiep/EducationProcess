@@ -8,6 +8,5 @@ namespace EducationProcess.HandyDesktop.Data
         public string Name { get; set; }
         public string ImgPath { get; set; }
         public bool IsNew { get; set; }
-        public List<SideMenuModel> SideMenuList { get; set; }
     }
 }

@@ -12,7 +12,11 @@
         </hc:ToggleBlock.UnCheckedContent>
         <hc:ToggleBlock.CheckedContent>
             <StackPanel Margin="10">
-                <ListBox Background="Transparent" VerticalAlignment="Bottom" ItemContainerStyle="{StaticResource ListBoxItemCustom}" BorderThickness="0" ItemsSource="{Binding DataList}" ItemsPanel="{StaticResource FluidMoveBehaviorWrapPanelItemsPanelTemplate}">
+                <ListBox Background="Transparent" VerticalAlignment="Bottom" 
+                         ItemContainerStyle="{StaticResource ListBoxItemCustom}" 
+                         BorderThickness="0" 
+                         ItemsSource="{Binding DataList}" 
+                         ItemsPanel="{StaticResource FluidMoveBehaviorWrapPanelItemsPanelTemplate}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <userControl:Avatar DisplayName="{Binding DisplayName}" Link="{Binding Link}" Source="{Binding AvatarUri}"/>
