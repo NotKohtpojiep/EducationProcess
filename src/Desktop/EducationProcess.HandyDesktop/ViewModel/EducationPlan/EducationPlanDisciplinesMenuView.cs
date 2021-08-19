@@ -8,7 +8,7 @@ using System.Windows.Threading;
 using EducationProcess.ApiClient.Models.EducationPlans.Responses;
 using EducationProcess.ApiClient.Models.SemesterDisciplines.Responses;
 using EducationProcess.HandyDesktop.Data;
-using EducationProcess.HandyDesktop.Service;
+using EducationProcess.HandyDesktop.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -19,22 +19,24 @@ namespace EducationProcess.HandyDesktop.ViewModel
 {
     public class EducationPlanDisciplinesMenuView : ViewModelBase
     {
-        private IEducationPlanService _educationPlanService;
-        private EducationPlan _educationPlanCurrent;
+        private readonly IEducationPlanSemesterDisciplineService _educationPlanSemesterDisciplineService;
+        private SemesterDiscipline _semesterDisciplineCurrent;
         private bool _dataGot;
 
-        public EducationPlanDisciplinesMenuView(IEducationPlanService educationPlanService, EducationPlan educationPlan)
+        public EducationPlanDisciplinesMenuView(IEducationPlanSemesterDisciplineService educationPlanSemesterDisciplineService, EducationPlan educationPlan)
         {
-            _educationPlanService = educationPlanService;
+            _educationPlanSemesterDisciplineService = educationPlanSemesterDisciplineService;
+
             SemesterDisciplineCollection = new ObservableCollection<SemesterDiscipline>();
 
-            //Task.Run(GetAllEducationPlans).ContinueWith(obj => DataGot = SemesterDisciplineCollection.Count != 0);
+            Task.Run(() => GetAllSemesterDisciplinesByEducationPlanId(educationPlan.EducationPlanId))
+                .ContinueWith(obj => DataGot = SemesterDisciplineCollection.Count != 0);
         }
 
-        public EducationPlan EducationPlanCurrent
+        public SemesterDiscipline SemesterDisciplineCurrent
         {
-            get => _educationPlanCurrent;
-            set => Set(ref _educationPlanCurrent, value);
+            get => _semesterDisciplineCurrent;
+            set => Set(ref _semesterDisciplineCurrent, value);
         }
 
         public bool DataGot
@@ -47,8 +49,37 @@ namespace EducationProcess.HandyDesktop.ViewModel
 
         public RelayCommand<string> AddViewCommand => new(obj => Messenger.Default.Send(obj, MessageToken.NewEducationPlanTabContent));
 
-        private async Task GetAllEducationPlans()
+        private async Task GetAllSemesterDisciplinesByEducationPlanId(int educationPlanId)
         {
+            EducationPlanSemesterDiscipline[] educationPlanSemesterDisciplines;
+            try
+            {
+                educationPlanSemesterDisciplines =
+                    await _educationPlanSemesterDisciplineService.GetAllEducationPlanSemesterDisciplinesByEducationPlanIdWithInclude(educationPlanId);
+            }
+            catch (SocketException e)
+            {
+                Growl.Error("Ошибка подключения к сети");
+                throw;
+            }
+            catch (HttpRequestException e)
+            {
+                Growl.Fatal("Ошибка подключения к удаленному серверу");
+                throw;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.GetType().Name + "  -  " + e.Message);
+                throw;
+            }
+
+            foreach (var item in educationPlanSemesterDisciplines)
+            {
+                await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                {
+                    SemesterDisciplineCollection.Add(item.SemesterDiscipline);
+                }), DispatcherPriority.Send);
+            }
         }
     }
 }

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using EducationProcess.ApiClient;
 using EducationProcess.ApiClient.Models.EducationPlans.Requests;
 using EducationProcess.ApiClient.Models.EducationPlans.Responses;
 
-namespace EducationProcess.HandyDesktop.Service
+namespace EducationProcess.HandyDesktop.Services
 {
     public class EducationPlanService : IEducationPlanService
     {

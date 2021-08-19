@@ -1,8 +1,8 @@
 ﻿namespace EducationProcess.HandyDesktop.UserControl
 {
-    public partial class CheckDisciplineSuggestionsView
+    public partial class CheckDisciplineSuggestionView
     {
-        public CheckDisciplineSuggestionsView()
+        public CheckDisciplineSuggestionView()
         {
             InitializeComponent();
         }

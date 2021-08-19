@@ -10,7 +10,9 @@ namespace EducationProcess.ApiClient
         ICathedrasClient Cathedras { get; }
         IConductedPairsClient ConductedPairs { get; }
         IDepartmentsClient Departments { get; }
+        IDisciplinesClient Disciplines { get; }
         IEducationPlansClient EducationPlans { get; }
+        IEducationPlanSemesterDisciplinesClient EducationPlanSemesterDisciplines { get; }
         IEmployeesClient Employees { get; }
         IFederalStateEducationalStandardsClient FederalStateEducationalStandards { get; }
         IFixedDisciplinesClient FixedDisciplines { get; }

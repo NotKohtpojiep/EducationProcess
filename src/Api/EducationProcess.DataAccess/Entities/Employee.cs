@@ -11,7 +11,7 @@ namespace EducationProcess.DataAccess.Entities
         {
             Audiences = new HashSet<Audience>();
             EmployeeCathedras = new HashSet<EmployeeCathedra>();
-            FixedDisciplineFixerEmployees = new HashSet<FixedDiscipline>();
+            FixedDisciplineEmployeeFixers = new HashSet<FixedDiscipline>();
             FixedDisciplineFixingEmployees = new HashSet<FixedDiscipline>();
             Groups = new HashSet<Group>();
             ScheduleDisciplineCreatedByEmployees = new HashSet<ScheduleDiscipline>();
@@ -32,7 +32,7 @@ namespace EducationProcess.DataAccess.Entities
         public virtual Post Post { get; set; }
         public virtual ICollection<Audience> Audiences { get; set; }
         public virtual ICollection<EmployeeCathedra> EmployeeCathedras { get; set; }
-        public virtual ICollection<FixedDiscipline> FixedDisciplineFixerEmployees { get; set; }
+        public virtual ICollection<FixedDiscipline> FixedDisciplineEmployeeFixers { get; set; }
         public virtual ICollection<FixedDiscipline> FixedDisciplineFixingEmployees { get; set; }
         public virtual ICollection<Group> Groups { get; set; }
         public virtual ICollection<ScheduleDiscipline> ScheduleDisciplineCreatedByEmployees { get; set; }

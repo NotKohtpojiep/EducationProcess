@@ -22,6 +22,11 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Label  Content="Список учебных планов" VerticalAlignment="Center" Margin="10" FontSize="24"></Label>
+            </StackPanel>
+
             <Grid Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>

@@ -10,7 +10,7 @@ using GalaSoft.MvvmLight.Messaging;
 using HandyControl.Controls;
 using EducationProcess.HandyDesktop.Data;
 using EducationProcess.HandyDesktop.Properties.Langs;
-using EducationProcess.HandyDesktop.Service;
+using EducationProcess.HandyDesktop.Services;
 using EducationProcess.HandyDesktop.Tools;
 using GalaSoft.MvvmLight;
 

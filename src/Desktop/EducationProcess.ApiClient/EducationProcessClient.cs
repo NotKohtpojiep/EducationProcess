@@ -33,7 +33,9 @@ namespace EducationProcess.ApiClient
             Cathedras = new CathedrasClient(_httpFacade);
             ConductedPairs = new ConductedPairsClient(_httpFacade);
             Departments = new DepartmentsClient(_httpFacade);
+            Disciplines = new DisciplinesClient(_httpFacade);
             EducationPlans = new EducationPlansClient(_httpFacade);
+            EducationPlanSemesterDisciplines = new EducationPlanSemesterDisciplinesClient(_httpFacade);
             Employees = new EmployeesClient(_httpFacade);
             FederalStateEducationalStandards = new FederalStateEducationalStandardsClient(_httpFacade);
             FixedDisciplines = new FixedDisciplinesClient(_httpFacade);
@@ -49,7 +51,9 @@ namespace EducationProcess.ApiClient
         public ICathedrasClient Cathedras { get; }
         public IConductedPairsClient ConductedPairs { get; }
         public IDepartmentsClient Departments { get; }
+        public IDisciplinesClient Disciplines { get; }
         public IEducationPlansClient EducationPlans { get; }
+        public IEducationPlanSemesterDisciplinesClient EducationPlanSemesterDisciplines { get; }
         public IEmployeesClient Employees { get; }
         public IFederalStateEducationalStandardsClient FederalStateEducationalStandards { get; }
         public IFixedDisciplinesClient FixedDisciplines { get; }

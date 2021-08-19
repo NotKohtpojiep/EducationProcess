@@ -24,6 +24,13 @@ namespace EducationProcess.Services.Services
             return _mapper.Map<DataAccess.Entities.EducationPlanSemesterDiscipline[], EducationPlanSemesterDiscipline[]>(educationPlanSemesterDisciplines);
         }
 
+        public async Task<EducationPlanSemesterDiscipline[]> GetEducationPlanSemesterDisciplineByEducationPlanIdWithIncludeAsync(int educationPlanId)
+        {
+            DataAccess.Entities.EducationPlanSemesterDiscipline[] educationPlanSemesterDisciplines =
+                await _unitOfWork.EducationPlanSemesterDisciplines.GetEducationPlanSemesterDisciplineByEducationPlanIdWithIncludeAsync(educationPlanId);
+            return _mapper.Map<DataAccess.Entities.EducationPlanSemesterDiscipline[], EducationPlanSemesterDiscipline[]>(educationPlanSemesterDisciplines);
+        }
+
         public async Task<EducationPlanSemesterDiscipline[]> GetEducationPlanSemesterDisciplineBySemesterDisciplineIdAsync(int semesterDisciplineId)
         {
             DataAccess.Entities.EducationPlanSemesterDiscipline[] educationPlanSemesterDisciplines =

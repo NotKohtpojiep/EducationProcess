@@ -500,7 +500,7 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Fixed_discipline_id");
 
-                    b.Property<string>("CommentByFixerEmployee")
+                    b.Property<string>("CommentByEmployeeFixer")
                         .HasMaxLength(600)
                         .HasColumnType("varchar(600)")
                         .HasColumnName("Comment_by_fixer_employee");
@@ -516,7 +516,7 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasColumnName("Coordinated_at")
                         .HasDefaultValueSql("('2021-07-29T21:04:33.948')");
 
-                    b.Property<int>("FixerEmployeeId")
+                    b.Property<int>("EmployeeFixerId")
                         .HasColumnType("int")
                         .HasColumnName("Fixer_employee_id");
 
@@ -549,7 +549,7 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.HasIndex(new[] { "FixingEmployeeId" }, "IX_Fixed_disciplines_Employee_id");
 
-                    b.HasIndex(new[] { "FixerEmployeeId" }, "IX_Fixed_disciplines_Fixer_employee_id");
+                    b.HasIndex(new[] { "EmployeeFixerId" }, "IX_Fixed_disciplines_Fixer_employee_id");
 
                     b.HasIndex(new[] { "GroupId" }, "IX_Fixed_disciplines_Group_id");
 
@@ -1254,9 +1254,9 @@ namespace EducationProcess.DataAccess.Migrations
 
             modelBuilder.Entity("EducationProcess.DataAccess.Entities.FixedDiscipline", b =>
                 {
-                    b.HasOne("EducationProcess.DataAccess.Entities.Employee", "FixerEmployee")
-                        .WithMany("FixedDisciplineFixerEmployees")
-                        .HasForeignKey("FixerEmployeeId")
+                    b.HasOne("EducationProcess.DataAccess.Entities.Employee", "EmployeeFixer")
+                        .WithMany("FixedDisciplineEmployeeFixers")
+                        .HasForeignKey("EmployeeFixerId")
                         .HasConstraintName("FK_Fixed_disciplines_Employees1")
                         .IsRequired();
 
@@ -1278,7 +1278,7 @@ namespace EducationProcess.DataAccess.Migrations
                         .HasConstraintName("FK_Fixed_disciplines_Semester_disciplines")
                         .IsRequired();
 
-                    b.Navigation("FixerEmployee");
+                    b.Navigation("EmployeeFixer");
 
                     b.Navigation("FixingEmployee");
 
@@ -1578,7 +1578,7 @@ namespace EducationProcess.DataAccess.Migrations
 
                     b.Navigation("EmployeeCathedras");
 
-                    b.Navigation("FixedDisciplineFixerEmployees");
+                    b.Navigation("FixedDisciplineEmployeeFixers");
 
                     b.Navigation("FixedDisciplineFixingEmployees");
 

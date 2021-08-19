@@ -3,7 +3,7 @@ using System.Configuration;
 using System.Windows;
 using EducationProcess.ApiClient;
 using GalaSoft.MvvmLight.Ioc;
-using EducationProcess.HandyDesktop.Service;
+using EducationProcess.HandyDesktop.Services;
 
 namespace EducationProcess.HandyDesktop.ViewModel
 {
@@ -15,12 +15,19 @@ namespace EducationProcess.HandyDesktop.ViewModel
             SimpleIoc.Default.Register<IEducationProcessClient>(() => new EducationProcessClient(hostUrl, clientTimeout: new TimeSpan(0,0,0,30)));
 
             SimpleIoc.Default.Register<DataService>();
+            SimpleIoc.Default.Register<IDisciplineService, DisciplineService>();
             SimpleIoc.Default.Register<IEducationPlanService, EducationPlanService>();
+            SimpleIoc.Default.Register<IEducationPlanSemesterDisciplineService, EducationPlanSemesterDisciplineService>();
+            SimpleIoc.Default.Register<IFixedDisciplineService, FixedDisciplineService>();
+            SimpleIoc.Default.Register<ISemesterDisciplineService, SemesterDisciplineService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<NonClientAreaViewModel>();
+            SimpleIoc.Default.Register<DisciplineMenuViewModel>();
             SimpleIoc.Default.Register<EducationPlanMainViewModel>();
             SimpleIoc.Default.Register<EducationPlanMenuViewModel>();
+            SimpleIoc.Default.Register<ChainDisciplineViewModel>();
+            SimpleIoc.Default.Register<CheckDisciplineSuggestionViewModel>();
         }
 
         public static ViewModelLocator Instance = new Lazy<ViewModelLocator>(() =>
@@ -32,9 +39,15 @@ namespace EducationProcess.HandyDesktop.ViewModel
 
         public ItemsDisplayViewModel ContributorsView => new(SimpleIoc.Default.GetInstance<DataService>().GetContributorDataList);
 
+        public DisciplineMenuViewModel DisciplineMenuView => SimpleIoc.Default.GetInstance<DisciplineMenuViewModel>();
+
         public EducationPlanMainViewModel EducationPlanView => SimpleIoc.Default.GetInstance<EducationPlanMainViewModel>();
 
         public EducationPlanMenuViewModel EducationPlanMenuView => SimpleIoc.Default.GetInstance<EducationPlanMenuViewModel>();
+
+        public ChainDisciplineViewModel ChainDisciplineView => SimpleIoc.Default.GetInstance<ChainDisciplineViewModel>();
+
+        public CheckDisciplineSuggestionViewModel CheckDisciplineSuggestionView => SimpleIoc.Default.GetInstance<CheckDisciplineSuggestionViewModel>();
         
         public NonClientAreaViewModel NoUser => SimpleIoc.Default.GetInstance<NonClientAreaViewModel>();
 

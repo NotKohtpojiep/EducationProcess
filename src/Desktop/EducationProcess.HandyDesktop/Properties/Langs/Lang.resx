@@ -141,10 +141,16 @@
   <data name="EducationPlanMenu" xml:space="preserve">
     <value>Список учебных планов</value>
   </data>
+  <data name="FixingDisciplineMenu" xml:space="preserve">
+    <value>Закрепление дисциплин</value>
+  </data>
   <data name="Menu" xml:space="preserve">
     <value>Меню</value>
   </data>
   <data name="Other" xml:space="preserve">
     <value>Другое</value>
+  </data>
+  <data name="SuggestionDisciplineMenu" xml:space="preserve">
+    <value>Предлагаемые дисциплины</value>
   </data>
 </root>

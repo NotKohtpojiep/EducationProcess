@@ -35,7 +35,7 @@ namespace EducationProcess.HandyDesktop
             Dialog.SetToken(this, MessageToken.MainWindow);
             WindowAttach.SetIgnoreAltF4(this, true);
 
-            Messenger.Default.Send(AssemblyHelper.CreateInternalInstance($"UserControl.ChainDisciplineToTeacherMenuView"), MessageToken.LoadShowContent);
+            Messenger.Default.Send(AssemblyHelper.CreateInternalInstance($"UserControl.ChainDisciplineView"), MessageToken.LoadShowContent);
         }
     }
 }

@@ -21,6 +21,9 @@ namespace EducationProcess.ApiClient.Clients
         public async Task<Discipline[]> GetAllDisciplinesAsync() =>
             await _httpFacade.Get<Discipline[]>($"Disciplines/array");
 
+        public async Task<Discipline[]> GetAllDisciplinesWithIncludeAsync() =>
+            await _httpFacade.Get<Discipline[]>($"Disciplines/array/with-include");
+
 
         public async Task<Discipline> CreateDisciplineAsync(DisciplineRequest discipline) =>
             await _httpFacade.Post<Discipline>($"Disciplines", discipline);

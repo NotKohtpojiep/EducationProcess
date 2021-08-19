@@ -21,13 +21,6 @@ namespace EducationProcess.HandyDesktop.ViewModel
             Messenger.Default.Send(AssemblyHelper.CreateInternalInstance($"UserControl.{viewName}"), MessageToken.LoadShowContent);
         }
 
-        public RelayCommand<string> CreateNewViewCmd => new(CreateNewView);
-
-        private void CreateNewView(string viewName)
-        {
-            Messenger.Default.Send(AssemblyHelper.CreateInternalInstance($"UserControl.{viewName}"), "Niggers");
-        }
-
         private string _versionInfo;
 
         public string VersionInfo

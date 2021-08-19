@@ -42,6 +42,17 @@ namespace EducationProcess.Api.Controllers
             return Ok(fixedDisciplines);
         }
 
+        [HttpGet("array/with-include")]
+        [ProducesResponseType(typeof(FixedDiscipline[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetArrayWithInclude()
+        {
+            FixedDiscipline[] fixedDisciplines = await _fixedDisciplineService.GetAllFixedDisciplinesWithIncludeAsync();
+            if (fixedDisciplines.Length == 0)
+                return NotFound();
+            return Ok(fixedDisciplines);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(FixedDiscipline), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]

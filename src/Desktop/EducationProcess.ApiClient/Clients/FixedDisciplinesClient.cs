@@ -21,6 +21,9 @@ namespace EducationProcess.ApiClient.Clients
         public async Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync() =>
             await _httpFacade.Get<FixedDiscipline[]>($"FixedDisciplines/array");
 
+        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesWithIncludeAsync() =>
+            await _httpFacade.Get<FixedDiscipline[]>($"FixedDisciplines/array/with-include");
+
 
         public async Task<FixedDiscipline> CreateFixedDisciplineAsync(FixedDisciplineRequest fixedDiscipline) =>
             await _httpFacade.Post<FixedDiscipline>($"FixedDisciplines", fixedDiscipline);

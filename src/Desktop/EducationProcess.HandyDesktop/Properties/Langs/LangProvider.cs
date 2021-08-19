@@ -47,6 +47,9 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
             OnPropertyChanged(nameof(DisciplinesMenu));
             OnPropertyChanged(nameof(Disciplines));
             OnPropertyChanged(nameof(Discipline));
+            OnPropertyChanged(nameof(FixingDisciplineMenu));
+            OnPropertyChanged(nameof(SuggestionDisciplineMenu));
+            
         }
         public string About => Lang.About;
         public string Contributors => Lang.Contributors;
@@ -58,6 +61,8 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
         public string DisciplinesMenu => Lang.DisciplinesMenu;
         public string Disciplines => Lang.Disciplines;
         public string Discipline => Lang.Discipline;
+        public string FixingDisciplineMenu => Lang.FixingDisciplineMenu;
+        public string SuggestionDisciplineMenu => Lang.SuggestionDisciplineMenu;
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -78,5 +83,7 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
         public static string DisciplinesMenu = nameof(DisciplinesMenu);
         public static string Disciplines = nameof(Disciplines);
         public static string Discipline = nameof(Discipline);
+        public static string FixingDisciplineMenu => nameof(FixingDisciplineMenu);
+        public static string SuggestionDisciplineMenu => nameof(SuggestionDisciplineMenu);
     }
 }

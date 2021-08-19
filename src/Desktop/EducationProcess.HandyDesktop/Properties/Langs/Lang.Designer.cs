@@ -133,6 +133,15 @@ namespace EducationProcess.HandyDesktop.Properties.Langs {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Закрепление дисциплин.
+        /// </summary>
+        public static string FixingDisciplineMenu {
+            get {
+                return ResourceManager.GetString("FixingDisciplineMenu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Меню.
         /// </summary>
         public static string Menu {
@@ -147,6 +156,15 @@ namespace EducationProcess.HandyDesktop.Properties.Langs {
         public static string Other {
             get {
                 return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Предлагаемые дисциплины.
+        /// </summary>
+        public static string SuggestionDisciplineMenu {
+            get {
+                return ResourceManager.GetString("SuggestionDisciplineMenu", resourceCulture);
             }
         }
     }

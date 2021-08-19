@@ -13,14 +13,14 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData(null, "")]
         [InlineData("", null)]
 
-        public void Validate_FixedDisciplineIsNotValid_ShouldHaveErrors(string commentByFixingEmployee, string commentByFixerEmployee)
+        public void Validate_FixedDisciplineIsNotValid_ShouldHaveErrors(string commentByFixingEmployee, string commentByEmployeeFixer)
         {
             // arrange
             FixedDiscipline FixedDiscipline = new FixedDiscipline()
             {
                 FixedDisciplineId = 0,
                 CommentByFixingEmployee = commentByFixingEmployee,
-                CommentByFixerEmployee = commentByFixerEmployee
+                CommentByEmployeeFixer = commentByEmployeeFixer
 
             };
 
@@ -39,14 +39,14 @@ namespace EducationProcess.Tests.Domain.Validators
         [InlineData("sgwsegw", null)]
         [InlineData(null, "clkm")]
 
-        public void Validate_FixedDisciplineIsValid_ShouldHaveNoErrors(string commentByFixingEmployee, string commentByFixerEmployee)
+        public void Validate_FixedDisciplineIsValid_ShouldHaveNoErrors(string commentByFixingEmployee, string commentByEmployeeFixer)
         {
             // arrange
             FixedDiscipline FixedDiscipline = new FixedDiscipline()
             {
                 FixedDisciplineId = 0,
                 CommentByFixingEmployee = commentByFixingEmployee,
-                CommentByFixerEmployee = commentByFixerEmployee
+                CommentByEmployeeFixer = commentByEmployeeFixer
 
             };
 

@@ -5,7 +5,7 @@ using System.Net;
 using EducationProcess.HandyDesktop.Data;
 using Newtonsoft.Json;
 
-namespace EducationProcess.HandyDesktop.Service
+namespace EducationProcess.HandyDesktop.Services
 {
     public class DataService
     {
@@ -49,6 +49,7 @@ namespace EducationProcess.HandyDesktop.Service
                 IsNew = false,
             };
 
+
             List<SideMenuModel> sideMenuModels = new List<SideMenuModel>()
             {
                 new SideMenuModel()
@@ -64,6 +65,14 @@ namespace EducationProcess.HandyDesktop.Service
                     ImgPath = "",
                     Name = "DisciplinesMenu",
                     TargetCtlName = "DisciplinesMenuView",
+                    IsVisible = true,
+                    HeadSideMenu = model2
+                },
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "FixingDisciplineMenu",
+                    TargetCtlName = "ChainDisciplineView",
                     IsVisible = true,
                     HeadSideMenu = model2
                 }

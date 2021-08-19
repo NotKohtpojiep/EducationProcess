@@ -7,6 +7,7 @@ namespace EducationProcess.Services.Interfaces
     {
         Task<FixedDiscipline> GetFixedDisciplineByIdAsync(int fixedDisciplineId);
         Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync();
+        Task<FixedDiscipline[]> GetAllFixedDisciplinesWithIncludeAsync();
         Task<FixedDiscipline> AddFixedDisciplineAsync(FixedDiscipline newFixedDiscipline);
         Task<FixedDiscipline[]> AddRangeFixedDisciplineAsync(FixedDiscipline[] newFixedDisciplines);
         Task<FixedDiscipline> UpdateFixedDisciplineAsync(FixedDiscipline newFixedDiscipline);

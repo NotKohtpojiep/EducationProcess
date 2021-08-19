@@ -11,9 +11,9 @@ namespace EducationProcess.Domain.Validators
                 .NotEmpty().Length(1, 300).When(x => x.CommentByFixingEmployee != null)
                     .WithMessage("CommentByFixingEmployee  length should contain from 1 to 300 symbols");
 
-            RuleFor(x => x.CommentByFixerEmployee)
-                .NotEmpty().Length(1, 300).When(x => x.CommentByFixerEmployee != null)
-                    .WithMessage("CommentByFixerEmployee  length should contain from 1 to 300 symbols");
+            RuleFor(x => x.CommentByEmployeeFixer)
+                .NotEmpty().Length(1, 300).When(x => x.CommentByEmployeeFixer != null)
+                    .WithMessage("CommentByEmployeeFixer  length should contain from 1 to 300 symbols");
         }
     }
 }

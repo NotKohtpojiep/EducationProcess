@@ -14,6 +14,7 @@ namespace EducationProcess.Services
             CreateMap<Domain.Models.City, DataAccess.Entities.City>().ReverseMap();
             CreateMap<Domain.Models.ConductedPair, DataAccess.Entities.ConductedPair>().ReverseMap();
             CreateMap<Domain.Models.Discipline, DataAccess.Entities.Discipline>().ReverseMap();
+            CreateMap<Domain.Models.Department, DataAccess.Entities.Department>().ReverseMap();
             CreateMap<Domain.Models.EducationCyclesAndModule, DataAccess.Entities.EducationCyclesAndModule>().ReverseMap();
             CreateMap<Domain.Models.EducationForm, DataAccess.Entities.EducationForm>().ReverseMap();
             CreateMap<Domain.Models.EducationLevel, DataAccess.Entities.EducationLevel>().ReverseMap();

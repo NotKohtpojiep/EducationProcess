@@ -31,6 +31,17 @@ namespace EducationProcess.Api.Controllers
             return Ok(educationPlanSemesterDisciplines);
         }
 
+        [HttpGet("range/by-education-plan/with-include/{id:int}")]
+        [ProducesResponseType(typeof(EducationPlanSemesterDiscipline[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetByEducationPlanIdWithInclude([FromRoute] int id)
+        {
+            EducationPlanSemesterDiscipline[] educationPlanSemesterDisciplines = await _educationPlanSemesterDisciplineService.GetEducationPlanSemesterDisciplineByEducationPlanIdWithIncludeAsync(id);
+            if (educationPlanSemesterDisciplines is null)
+                return NotFound();
+            return Ok(educationPlanSemesterDisciplines);
+        }
+
         [HttpGet("range/by-semester-discipline/{id:int}")]
         [ProducesResponseType(typeof(EducationPlanSemesterDiscipline[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]

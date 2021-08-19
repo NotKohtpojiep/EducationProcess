@@ -8,6 +8,7 @@ namespace EducationProcess.ApiClient.Clients.Interfaces
     {
         Task<Discipline> GetDisciplineAsync(int disciplineId);
         Task<Discipline[]> GetAllDisciplinesAsync();
+        Task<Discipline[]> GetAllDisciplinesWithIncludeAsync();
 
         Task<Discipline> CreateDisciplineAsync(DisciplineRequest discipline);
         Task<Discipline[]> CreateDisciplineArrayAsync(DisciplineRequest[] disciplines);

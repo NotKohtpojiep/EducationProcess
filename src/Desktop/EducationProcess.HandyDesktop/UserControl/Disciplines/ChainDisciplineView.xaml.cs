@@ -1,8 +1,8 @@
 ﻿namespace EducationProcess.HandyDesktop.UserControl
 {
-    public partial class ChainDisciplineToTeacherMenuView
+    public partial class ChainDisciplineView
     {
-        public ChainDisciplineToTeacherMenuView()
+        public ChainDisciplineView()
         {
             InitializeComponent();
         }

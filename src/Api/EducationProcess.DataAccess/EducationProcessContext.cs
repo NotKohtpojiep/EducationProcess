@@ -476,7 +476,7 @@ namespace EducationProcess.DataAccess
 
                 entity.HasIndex(e => e.FixingEmployeeId, "IX_Fixed_disciplines_Employee_id");
 
-                entity.HasIndex(e => e.FixerEmployeeId, "IX_Fixed_disciplines_Fixer_employee_id");
+                entity.HasIndex(e => e.EmployeeFixerId, "IX_Fixed_disciplines_Fixer_employee_id");
 
                 entity.HasIndex(e => e.GroupId, "IX_Fixed_disciplines_Group_id");
 
@@ -484,7 +484,7 @@ namespace EducationProcess.DataAccess
 
                 entity.Property(e => e.FixedDisciplineId).HasColumnName("Fixed_discipline_id");
 
-                entity.Property(e => e.CommentByFixerEmployee)
+                entity.Property(e => e.CommentByEmployeeFixer)
                     .HasMaxLength(600)
                     .HasColumnName("Comment_by_fixer_employee");
 
@@ -497,7 +497,7 @@ namespace EducationProcess.DataAccess
                     .HasColumnName("Coordinated_at")
                     .HasDefaultValueSql("('2021-07-29T21:04:33.948')");
 
-                entity.Property(e => e.FixerEmployeeId).HasColumnName("Fixer_employee_id");
+                entity.Property(e => e.EmployeeFixerId).HasColumnName("Fixer_employee_id");
 
                 entity.Property(e => e.FixingEmployeeId).HasColumnName("Fixing_employee_id");
 
@@ -516,9 +516,9 @@ namespace EducationProcess.DataAccess
 
                 entity.Property(e => e.SemesterDisciplineId).HasColumnName("Semester_discipline_id");
 
-                entity.HasOne(d => d.FixerEmployee)
-                    .WithMany(p => p.FixedDisciplineFixerEmployees)
-                    .HasForeignKey(d => d.FixerEmployeeId)
+                entity.HasOne(d => d.EmployeeFixer)
+                    .WithMany(p => p.FixedDisciplineEmployeeFixers)
+                    .HasForeignKey(d => d.EmployeeFixerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Fixed_disciplines_Employees1");
 

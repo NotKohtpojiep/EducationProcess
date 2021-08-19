@@ -6,6 +6,7 @@ namespace EducationProcess.Services.Interfaces
     public interface IEducationPlanSemesterDisciplineService
     {
         Task<EducationPlanSemesterDiscipline[]> GetEducationPlanSemesterDisciplineByEducationPlanIdAsync(int educationPlanId);
+        Task<EducationPlanSemesterDiscipline[]> GetEducationPlanSemesterDisciplineByEducationPlanIdWithIncludeAsync(int educationPlanId);
         Task<EducationPlanSemesterDiscipline[]> GetEducationPlanSemesterDisciplineBySemesterDisciplineIdAsync(int semesterDisciplineId);
         Task<EducationPlanSemesterDiscipline[]> GetAllEducationPlanSemesterDisciplinesAsync();
         Task<EducationPlanSemesterDiscipline> AddEducationPlanSemesterDisciplineAsync(EducationPlanSemesterDiscipline newEducationPlanSemesterDiscipline);

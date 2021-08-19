@@ -19,13 +19,13 @@ namespace EducationProcess.DataAccess.Entities
         public int GroupId { get; set; }
         public bool? IsAgreed { get; set; }
         public bool? IsWatched { get; set; }
-        public int FixerEmployeeId { get; set; }
+        public int EmployeeFixerId { get; set; }
         public string CommentByFixingEmployee { get; set; }
-        public string CommentByFixerEmployee { get; set; }
+        public string CommentByEmployeeFixer { get; set; }
         public DateTime PublishedAt { get; set; }
         public DateTime? CoordinatedAt { get; set; }
 
-        public virtual Employee FixerEmployee { get; set; }
+        public virtual Employee EmployeeFixer { get; set; }
         public virtual Employee FixingEmployee { get; set; }
         public virtual Group Group { get; set; }
         public virtual SemesterDiscipline SemesterDiscipline { get; set; }

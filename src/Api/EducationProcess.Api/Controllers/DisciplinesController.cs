@@ -34,9 +34,20 @@ namespace EducationProcess.Api.Controllers
         [HttpGet("array")]
         [ProducesResponseType(typeof(Discipline[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetRange()
+        public async Task<IActionResult> GetAll()
         {
             Discipline[] disciplines = await _disciplineService.GetAllDisciplinesAsync();
+            if (disciplines.Length == 0)
+                return NotFound();
+            return Ok(disciplines);
+        }
+
+        [HttpGet("array/with-include")]
+        [ProducesResponseType(typeof(Discipline[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetAllWithInclude()
+        {
+            Discipline[] disciplines = await _disciplineService.GetAllDisciplinesWithIncludeAsync();
             if (disciplines.Length == 0)
                 return NotFound();
             return Ok(disciplines);
@@ -56,7 +67,7 @@ namespace EducationProcess.Api.Controllers
         [HttpPost("array")]
         [ProducesResponseType(typeof(Discipline[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> DisciplineRange([FromBody] Discipline[] disciplines)
+        public async Task<IActionResult> DisciplineArray([FromBody] Discipline[] disciplines)
         {
             Discipline[] addedDisciplines = await _disciplineService.AddRangeDisciplineAsync(disciplines);
             if (addedDisciplines is null)

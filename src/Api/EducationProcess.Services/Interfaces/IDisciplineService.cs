@@ -7,6 +7,7 @@ namespace EducationProcess.Services.Interfaces
     {
         Task<Discipline> GetDisciplineByIdAsync(int disciplineId);
         Task<Discipline[]> GetAllDisciplinesAsync();
+        Task<Discipline[]> GetAllDisciplinesWithIncludeAsync();
         Task<Discipline> AddDisciplineAsync(Discipline newDiscipline);
         Task<Discipline[]> AddRangeDisciplineAsync(Discipline[] newDisciplines);
         Task<Discipline> UpdateDisciplineAsync(Discipline newDiscipline);

@@ -31,6 +31,13 @@ namespace EducationProcess.Services.Services
             return _mapper.Map<DataAccess.Entities.Discipline[], Discipline[]>(discipline);
         }
 
+        public async Task<Discipline[]> GetAllDisciplinesWithIncludeAsync()
+        {
+            DataAccess.Entities.Discipline[] discipline =
+                await _unitOfWork.Disciplines.GetAllWithInclude();
+            return _mapper.Map<DataAccess.Entities.Discipline[], Discipline[]>(discipline);
+        }
+
         public async Task<Discipline> AddDisciplineAsync(Discipline newDiscipline)
         {
             DataAccess.Entities.Discipline discipline =

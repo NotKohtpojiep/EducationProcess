@@ -8,7 +8,7 @@ using System.Windows.Threading;
 using EducationProcess.ApiClient.Models.EducationPlans.Responses;
 using EducationProcess.HandyDesktop.Data;
 using EducationProcess.HandyDesktop.Data.Model;
-using EducationProcess.HandyDesktop.Service;
+using EducationProcess.HandyDesktop.Services;
 using EducationProcess.HandyDesktop.Tools;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -70,7 +70,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
             }
 
             var view = AssemblyHelper.CreateInternalInstance($"UserControl.EducationPlanDisciplinesMenuView");
-            ((FrameworkElement)view).DataContext = new EducationPlanDisciplinesMenuView(SimpleIoc.Default.GetInstance<IEducationPlanService>(), EducationPlanSelected);
+            ((FrameworkElement)view).DataContext = new EducationPlanDisciplinesMenuView(SimpleIoc.Default.GetInstance<IEducationPlanSemesterDisciplineService>(), EducationPlanSelected);
 
             var tabItemModel = new TabItemModel()
             {
