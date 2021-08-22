@@ -38,6 +38,13 @@ namespace EducationProcess.Services.Services
             return _mapper.Map<DataAccess.Entities.FixedDiscipline[], FixedDiscipline[]>(fixedDiscipline);
         }
 
+        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesByFixingEmployeeIdWithIncludeAsync(int fixingEmployeeId)
+        {
+            DataAccess.Entities.FixedDiscipline[] fixedDiscipline =
+                await _unitOfWork.FixedDisciplines.GetAllByFixingEmployeeIdWithInclude(fixingEmployeeId);
+            return _mapper.Map<DataAccess.Entities.FixedDiscipline[], FixedDiscipline[]>(fixedDiscipline);
+        }
+
         public async Task<FixedDiscipline> AddFixedDisciplineAsync(FixedDiscipline newFixedDiscipline)
         {
             DataAccess.Entities.FixedDiscipline fixedDiscipline =

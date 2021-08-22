@@ -20,6 +20,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
             SimpleIoc.Default.Register<IEducationPlanSemesterDisciplineService, EducationPlanSemesterDisciplineService>();
             SimpleIoc.Default.Register<IFixedDisciplineService, FixedDisciplineService>();
             SimpleIoc.Default.Register<ISemesterDisciplineService, SemesterDisciplineService>();
+            SimpleIoc.Default.Register<IScheduleDisciplineService, ScheduleDisciplineService>();
 
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<NonClientAreaViewModel>();
@@ -28,6 +29,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
             SimpleIoc.Default.Register<EducationPlanMenuViewModel>();
             SimpleIoc.Default.Register<ChainDisciplineViewModel>();
             SimpleIoc.Default.Register<CheckDisciplineSuggestionViewModel>();
+            SimpleIoc.Default.Register<TeacherScheduleViewModel>();
         }
 
         public static ViewModelLocator Instance = new Lazy<ViewModelLocator>(() =>
@@ -48,7 +50,9 @@ namespace EducationProcess.HandyDesktop.ViewModel
         public ChainDisciplineViewModel ChainDisciplineView => SimpleIoc.Default.GetInstance<ChainDisciplineViewModel>();
 
         public CheckDisciplineSuggestionViewModel CheckDisciplineSuggestionView => SimpleIoc.Default.GetInstance<CheckDisciplineSuggestionViewModel>();
-        
+
+        public TeacherScheduleViewModel TeacherScheduleView => SimpleIoc.Default.GetInstance<TeacherScheduleViewModel>();
+
         public NonClientAreaViewModel NoUser => SimpleIoc.Default.GetInstance<NonClientAreaViewModel>();
 
         #endregion

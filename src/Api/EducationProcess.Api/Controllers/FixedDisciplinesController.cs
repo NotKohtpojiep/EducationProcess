@@ -53,6 +53,17 @@ namespace EducationProcess.Api.Controllers
             return Ok(fixedDisciplines);
         }
 
+        [HttpGet("for-teacher/{fixingEmployeeId:int}")]
+        [ProducesResponseType(typeof(FixedDiscipline[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetArrayByFixingEmployeeIdWithInclude(int fixingEmployeeId)
+        {
+            FixedDiscipline[] fixedDisciplines = await _fixedDisciplineService.GetAllFixedDisciplinesByFixingEmployeeIdWithIncludeAsync(fixingEmployeeId);
+            if (fixedDisciplines.Length == 0)
+                return NotFound();
+            return Ok(fixedDisciplines);
+        }
+
         [HttpPost]
         [ProducesResponseType(typeof(FixedDiscipline), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]

@@ -120,6 +120,9 @@
   <data name="About" xml:space="preserve">
     <value>О приложении</value>
   </data>
+  <data name="ConfirmLesson" xml:space="preserve">
+    <value>Подтверждение занятий</value>
+  </data>
   <data name="Contributors" xml:space="preserve">
     <value>Участники</value>
   </data>
@@ -144,11 +147,20 @@
   <data name="FixingDisciplineMenu" xml:space="preserve">
     <value>Закрепление дисциплин</value>
   </data>
+  <data name="Lessons" xml:space="preserve">
+    <value>Занятия</value>
+  </data>
   <data name="Menu" xml:space="preserve">
     <value>Меню</value>
   </data>
+  <data name="MySchedule" xml:space="preserve">
+    <value>Моё расписание</value>
+  </data>
   <data name="Other" xml:space="preserve">
     <value>Другое</value>
+  </data>
+  <data name="Shedule" xml:space="preserve">
+    <value>Расписание</value>
   </data>
   <data name="SuggestionDisciplineMenu" xml:space="preserve">
     <value>Предлагаемые дисциплины</value>

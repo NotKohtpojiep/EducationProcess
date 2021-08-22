@@ -1,4 +1,6 @@
-﻿namespace EducationProcess.ApiClient.Models.ConductedPairs.Responses
+﻿using EducationProcess.ApiClient.Models.ScheduleDisciplines.Responses;
+
+namespace EducationProcess.ApiClient.Models.ConductedPairs.Responses
 {
     public class ConductedPair
     {

@@ -1,0 +1,16 @@
+name: CI
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build api project
+        run: dotnet build src/api/educationprocess.api
+      - name: Run api tests
+        run: dotnet test src/api/educationprocess.tests
+      - name: Build HandyDesktop
+        run: dotnet build src/desktop/educationprocess.handydesktop

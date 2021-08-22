@@ -35,22 +35,29 @@ namespace EducationProcess.HandyDesktop.Services
 
         internal List<SideMenuModel> GetDemoInfo(string title)
         {
-            HeadSideMenuModel model1 = new HeadSideMenuModel()
+            HeadSideMenuModel educationPlanHeadModel = new HeadSideMenuModel()
             {
                 Name = "EducationPlan",
                 ImgPath = "",
-                IsNew = true,
+                IsNew = false
             };
 
-            HeadSideMenuModel model2 = new HeadSideMenuModel()
+            HeadSideMenuModel disciplineHeadModel = new HeadSideMenuModel()
             {
                 Name = "Disciplines",
                 ImgPath = "",
-                IsNew = false,
+                IsNew = false
             };
 
+            HeadSideMenuModel lessonHeadModel = new HeadSideMenuModel()
+            {
+                Name = "Lessons",
+                ImgPath = "",
+                IsNew = false
+            };
 
-            List<SideMenuModel> sideMenuModels = new List<SideMenuModel>()
+            // Руководитель УМО
+            List<SideMenuModel> umoHeadViewCollection = new List<SideMenuModel>()
             {
                 new SideMenuModel()
                 {
@@ -58,7 +65,7 @@ namespace EducationProcess.HandyDesktop.Services
                     Name = "EducationPlanMenu",
                     TargetCtlName = "EducationPlanMainCtl",
                     IsVisible = true,
-                    HeadSideMenu = model1
+                    HeadSideMenu = educationPlanHeadModel
                 },
                 new SideMenuModel()
                 {
@@ -66,7 +73,7 @@ namespace EducationProcess.HandyDesktop.Services
                     Name = "DisciplinesMenu",
                     TargetCtlName = "DisciplinesMenuView",
                     IsVisible = true,
-                    HeadSideMenu = model2
+                    HeadSideMenu = disciplineHeadModel
                 },
                 new SideMenuModel()
                 {
@@ -74,11 +81,41 @@ namespace EducationProcess.HandyDesktop.Services
                     Name = "FixingDisciplineMenu",
                     TargetCtlName = "ChainDisciplineView",
                     IsVisible = true,
-                    HeadSideMenu = model2
+                    HeadSideMenu = disciplineHeadModel
                 }
             };
 
-            return sideMenuModels;
+            // Преподаватель
+            List<SideMenuModel> teacherViewCollection = new List<SideMenuModel>()
+            {
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "SuggestionDisciplineMenu",
+                    TargetCtlName = "CheckDisciplineSuggestionView",
+                    IsVisible = true,
+                    HeadSideMenu = disciplineHeadModel
+                },
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "ConfirmLesson",
+                    TargetCtlName = "ConfirmLessonView",
+                    IsVisible = true,
+                    HeadSideMenu = lessonHeadModel
+                },
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "MySchedule",
+                    TargetCtlName = "TeacherScheduleView",
+                    IsVisible = true,
+                    HeadSideMenu = lessonHeadModel
+                },
+                
+            };
+
+            return teacherViewCollection;
         }
     }
 }

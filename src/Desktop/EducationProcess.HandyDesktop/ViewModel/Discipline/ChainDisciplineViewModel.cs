@@ -61,12 +61,12 @@ namespace EducationProcess.HandyDesktop.ViewModel
             {
                 fixedDisciplines = await _fixedDisciplineService.GetAllFixedDisciplinesAsync();
             }
-            catch (SocketException e)
+            catch (SocketException)
             {
                 Growl.Error("Ошибка подключения к сети");
                 throw;
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException)
             {
                 Growl.Fatal("Ошибка подключения к удаленному серверу");
                 throw;

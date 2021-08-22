@@ -70,7 +70,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
             }
 
             var view = AssemblyHelper.CreateInternalInstance($"UserControl.EducationPlanDisciplinesMenuView");
-            ((FrameworkElement)view).DataContext = new EducationPlanDisciplinesMenuView(SimpleIoc.Default.GetInstance<IEducationPlanSemesterDisciplineService>(), EducationPlanSelected);
+            ((FrameworkElement)view).DataContext = new EducationPlanDisciplinesMenuViewModel(SimpleIoc.Default.GetInstance<IEducationPlanSemesterDisciplineService>(), EducationPlanSelected);
 
             var tabItemModel = new TabItemModel()
             {
@@ -87,12 +87,12 @@ namespace EducationProcess.HandyDesktop.ViewModel
             {
                 educationPlans = await _educationPlanService.GetAllEducationPlans();
             }
-            catch (SocketException e)
+            catch (SocketException)
             {
                 Growl.Error("Ошибка подключения к сети");
                 throw;
             }
-            catch (HttpRequestException e)
+            catch (HttpRequestException)
             {
                 Growl.Fatal("Ошибка подключения к удаленному серверу");
                 throw;

@@ -9,6 +9,7 @@ namespace EducationProcess.ApiClient.Clients.Interfaces
         Task<FixedDiscipline> GetFixedDisciplineAsync(int fixedDisciplineId);
         Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync();
         Task<FixedDiscipline[]> GetAllFixedDisciplinesWithIncludeAsync();
+        Task<FixedDiscipline[]> GetAllFixedDisciplinesByTeacherIdWithIncludeAsync(int teacherId);
 
         Task<FixedDiscipline> CreateFixedDisciplineAsync(FixedDisciplineRequest fixedDiscipline);
         Task<FixedDiscipline[]> CreateFixedDisciplineArrayAsync(FixedDisciplineRequest[] fixedDisciplines);

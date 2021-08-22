@@ -22,7 +22,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Grid.Row="0" Content="Предлагаемые дисциплины" FontSize="24" Margin="5"></Label>
-            <Button  HorizontalAlignment="Right" Margin="10" Background="LightSkyBlue" Command="{Binding ViewCommand}">
+            <Button Grid.Row="0" HorizontalAlignment="Right" Margin="10" Background="LightSkyBlue" Command="{Binding ViewCommand}">
                 <iconPacks:PackIconModern Width="20" Height="20" Kind="Eye" Foreground="White" />
             </Button>
         </Grid>

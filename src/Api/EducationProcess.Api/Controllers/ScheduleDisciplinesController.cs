@@ -97,9 +97,9 @@ namespace EducationProcess.Api.Controllers
         [HttpGet("for-all/{date:DateTime}")]
         [ProducesResponseType(typeof(ScheduleDiscipline[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetForAllGroupsForWeekByDate([FromBody] DateTime dateTime)
+        public async Task<IActionResult> GetForAllGroupsForWeekByDate([FromRoute] DateTime date)
         {
-            ScheduleDiscipline[] updatedScheduleDiscipline = await _scheduleDisciplineService.GetScheduleForWeekAndAllGroupsByDateAsync(dateTime);
+            ScheduleDiscipline[] updatedScheduleDiscipline = await _scheduleDisciplineService.GetScheduleForWeekAndAllGroupsByDateWithIncludeAsync(date);
             if (updatedScheduleDiscipline is null)
                 return NotFound();
             return Ok(updatedScheduleDiscipline);
@@ -108,9 +108,31 @@ namespace EducationProcess.Api.Controllers
         [HttpGet("for/{groupId:int}")]
         [ProducesResponseType(typeof(ScheduleDiscipline[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> GetCurrentForGroup([FromBody] int groupId)
+        public async Task<IActionResult> GetCurrentForGroup([FromRoute] int groupId)
         {
-            ScheduleDiscipline[] updatedScheduleDisciplines = await _scheduleDisciplineService.GetScheduleForWeekByGroupIdAsync(groupId);
+            ScheduleDiscipline[] updatedScheduleDisciplines = await _scheduleDisciplineService.GetScheduleForWeekByGroupIdWithIncludeAsync(groupId);
+            if (updatedScheduleDisciplines is null)
+                return NotFound();
+            return Ok(updatedScheduleDisciplines);
+        }
+
+        [HttpGet("for-department/{departmentId:int}/{date:DateTime}")]
+        [ProducesResponseType(typeof(ScheduleDiscipline[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetForAllGroupsForWeekByDateAndDepartment([FromRoute] int departmentId, DateTime date)
+        {
+            ScheduleDiscipline[] updatedScheduleDiscipline = await _scheduleDisciplineService.GetScheduleForWeekAndAllGroupsByDateAndDepartmentIdWithIncludeAsync(departmentId, date);
+            if (updatedScheduleDiscipline is null)
+                return NotFound();
+            return Ok(updatedScheduleDiscipline);
+        }
+
+        [HttpGet("for-teacher/{teacherId:int}")]
+        [ProducesResponseType(typeof(ScheduleDiscipline[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetCurrentForTeacher([FromRoute] int teacherId)
+        {
+            ScheduleDiscipline[] updatedScheduleDisciplines = await _scheduleDisciplineService.GetScheduleForWeekForTeacherByTeacherIdWithIncludeAsync(teacherId, new DateTime(2020,5,19));
             if (updatedScheduleDisciplines is null)
                 return NotFound();
             return Ok(updatedScheduleDisciplines);

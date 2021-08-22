@@ -1,10 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using EducationProcess.ApiClient.Clients.Interfaces;
 using EducationProcess.ApiClient.Internal.Http;
 using EducationProcess.ApiClient.Models;
 using EducationProcess.ApiClient.Models.ScheduleDisciplines.Requests;
+using EducationProcess.ApiClient.Models.ScheduleDisciplines.Responses;
 
 namespace EducationProcess.ApiClient.Clients
 {
@@ -29,11 +29,17 @@ namespace EducationProcess.ApiClient.Clients
         public async Task<ScheduleDisciplineReplacement[]> GetAllScheduleDisciplineReplacementsAsync() =>
             await _httpFacade.Get<ScheduleDisciplineReplacement[]>($"ScheduleDisciplineReplacements/array");
 
-        public async Task<ScheduleDiscipline[]> GetAllScheduleDisciplinesForWeekByDateAsync(DateTime date) =>
+        public async Task<ScheduleDiscipline[]> GetAllScheduleDisciplinesForWeekByDateWithIncludeAsync(DateTime date) =>
             await _httpFacade.Get<ScheduleDiscipline[]>($"ScheduleDisciplines/for-all/{date}");
 
-        public async Task<ScheduleDiscipline[]> GetCurrentScheduleDisciplinesForGroupAsync(int groupId) =>
+        public async Task<ScheduleDiscipline[]> GetCurrentScheduleDisciplinesForGroupWithIncludeAsync(int groupId) =>
             await _httpFacade.Get<ScheduleDiscipline[]>($"ScheduleDisciplines/for/{groupId}");
+
+        public async Task<ScheduleDiscipline[]> GetAllScheduleDisciplinesForWeekByDateAndDepartmentWithIncludeAsync(int departmentId, DateTime date) =>
+            await _httpFacade.Get<ScheduleDiscipline[]>($"ScheduleDisciplines/for-department/{departmentId}/{date}");
+
+        public async Task<ScheduleDiscipline[]> GetCurrentScheduleDisciplinesForTeacherWithIncludeAsync(int teacherId) =>
+            await _httpFacade.Get<ScheduleDiscipline[]>($"ScheduleDisciplines/for-teacher/{teacherId}");
 
 
         public async Task<ScheduleDiscipline> CreateScheduleDisciplineAsync(ScheduleDisciplineRequest scheduleDiscipline) =>

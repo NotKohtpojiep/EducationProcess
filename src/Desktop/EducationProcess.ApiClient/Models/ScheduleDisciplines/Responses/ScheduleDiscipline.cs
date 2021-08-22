@@ -3,7 +3,7 @@ using EducationProcess.ApiClient.Models.Audiences.Responses;
 using EducationProcess.ApiClient.Models.Employees.Responses;
 using EducationProcess.ApiClient.Models.FixedDisciplines.Responses;
 
-namespace EducationProcess.ApiClient.Models
+namespace EducationProcess.ApiClient.Models.ScheduleDisciplines.Responses
 {
     public class ScheduleDiscipline
     {

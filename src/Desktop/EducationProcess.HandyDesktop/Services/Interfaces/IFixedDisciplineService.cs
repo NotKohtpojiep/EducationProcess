@@ -6,6 +6,7 @@ namespace EducationProcess.HandyDesktop.Services
     public interface IFixedDisciplineService
     {
         Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync();
+        Task<FixedDiscipline[]> GetAllFixedDisciplinesByTeacherIdAsync(int teacherId);
         Task<FixedDiscipline> CreateFixedDisciplineAsync(FixedDiscipline fixedDiscipline);
         Task<FixedDiscipline[]> CreateFixedDisciplineArrayAsync(FixedDiscipline[] fixedDisciplines);
         Task<FixedDiscipline> UpdateFixedDisciplineAsync(FixedDiscipline fixedDiscipline);

@@ -70,6 +70,15 @@ namespace EducationProcess.HandyDesktop.Properties.Langs {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Подтверждение занятий.
+        /// </summary>
+        public static string ConfirmLesson {
+            get {
+                return ResourceManager.GetString("ConfirmLesson", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Участники.
         /// </summary>
         public static string Contributors {
@@ -142,6 +151,15 @@ namespace EducationProcess.HandyDesktop.Properties.Langs {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Занятия.
+        /// </summary>
+        public static string Lessons {
+            get {
+                return ResourceManager.GetString("Lessons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Меню.
         /// </summary>
         public static string Menu {
@@ -151,11 +169,29 @@ namespace EducationProcess.HandyDesktop.Properties.Langs {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Моё расписание.
+        /// </summary>
+        public static string MySchedule {
+            get {
+                return ResourceManager.GetString("MySchedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Другое.
         /// </summary>
         public static string Other {
             get {
                 return ResourceManager.GetString("Other", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Расписание.
+        /// </summary>
+        public static string Shedule {
+            get {
+                return ResourceManager.GetString("Shedule", resourceCulture);
             }
         }
         

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using EducationProcess.DataAccess;
@@ -79,19 +77,31 @@ namespace EducationProcess.Services.Services
             await _unitOfWork.ScheduleDisciplines.DeleteRangeAsync(mappedScheduleDisciplines);
         }
 
-        public async Task<ScheduleDiscipline[]> GetScheduleForWeekByGroupIdAsync(int groupId)
+        public async Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDateAndDepartmentIdWithIncludeAsync(int departmentId, DateTime date)
         {
-            DataAccess.Entities.ScheduleDiscipline[] scheduleDisciplines =
-                await _unitOfWork.ScheduleDisciplines.GetScheduleForWeekByGroupIdAsync(groupId);
-
+            DataAccess.Entities.ScheduleDiscipline[] scheduleDisciplines = 
+                await _unitOfWork.ScheduleDisciplines.GetScheduleForWeekAndAllGroupsByDateAndDepartmentIdWithIncludeAsync(departmentId, date);
             return _mapper.Map<DataAccess.Entities.ScheduleDiscipline[], ScheduleDiscipline[]>(scheduleDisciplines);
         }
 
-        public async Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDateAsync(DateTime date)
+        public async Task<ScheduleDiscipline[]> GetScheduleForWeekForTeacherByTeacherIdWithIncludeAsync(int teacherId, DateTime date)
         {
-            DataAccess.Entities.ScheduleDiscipline[] scheduleDisciplines =
-                await _unitOfWork.ScheduleDisciplines.GetScheduleForWeekAndAllGroupsByDateAsync(date);
+            DataAccess.Entities.ScheduleDiscipline[] scheduleDisciplines = 
+                await _unitOfWork.ScheduleDisciplines.GetScheduleForWeekForTeacherByTeacherIdWithIncludeAsync(teacherId, date);
+            return _mapper.Map<DataAccess.Entities.ScheduleDiscipline[], ScheduleDiscipline[]>(scheduleDisciplines);
+        }
 
+        public async Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDateWithIncludeAsync(DateTime date)
+        {
+            DataAccess.Entities.ScheduleDiscipline[] scheduleDisciplines = 
+                await _unitOfWork.ScheduleDisciplines.GetScheduleForWeekAndAllGroupsByDateWithIncludeAsync(date);
+            return _mapper.Map<DataAccess.Entities.ScheduleDiscipline[], ScheduleDiscipline[]>(scheduleDisciplines);
+        }
+
+        public async Task<ScheduleDiscipline[]> GetScheduleForWeekByGroupIdWithIncludeAsync(int groupId)
+        {
+            DataAccess.Entities.ScheduleDiscipline[] scheduleDisciplines = 
+                await _unitOfWork.ScheduleDisciplines.GetScheduleForWeekByGroupIdWithIncludeAsync(groupId);
             return _mapper.Map<DataAccess.Entities.ScheduleDiscipline[], ScheduleDiscipline[]>(scheduleDisciplines);
         }
     }

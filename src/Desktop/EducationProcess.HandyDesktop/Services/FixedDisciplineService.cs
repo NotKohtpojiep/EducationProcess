@@ -20,6 +20,11 @@ namespace EducationProcess.HandyDesktop.Services
             return await _educationProcessClient.FixedDisciplines.GetAllFixedDisciplinesWithIncludeAsync();
         }
 
+        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesByTeacherIdAsync(int teacherId)
+        {
+            return await _educationProcessClient.FixedDisciplines.GetAllFixedDisciplinesByTeacherIdWithIncludeAsync(teacherId);
+        }
+
         public async Task<FixedDiscipline> CreateFixedDisciplineAsync(FixedDiscipline fixedDiscipline)
         {
 

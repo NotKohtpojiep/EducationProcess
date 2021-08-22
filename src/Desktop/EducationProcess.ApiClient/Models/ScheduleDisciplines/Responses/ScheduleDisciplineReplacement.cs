@@ -2,6 +2,7 @@
 using EducationProcess.ApiClient.Models.Audiences.Responses;
 using EducationProcess.ApiClient.Models.Employees.Responses;
 using EducationProcess.ApiClient.Models.FixedDisciplines.Responses;
+using EducationProcess.ApiClient.Models.ScheduleDisciplines.Responses;
 
 namespace EducationProcess.ApiClient.Models
 {

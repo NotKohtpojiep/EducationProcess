@@ -59,7 +59,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
             FixedDiscipline[] fixedDisciplines;
             try
             {
-                fixedDisciplines = await _fixedDisciplineService.GetAllFixedDisciplinesAsync();
+                fixedDisciplines = await _fixedDisciplineService.GetAllFixedDisciplinesByTeacherIdAsync(2);
             }
             catch (SocketException e)
             {
@@ -77,6 +77,8 @@ namespace EducationProcess.HandyDesktop.ViewModel
                 throw;
             }
 
+            fixedDisciplines = fixedDisciplines.Where(x => x.IsAgreed is null).ToArray();
+
             foreach (var item in fixedDisciplines.GroupBy(x => new
             {
                 x.SemesterDiscipline.DisciplineId,
@@ -84,10 +86,27 @@ namespace EducationProcess.HandyDesktop.ViewModel
                 x.FixingEmployeeId
             }))
             {
-                await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                int min = item.Min(x => x.SemesterDiscipline.Semester.Number);
+                if (min % 2 == 0)
+                    min -= 1;
+
+                int max = item.Max(x => x.SemesterDiscipline.Semester.Number);
+                if (max % 2 == 0)
+                    max -= 1;
+
+                for (int semester = min; semester <= max; semester += 2)
                 {
-                    FixedDisciplineCollection.Add(new FixedDisciplineModel(item.ToArray()));
-                }), DispatcherPriority.Send);
+                    FixedDiscipline[] disciplines =
+                        item.Where(x =>
+                            x.SemesterDiscipline.Semester.Number == semester ||
+                            x.SemesterDiscipline.Semester.Number == semester + 1).ToArray();
+
+                    if (disciplines.Length > 0)
+                        await Application.Current.Dispatcher.BeginInvoke(new Action(() =>
+                        {
+                            FixedDisciplineCollection.Add(new FixedDisciplineModel(disciplines));
+                        }), DispatcherPriority.Send);
+                }
             }
         }
     }

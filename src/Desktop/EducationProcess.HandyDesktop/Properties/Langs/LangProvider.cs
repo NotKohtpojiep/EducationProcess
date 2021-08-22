@@ -49,8 +49,11 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
             OnPropertyChanged(nameof(Discipline));
             OnPropertyChanged(nameof(FixingDisciplineMenu));
             OnPropertyChanged(nameof(SuggestionDisciplineMenu));
-            
+            OnPropertyChanged(nameof(ConfirmLesson));
+            OnPropertyChanged(nameof(Lessons));
+            OnPropertyChanged(nameof(MySchedule));
         }
+
         public string About => Lang.About;
         public string Contributors => Lang.Contributors;
         public string EducationPlan => Lang.EducationPlan;
@@ -63,6 +66,9 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
         public string Discipline => Lang.Discipline;
         public string FixingDisciplineMenu => Lang.FixingDisciplineMenu;
         public string SuggestionDisciplineMenu => Lang.SuggestionDisciplineMenu;
+        public string ConfirmLesson => Lang.ConfirmLesson;
+        public string Lessons => Lang.Lessons;
+        public string MySchedule => Lang.MySchedule;
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -83,7 +89,10 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
         public static string DisciplinesMenu = nameof(DisciplinesMenu);
         public static string Disciplines = nameof(Disciplines);
         public static string Discipline = nameof(Discipline);
-        public static string FixingDisciplineMenu => nameof(FixingDisciplineMenu);
-        public static string SuggestionDisciplineMenu => nameof(SuggestionDisciplineMenu);
+        public static string FixingDisciplineMenu = nameof(FixingDisciplineMenu);
+        public static string SuggestionDisciplineMenu = nameof(SuggestionDisciplineMenu);
+        public static string ConfirmLesson = nameof(ConfirmLesson);
+        public static string Lessons = nameof(Lessons);
+        public static string MySchedule = nameof(MySchedule);
     }
 }

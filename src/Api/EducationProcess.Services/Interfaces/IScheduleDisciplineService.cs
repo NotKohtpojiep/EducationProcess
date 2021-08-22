@@ -13,7 +13,10 @@ namespace EducationProcess.Services.Interfaces
         Task<ScheduleDiscipline[]> UpdateRangeScheduleDisciplineAsync(ScheduleDiscipline[] newScheduleDiscipline);
         Task DeleteScheduleDisciplineAsync(ScheduleDiscipline scheduleDiscipline);
         Task DeleteRangeScheduleDisciplineAsync(ScheduleDiscipline[] scheduleDisciplines);
-        Task<ScheduleDiscipline[]> GetScheduleForWeekByGroupIdAsync(int groupId);
-        Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDateAsync(DateTime date);
+        Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDateAndDepartmentIdWithIncludeAsync(int departmentId, DateTime date);
+        Task<ScheduleDiscipline[]> GetScheduleForWeekForTeacherByTeacherIdWithIncludeAsync(int teacherId, DateTime date);
+        Task<ScheduleDiscipline[]> GetScheduleForWeekAndAllGroupsByDateWithIncludeAsync(DateTime date);
+        Task<ScheduleDiscipline[]> GetScheduleForWeekByGroupIdWithIncludeAsync(int groupId);
+
     }
 }

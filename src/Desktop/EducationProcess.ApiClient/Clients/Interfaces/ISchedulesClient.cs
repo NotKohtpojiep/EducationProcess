@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using EducationProcess.ApiClient.Models;
 using EducationProcess.ApiClient.Models.ScheduleDisciplines.Requests;
+using EducationProcess.ApiClient.Models.ScheduleDisciplines.Responses;
 
 namespace EducationProcess.ApiClient.Clients.Interfaces
 {
@@ -12,8 +13,10 @@ namespace EducationProcess.ApiClient.Clients.Interfaces
         Task<ScheduleDiscipline[]> GetAllScheduleDisciplinesAsync();
         Task<ScheduleDisciplineReplacement[]> GetAllScheduleDisciplineReplacementsAsync();
 
-        Task<ScheduleDiscipline[]> GetAllScheduleDisciplinesForWeekByDateAsync(DateTime date);
-        Task<ScheduleDiscipline[]> GetCurrentScheduleDisciplinesForGroupAsync(int groupId);
+        Task<ScheduleDiscipline[]> GetAllScheduleDisciplinesForWeekByDateWithIncludeAsync(DateTime date);
+        Task<ScheduleDiscipline[]> GetCurrentScheduleDisciplinesForGroupWithIncludeAsync(int groupId);
+        Task<ScheduleDiscipline[]> GetAllScheduleDisciplinesForWeekByDateAndDepartmentWithIncludeAsync(int departmentId, DateTime date);
+        Task<ScheduleDiscipline[]> GetCurrentScheduleDisciplinesForTeacherWithIncludeAsync(int teacherId);
 
         Task<ScheduleDiscipline> CreateScheduleDisciplineAsync(ScheduleDisciplineRequest scheduleDiscipline);
         Task<ScheduleDisciplineReplacement> CreateScheduleDisciplineReplacementAsync(ScheduleDisciplineReplacementRequest scheduleDisciplineReplacement);

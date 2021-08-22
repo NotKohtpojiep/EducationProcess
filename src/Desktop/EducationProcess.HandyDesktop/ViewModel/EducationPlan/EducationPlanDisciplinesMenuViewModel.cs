@@ -17,13 +17,13 @@ using MessageBox = HandyControl.Controls.MessageBox;
 
 namespace EducationProcess.HandyDesktop.ViewModel
 {
-    public class EducationPlanDisciplinesMenuView : ViewModelBase
+    public class EducationPlanDisciplinesMenuViewModel : ViewModelBase
     {
         private readonly IEducationPlanSemesterDisciplineService _educationPlanSemesterDisciplineService;
         private SemesterDiscipline _semesterDisciplineCurrent;
         private bool _dataGot;
 
-        public EducationPlanDisciplinesMenuView(IEducationPlanSemesterDisciplineService educationPlanSemesterDisciplineService, EducationPlan educationPlan)
+        public EducationPlanDisciplinesMenuViewModel(IEducationPlanSemesterDisciplineService educationPlanSemesterDisciplineService, EducationPlan educationPlan)
         {
             _educationPlanSemesterDisciplineService = educationPlanSemesterDisciplineService;
 
