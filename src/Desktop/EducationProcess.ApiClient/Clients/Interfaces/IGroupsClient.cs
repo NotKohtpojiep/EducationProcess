@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using EducationProcess.ApiClient.Models.Groups.Requests;
 using EducationProcess.ApiClient.Models.Groups.Responses;
@@ -8,6 +9,7 @@ namespace EducationProcess.ApiClient.Clients.Interfaces
     {
         Task<Group> GetGroupAsync(int groupId);
         Task<Group[]> GetAllGroupsAsync();
+        Task<Group[]> GetAllCurrentGroupsByDateAsync(DateTime date);
 
         Task<Group> CreateGroupAsync(GroupRequest group);
         Task<Group[]> CreateGroupArrayAsync(GroupRequest[] groups);

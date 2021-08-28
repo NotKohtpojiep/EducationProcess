@@ -6,11 +6,7 @@ namespace EducationProcess.HandyDesktop.Data.Models
 {
     public class ScheduleForDayModel : ObservableObject
     {
-        public DayOfWeek DayOfWeek { get; set; }
-        public string DayNameOfWeek
-        {
-            get => DayOfWeek.ToString();
-        }
+        public DateTime Date { get; set; }
         public LessonModel[] Lessons { get; set; }
     }
 }

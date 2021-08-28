@@ -5,15 +5,17 @@ namespace EducationProcess.Services.Interfaces
 {
     public interface IFixedDisciplineService
     {
-        Task<FixedDiscipline> GetFixedDisciplineByIdAsync(int fixedDisciplineId);
-        Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync();
-        Task<FixedDiscipline[]> GetAllFixedDisciplinesWithIncludeAsync();
-        Task<FixedDiscipline[]> GetAllFixedDisciplinesByFixingEmployeeIdWithIncludeAsync(int fixingEmployeeId);
-        Task<FixedDiscipline> AddFixedDisciplineAsync(FixedDiscipline newFixedDiscipline);
-        Task<FixedDiscipline[]> AddRangeFixedDisciplineAsync(FixedDiscipline[] newFixedDisciplines);
-        Task<FixedDiscipline> UpdateFixedDisciplineAsync(FixedDiscipline newFixedDiscipline);
-        Task<FixedDiscipline[]> UpdateRangeFixedDisciplineAsync(FixedDiscipline[] newFixedDiscipline);
-        Task DeleteFixedDisciplineAsync(FixedDiscipline fixedDiscipline);
-        Task DeleteRangeFixedDisciplineAsync(FixedDiscipline[] fixedDisciplines);
+        Task<FixedDiscipline> GetByIdAsync(int fixedDisciplineId);
+        Task<FixedDiscipline[]> GetAllAsync();
+        Task<FixedDiscipline[]> GetRangeWithIncludeAsync(int offset = 1, int limit = 10);
+        Task<FixedDiscipline[]> GetAllByFixingEmployeeIdWithIncludeAsync(int fixingEmployeeId);
+        Task<FixedDiscipline[]> GetAllByGroupIdWithIncludeAsync(int groupId);
+        Task<int> Count();
+        Task<FixedDiscipline> AddAsync(FixedDiscipline newFixedDiscipline);
+        Task<FixedDiscipline[]> AddRangeAsync(FixedDiscipline[] newFixedDisciplines);
+        Task<FixedDiscipline> UpdateAsync(FixedDiscipline newFixedDiscipline);
+        Task<FixedDiscipline[]> UpdateRangeAsync(FixedDiscipline[] newFixedDiscipline);
+        Task DeleteAsync(FixedDiscipline fixedDiscipline);
+        Task DeleteRangeAsync(FixedDiscipline[] fixedDisciplines);
     }
 }

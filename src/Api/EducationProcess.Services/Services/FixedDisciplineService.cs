@@ -17,35 +17,47 @@ namespace EducationProcess.Services.Services
             _mapper = mapper;
         }
 
-        public async Task<FixedDiscipline> GetFixedDisciplineByIdAsync(int fixedDisciplineId)
+        public async Task<FixedDiscipline> GetByIdAsync(int fixedDisciplineId)
         {
             DataAccess.Entities.FixedDiscipline fixedDiscipline =
                 await _unitOfWork.FixedDisciplines.GetFirstWhereAsync(x => x.FixedDisciplineId == fixedDisciplineId);
             return _mapper.Map<DataAccess.Entities.FixedDiscipline, FixedDiscipline>(fixedDiscipline);
         }
 
-        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync()
+        public async Task<FixedDiscipline[]> GetAllAsync()
         {
             DataAccess.Entities.FixedDiscipline[] fixedDiscipline =
                 await _unitOfWork.FixedDisciplines.GetAllAsync();
             return _mapper.Map<DataAccess.Entities.FixedDiscipline[], FixedDiscipline[]>(fixedDiscipline);
         }
 
-        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesWithIncludeAsync()
+        public async Task<FixedDiscipline[]> GetRangeWithIncludeAsync(int offset = 1, int limit = 10)
         {
             DataAccess.Entities.FixedDiscipline[] fixedDiscipline =
-                await _unitOfWork.FixedDisciplines.GetAllWithInclude();
+                await _unitOfWork.FixedDisciplines.GetRangeWithInclude(offset, limit);
             return _mapper.Map<DataAccess.Entities.FixedDiscipline[], FixedDiscipline[]>(fixedDiscipline);
         }
 
-        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesByFixingEmployeeIdWithIncludeAsync(int fixingEmployeeId)
+        public async Task<FixedDiscipline[]> GetAllByFixingEmployeeIdWithIncludeAsync(int fixingEmployeeId)
         {
             DataAccess.Entities.FixedDiscipline[] fixedDiscipline =
                 await _unitOfWork.FixedDisciplines.GetAllByFixingEmployeeIdWithInclude(fixingEmployeeId);
             return _mapper.Map<DataAccess.Entities.FixedDiscipline[], FixedDiscipline[]>(fixedDiscipline);
         }
 
-        public async Task<FixedDiscipline> AddFixedDisciplineAsync(FixedDiscipline newFixedDiscipline)
+        public async Task<FixedDiscipline[]> GetAllByGroupIdWithIncludeAsync(int groupId)
+        {
+            DataAccess.Entities.FixedDiscipline[] fixedDiscipline =
+                await _unitOfWork.FixedDisciplines.GetAllByGroupIdWithInclude(groupId);
+            return _mapper.Map<DataAccess.Entities.FixedDiscipline[], FixedDiscipline[]>(fixedDiscipline);
+        }
+
+        public async Task<int> Count()
+        {
+            return await _unitOfWork.FixedDisciplines.Count();
+        }
+
+        public async Task<FixedDiscipline> AddAsync(FixedDiscipline newFixedDiscipline)
         {
             DataAccess.Entities.FixedDiscipline fixedDiscipline =
                 _mapper.Map<FixedDiscipline, DataAccess.Entities.FixedDiscipline>(newFixedDiscipline);
@@ -54,7 +66,7 @@ namespace EducationProcess.Services.Services
             return _mapper.Map<DataAccess.Entities.FixedDiscipline, FixedDiscipline>(fixedDiscipline);
         }
 
-        public async Task<FixedDiscipline[]> AddRangeFixedDisciplineAsync(FixedDiscipline[] newFixedDisciplines)
+        public async Task<FixedDiscipline[]> AddRangeAsync(FixedDiscipline[] newFixedDisciplines)
         {
             DataAccess.Entities.FixedDiscipline[] fixedDisciplines =
                 _mapper.Map<FixedDiscipline[], DataAccess.Entities.FixedDiscipline[]>(newFixedDisciplines);
@@ -63,7 +75,7 @@ namespace EducationProcess.Services.Services
             return _mapper.Map<DataAccess.Entities.FixedDiscipline[], FixedDiscipline[]>(fixedDisciplines);
         }
 
-        public async Task<FixedDiscipline> UpdateFixedDisciplineAsync(FixedDiscipline newFixedDiscipline)
+        public async Task<FixedDiscipline> UpdateAsync(FixedDiscipline newFixedDiscipline)
         {
             DataAccess.Entities.FixedDiscipline fixedDiscipline =
                 _mapper.Map<FixedDiscipline, DataAccess.Entities.FixedDiscipline>(newFixedDiscipline);
@@ -72,7 +84,7 @@ namespace EducationProcess.Services.Services
             return _mapper.Map<DataAccess.Entities.FixedDiscipline, FixedDiscipline>(fixedDiscipline);
         }
 
-        public async Task<FixedDiscipline[]> UpdateRangeFixedDisciplineAsync(FixedDiscipline[] newFixedDiscipline)
+        public async Task<FixedDiscipline[]> UpdateRangeAsync(FixedDiscipline[] newFixedDiscipline)
         {
             DataAccess.Entities.FixedDiscipline[] fixedDiscipline =
                 _mapper.Map<FixedDiscipline[], DataAccess.Entities.FixedDiscipline[]>(newFixedDiscipline);
@@ -81,7 +93,7 @@ namespace EducationProcess.Services.Services
             return _mapper.Map<DataAccess.Entities.FixedDiscipline[], FixedDiscipline[]>(fixedDiscipline);
         }
 
-        public async Task DeleteFixedDisciplineAsync(FixedDiscipline fixedDiscipline)
+        public async Task DeleteAsync(FixedDiscipline fixedDiscipline)
         {
             DataAccess.Entities.FixedDiscipline mappedFixedDiscipline =
                 _mapper.Map<FixedDiscipline, DataAccess.Entities.FixedDiscipline>(fixedDiscipline);
@@ -89,7 +101,7 @@ namespace EducationProcess.Services.Services
             await _unitOfWork.FixedDisciplines.DeleteAsync(mappedFixedDiscipline);
         }
 
-        public async Task DeleteRangeFixedDisciplineAsync(FixedDiscipline[] fixedDisciplines)
+        public async Task DeleteRangeAsync(FixedDiscipline[] fixedDisciplines)
         {
             DataAccess.Entities.FixedDiscipline[] mappedFixedDisciplines =
                 _mapper.Map<FixedDiscipline[], DataAccess.Entities.FixedDiscipline[]>(fixedDisciplines);

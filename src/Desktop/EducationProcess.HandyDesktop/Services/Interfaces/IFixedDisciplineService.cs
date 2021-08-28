@@ -5,11 +5,14 @@ namespace EducationProcess.HandyDesktop.Services
 {
     public interface IFixedDisciplineService
     {
-        Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync();
-        Task<FixedDiscipline[]> GetAllFixedDisciplinesByTeacherIdAsync(int teacherId);
-        Task<FixedDiscipline> CreateFixedDisciplineAsync(FixedDiscipline fixedDiscipline);
-        Task<FixedDiscipline[]> CreateFixedDisciplineArrayAsync(FixedDiscipline[] fixedDisciplines);
-        Task<FixedDiscipline> UpdateFixedDisciplineAsync(FixedDiscipline fixedDiscipline);
-        Task<FixedDiscipline[]> UpdateFixedDisciplineArray(FixedDiscipline[] fixedDisciplines);
+        Task<FixedDiscipline[]> GetAllAsync();
+        Task<FixedDiscipline[]> GetPrettyRangeAsync(int pageNumber = 1, int pageSize = 10);
+        Task<FixedDiscipline[]> GetAllByTeacherIdAsync(int teacherId);
+        Task<FixedDiscipline[]> GetAllByGroupIdAsync(int teacherId);
+        Task<int> GetCount();
+        Task<FixedDiscipline> CreateAsync(FixedDiscipline fixedDiscipline);
+        Task<FixedDiscipline[]> CreateArrayAsync(FixedDiscipline[] fixedDisciplines);
+        Task<FixedDiscipline> UpdateAsync(FixedDiscipline fixedDiscipline);
+        Task<FixedDiscipline[]> UpdateArray(FixedDiscipline[] fixedDisciplines);
     }
 }

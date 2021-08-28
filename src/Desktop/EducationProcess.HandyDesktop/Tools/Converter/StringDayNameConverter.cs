@@ -1,16 +1,18 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using System.Windows.Media;
-using HandyControl.Tools;
 
 namespace EducationProcess.HandyDesktop.Tools.Converter
 {
-    public class String2BrushConverter : IValueConverter
+    public class StringDayNameConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is string str ? ResourceHelper.GetResource<Brush>(str) : default;
+            if (value is DateTime date)
+            {
+                return date.DayOfWeek.ToString();
+            }
+            return string.Empty;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

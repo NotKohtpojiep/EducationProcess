@@ -189,9 +189,18 @@ namespace EducationProcess.HandyDesktop.Properties.Langs {
         /// <summary>
         ///   Ищет локализованную строку, похожую на Расписание.
         /// </summary>
-        public static string Shedule {
+        public static string Schedule {
             get {
-                return ResourceManager.GetString("Shedule", resourceCulture);
+                return ResourceManager.GetString("Schedule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Управление расписанием.
+        /// </summary>
+        public static string ScheduleManagement {
+            get {
+                return ResourceManager.GetString("ScheduleManagement", resourceCulture);
             }
         }
         

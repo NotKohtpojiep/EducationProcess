@@ -52,6 +52,8 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
             OnPropertyChanged(nameof(ConfirmLesson));
             OnPropertyChanged(nameof(Lessons));
             OnPropertyChanged(nameof(MySchedule));
+            OnPropertyChanged(nameof(ScheduleManagement));
+            OnPropertyChanged(nameof(Schedule));
         }
 
         public string About => Lang.About;
@@ -69,6 +71,8 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
         public string ConfirmLesson => Lang.ConfirmLesson;
         public string Lessons => Lang.Lessons;
         public string MySchedule => Lang.MySchedule;
+        public string Schedule => Lang.Schedule;
+        public string ScheduleManagement => Lang.ScheduleManagement;
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -94,5 +98,7 @@ namespace EducationProcess.HandyDesktop.Properties.Langs
         public static string ConfirmLesson = nameof(ConfirmLesson);
         public static string Lessons = nameof(Lessons);
         public static string MySchedule = nameof(MySchedule);
+        public static string ScheduleManagement = nameof(ScheduleManagement);
+        public static string Schedule = nameof(Schedule);
     }
 }

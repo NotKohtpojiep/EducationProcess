@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              DataContext="{Binding ChainDisciplineView, Source={StaticResource Locator}}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
@@ -25,27 +26,36 @@
             </Button>
         </Grid>
 
-        <DataGrid x:Name="ChainingDisciplinesDataGrid" Grid.Row="1" IsReadOnly="True" 
-                  ItemsSource="{Binding FixedDisciplineCollection}" 
-                  AutoGenerateColumns="False"  CanUserAddRows="false" Margin="10">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Преподаватель" Width="*" Binding="{Binding FixingEmployeeFio}"/>
-                <DataGridTextColumn Header="Дисциплина" Width="*" Binding="{Binding DisciplineName}"/>
-                <DataGridTextColumn Header="Группа" Width="0.3*" Binding="{Binding GroupName}"/>
-                <DataGridTextColumn Header="Семестр" Width="0.3*" Binding="{Binding SemesterNumbers}"/>
-                <DataGridTemplateColumn Header="Подтверждение" Width="Auto">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Border Background="Gray" CornerRadius="2" Margin="10" Width="25" Height="25">
-                                <StackPanel>
-                                    <TextBlock Text="{Binding IsAgreed}"></TextBlock>
-                                    <iconPacks:PackIconMaterial Width="20" Height="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Fingerprint" Foreground="White" />
-                                </StackPanel>
-                            </Border>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Grid.Row="1">
+            <hc:Pagination MaxPageCount="{Binding MaxPageCount}" PageIndex="{Binding PageIndex}" IsJumpEnabled="True">
+                <hc:Interaction.Triggers>
+                    <hc:EventTrigger EventName="PageUpdated">
+                        <hc:EventToCommand Command="{Binding UpdatePageCommand}" PassEventArgsToCommand="True" />
+                    </hc:EventTrigger>
+                </hc:Interaction.Triggers>
+            </hc:Pagination>
+            <DataGrid x:Name="ChainingDisciplinesDataGrid"  IsReadOnly="True" 
+                      ItemsSource="{Binding FixedDisciplineCollection}" 
+                      AutoGenerateColumns="False"  CanUserAddRows="false" Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Преподаватель" Width="*" Binding="{Binding FixingEmployeeFio}"/>
+                    <DataGridTextColumn Header="Дисциплина" Width="*" Binding="{Binding DisciplineName}"/>
+                    <DataGridTextColumn Header="Группа" Width="0.3*" Binding="{Binding GroupName}"/>
+                    <DataGridTextColumn Header="Семестр" Width="0.3*" Binding="{Binding SemesterNumbers}"/>
+                    <DataGridTemplateColumn Header="Подтверждение" Width="Auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Border Background="Gray" CornerRadius="2" Margin="10" Width="25" Height="25">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding IsAgreed}"></TextBlock>
+                                        <iconPacks:PackIconMaterial Width="20" Height="20"  HorizontalAlignment="Center" VerticalAlignment="Center" Kind="Fingerprint" Foreground="White" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
     </Grid>
 </UserControl>

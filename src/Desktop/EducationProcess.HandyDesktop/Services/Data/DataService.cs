@@ -82,7 +82,15 @@ namespace EducationProcess.HandyDesktop.Services
                     TargetCtlName = "ChainDisciplineView",
                     IsVisible = true,
                     HeadSideMenu = disciplineHeadModel
-                }
+                },
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "Schedule",
+                    TargetCtlName = "ScheduleView",
+                    IsVisible = true,
+                    HeadSideMenu = lessonHeadModel
+                },
             };
 
             // Преподаватель
@@ -112,10 +120,38 @@ namespace EducationProcess.HandyDesktop.Services
                     IsVisible = true,
                     HeadSideMenu = lessonHeadModel
                 },
-                
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "Schedule",
+                    TargetCtlName = "ScheduleView",
+                    IsVisible = true,
+                    HeadSideMenu = lessonHeadModel
+                },
             };
 
-            return teacherViewCollection;
+            // Сотрудник УМО
+            List<SideMenuModel> umoViewCollection = new List<SideMenuModel>()
+            {
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "Schedule",
+                    TargetCtlName = "ScheduleView",
+                    IsVisible = true,
+                    HeadSideMenu = lessonHeadModel
+                },
+                new SideMenuModel()
+                {
+                    ImgPath = "",
+                    Name = "ScheduleManagement",
+                    TargetCtlName = "ScheduleEditorView",
+                    IsVisible = true,
+                    HeadSideMenu = lessonHeadModel
+                },
+            };
+
+            return umoHeadViewCollection;
         }
     }
 }

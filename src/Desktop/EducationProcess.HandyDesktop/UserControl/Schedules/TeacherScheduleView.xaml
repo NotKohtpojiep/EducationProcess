@@ -10,12 +10,11 @@
 
     <Grid>
         <ScrollViewer CanContentScroll="True">
-            <ItemsControl ItemsPanel="{StaticResource FluidMoveBehaviorWrapPanelItemsPanelTemplate}" 
-                              ItemsSource="{Binding ScheduleDisciplineCollection}">
+            <ItemsControl ItemsPanel="{StaticResource FluidMoveBehaviorWrapPanelItemsPanelTemplate}" ItemsSource="{Binding ScheduleDisciplineCollection}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Width="565" Margin="0,10,0,10">
-                            <Label FontSize="32" VerticalAlignment="Top" Content="{Binding DayNameOfWeek}"/>
+                            <Label FontSize="32" VerticalAlignment="Top" Content="{Binding Date, Converter={StaticResource StringDayNameConverter}}"/>
                             <Viewbox Height="550" VerticalAlignment="Top">
                                 <ItemsControl ItemsSource="{Binding Lessons}">
                                     <ItemsControl.ItemTemplate>
@@ -24,14 +23,16 @@
                                                 <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                                                     <Label FontSize="24" Content="{Binding PairNumber}"></Label>
                                                     <Viewbox  Stretch="Uniform"  HorizontalAlignment="Left" Height="100" Width="500">
-                                                        <ItemsControl ItemsSource="{Binding LessonCells}">
+                                                        <ItemsControl ItemsSource="{Binding Disciplines}">
                                                             <ItemsControl.ItemTemplate>
                                                                 <DataTemplate>
-                                                                    <userControl:LessonCell x:Name="LessonCell" Margin="0,2,0,2" HorizontalAlignment="Left"
-                                                                                Note="{Binding SubNumber}"
-                                                                                Discipline="{Binding Discipline}"  
-                                                                                FixedFor="{Binding FixedFor}"
-                                                                                Audience="{Binding Audience}" />
+                                                                    <StackPanel Orientation="Horizontal">
+                                                                        <TextBlock VerticalAlignment="Center" Margin="5,0,5,0" Text="{Binding IsEvenPair, Converter={StaticResource BoolEvenPairToStringConverter}}"/>
+                                                                        <StackPanel>
+                                                                            <TextBlock Text="{Binding FixedDiscipline.SemesterDiscipline.Discipline.Name}"/>
+                                                                            <TextBlock Text="{Binding FixedDiscipline.Group.Name}"/>
+                                                                        </StackPanel>
+                                                                    </StackPanel>
                                                                 </DataTemplate>
                                                             </ItemsControl.ItemTemplate>
                                                         </ItemsControl>
@@ -43,11 +44,9 @@
                                 </ItemsControl>
                             </Viewbox>
                         </StackPanel>
-
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
     </Grid>
-
 </UserControl>

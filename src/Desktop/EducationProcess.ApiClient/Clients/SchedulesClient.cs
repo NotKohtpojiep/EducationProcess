@@ -30,7 +30,7 @@ namespace EducationProcess.ApiClient.Clients
             await _httpFacade.Get<ScheduleDisciplineReplacement[]>($"ScheduleDisciplineReplacements/array");
 
         public async Task<ScheduleDiscipline[]> GetAllScheduleDisciplinesForWeekByDateWithIncludeAsync(DateTime date) =>
-            await _httpFacade.Get<ScheduleDiscipline[]>($"ScheduleDisciplines/for-all/{date}");
+            await _httpFacade.Get<ScheduleDiscipline[]>($"ScheduleDisciplines/for-all/{date:yyyy-MM-dd}");
 
         public async Task<ScheduleDiscipline[]> GetCurrentScheduleDisciplinesForGroupWithIncludeAsync(int groupId) =>
             await _httpFacade.Get<ScheduleDiscipline[]>($"ScheduleDisciplines/for/{groupId}");

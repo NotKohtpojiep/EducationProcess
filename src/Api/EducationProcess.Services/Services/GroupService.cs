@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AutoMapper;
 using EducationProcess.DataAccess;
 using EducationProcess.Domain.Models;
@@ -28,6 +29,13 @@ namespace EducationProcess.Services.Services
         {
             DataAccess.Entities.Group[] group =
                 await _unitOfWork.Groups.GetAllAsync();
+            return _mapper.Map<DataAccess.Entities.Group[], Group[]>(group);
+        }
+
+        public async Task<Group[]> GetAllCurrentGroupsByDateAsync(DateTime date)
+        {
+            DataAccess.Entities.Group[] group =
+                await _unitOfWork.Groups.GetAllCurrentGroupsByDate(date);
             return _mapper.Map<DataAccess.Entities.Group[], Group[]>(group);
         }
 

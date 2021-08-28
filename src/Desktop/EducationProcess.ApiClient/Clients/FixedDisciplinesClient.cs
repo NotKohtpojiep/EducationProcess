@@ -15,36 +15,43 @@ namespace EducationProcess.ApiClient.Clients
             _httpFacade = httpFacade;
         }
 
-        public async Task<FixedDiscipline> GetFixedDisciplineAsync(int fixedDisciplineId) =>
+        public async Task<FixedDiscipline> GetAsync(int fixedDisciplineId) =>
             await _httpFacade.Get<FixedDiscipline>($"FixedDisciplines/{fixedDisciplineId}");
 
-        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync() =>
-            await _httpFacade.Get<FixedDiscipline[]>($"FixedDisciplines/array");
+        public async Task<FixedDiscipline[]> GetAllAsync() =>
+            await _httpFacade.Get<FixedDiscipline[]>($"FixedDisciplines");
 
-        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesWithIncludeAsync() =>
-            await _httpFacade.Get<FixedDiscipline[]>($"FixedDisciplines/array/with-include");
+        public async Task<FixedDiscipline[]> GetAllWithIncludeAsync(int pageNumber = 1, int pageSize = 10) =>
+            await _httpFacade.Get<FixedDiscipline[]>($"FixedDisciplines/pretty?PageNumber={pageNumber}&PageSize={pageSize}");
 
-        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesByTeacherIdWithIncludeAsync(int teacherId) =>
-            await _httpFacade.Get<FixedDiscipline[]>($"FixedDisciplines/for-teacher/{teacherId}");
+        public async Task<FixedDiscipline[]> GetAllByTeacherIdWithIncludeAsync(int teacherId) =>
+            await _httpFacade.Get<FixedDiscipline[]>($"FixedDisciplines/pretty/teacher/{teacherId}");
 
-        public async Task<FixedDiscipline> CreateFixedDisciplineAsync(FixedDisciplineRequest fixedDiscipline) =>
-            await _httpFacade.Post<FixedDiscipline>($"FixedDisciplines", fixedDiscipline);
+        public async Task<FixedDiscipline[]> GetAllByGroupIdWithIncludeAsync(int groupId) =>
+            await _httpFacade.Get<FixedDiscipline[]>($"FixedDisciplines/pretty/group/{groupId}");
 
-        public async Task<FixedDiscipline[]> CreateFixedDisciplineArrayAsync(FixedDisciplineRequest[] fixedDisciplines) =>
+        public async Task<int> GetCount() =>
+            await _httpFacade.Get<int>($"FixedDisciplines/count");
+
+
+        public async Task<FixedDiscipline> CreateAsync(FixedDisciplineRequest fixedDiscipline) =>
+            await _httpFacade.Post<FixedDiscipline>($"FixedDisciplines/{fixedDiscipline.FixedDisciplineId}", fixedDiscipline);
+
+        public async Task<FixedDiscipline[]> CreateArrayAsync(FixedDisciplineRequest[] fixedDisciplines) =>
             await _httpFacade.Post<FixedDiscipline[]>($"FixedDisciplines", fixedDisciplines);
 
 
-        public async Task<FixedDiscipline> UpdateFixedDisciplineAsync(FixedDisciplineRequest fixedDiscipline) =>
-            await _httpFacade.Put<FixedDiscipline>($"FixedDisciplines", fixedDiscipline);
+        public async Task<FixedDiscipline> UpdateAsync(FixedDisciplineRequest fixedDiscipline) =>
+            await _httpFacade.Put<FixedDiscipline>($"FixedDisciplines/{fixedDiscipline.FixedDisciplineId}", fixedDiscipline);
 
-        public async Task<FixedDiscipline[]> UpdateFixedDisciplineArrayAsync(FixedDisciplineRequest[] fixedDisciplines) =>
+        public async Task<FixedDiscipline[]> UpdateArrayAsync(FixedDisciplineRequest[] fixedDisciplines) =>
             await _httpFacade.Put<FixedDiscipline[]>($"FixedDisciplines", fixedDisciplines);
 
 
-        public async Task DeleteFixedDisciplineAsync(FixedDisciplineRequest fixedDiscipline) =>
-            await _httpFacade.Delete($"FixedDisciplines", fixedDiscipline);
+        public async Task DeleteAsync(FixedDisciplineRequest fixedDiscipline) =>
+            await _httpFacade.Delete($"FixedDisciplines/{fixedDiscipline.FixedDisciplineId}", fixedDiscipline);
 
-        public async Task DeleteFixedDisciplineArrayAsync(FixedDisciplineRequest[] fixedDisciplines) =>
+        public async Task DeleteArrayAsync(FixedDisciplineRequest[] fixedDisciplines) =>
             await _httpFacade.Delete($"FixedDisciplines", fixedDisciplines);
     }
 }

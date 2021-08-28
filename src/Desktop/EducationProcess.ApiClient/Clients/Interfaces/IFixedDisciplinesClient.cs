@@ -6,18 +6,20 @@ namespace EducationProcess.ApiClient.Clients.Interfaces
 {
     public interface IFixedDisciplinesClient
     {
-        Task<FixedDiscipline> GetFixedDisciplineAsync(int fixedDisciplineId);
-        Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync();
-        Task<FixedDiscipline[]> GetAllFixedDisciplinesWithIncludeAsync();
-        Task<FixedDiscipline[]> GetAllFixedDisciplinesByTeacherIdWithIncludeAsync(int teacherId);
+        Task<FixedDiscipline> GetAsync(int fixedDisciplineId);
+        Task<FixedDiscipline[]> GetAllAsync();
+        Task<FixedDiscipline[]> GetAllWithIncludeAsync(int pageNumber = 1, int pageSize = 10);
+        Task<FixedDiscipline[]> GetAllByTeacherIdWithIncludeAsync(int teacherId);
+        Task<FixedDiscipline[]> GetAllByGroupIdWithIncludeAsync(int teacherId);
+        Task<int> GetCount();
 
-        Task<FixedDiscipline> CreateFixedDisciplineAsync(FixedDisciplineRequest fixedDiscipline);
-        Task<FixedDiscipline[]> CreateFixedDisciplineArrayAsync(FixedDisciplineRequest[] fixedDisciplines);
+        Task<FixedDiscipline> CreateAsync(FixedDisciplineRequest fixedDiscipline);
+        Task<FixedDiscipline[]> CreateArrayAsync(FixedDisciplineRequest[] fixedDisciplines);
 
-        Task<FixedDiscipline> UpdateFixedDisciplineAsync(FixedDisciplineRequest fixedDiscipline);
-        Task<FixedDiscipline[]> UpdateFixedDisciplineArrayAsync(FixedDisciplineRequest[] fixedDisciplines);
+        Task<FixedDiscipline> UpdateAsync(FixedDisciplineRequest fixedDiscipline);
+        Task<FixedDiscipline[]> UpdateArrayAsync(FixedDisciplineRequest[] fixedDisciplines);
 
-        Task DeleteFixedDisciplineAsync(FixedDisciplineRequest fixedDiscipline);
-        Task DeleteFixedDisciplineArrayAsync(FixedDisciplineRequest[] fixedDisciplines);
+        Task DeleteAsync(FixedDisciplineRequest fixedDiscipline);
+        Task DeleteArrayAsync(FixedDisciplineRequest[] fixedDisciplines);
     }
 }

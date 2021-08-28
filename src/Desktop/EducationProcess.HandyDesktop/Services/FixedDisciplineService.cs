@@ -15,39 +15,53 @@ namespace EducationProcess.HandyDesktop.Services
             _educationProcessClient = educationProcessClient;
         }
 
-        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesAsync()
+        public async Task<FixedDiscipline[]> GetAllAsync()
         {
-            return await _educationProcessClient.FixedDisciplines.GetAllFixedDisciplinesWithIncludeAsync();
+            return await _educationProcessClient.FixedDisciplines.GetAllWithIncludeAsync();
         }
 
-        public async Task<FixedDiscipline[]> GetAllFixedDisciplinesByTeacherIdAsync(int teacherId)
+        public async Task<FixedDiscipline[]> GetPrettyRangeAsync(int pageNumber = 1, int pageSize = 10)
         {
-            return await _educationProcessClient.FixedDisciplines.GetAllFixedDisciplinesByTeacherIdWithIncludeAsync(teacherId);
+            return await _educationProcessClient.FixedDisciplines.GetAllWithIncludeAsync(pageNumber, pageSize);
         }
 
-        public async Task<FixedDiscipline> CreateFixedDisciplineAsync(FixedDiscipline fixedDiscipline)
+        public async Task<FixedDiscipline[]> GetAllByTeacherIdAsync(int teacherId)
         {
-
-            return await _educationProcessClient.FixedDisciplines.CreateFixedDisciplineAsync(ConvertToFixedDisciplineRequest(fixedDiscipline));
+            return await _educationProcessClient.FixedDisciplines.GetAllByTeacherIdWithIncludeAsync(teacherId);
         }
 
-        public async Task<FixedDiscipline[]> CreateFixedDisciplineArrayAsync(FixedDiscipline[] fixedDisciplines)
+        public async Task<FixedDiscipline[]> GetAllByGroupIdAsync(int groupId)
+        {
+            return await _educationProcessClient.FixedDisciplines.GetAllByGroupIdWithIncludeAsync(groupId);
+        }
+
+        public async Task<int> GetCount()
+        {
+            return await _educationProcessClient.FixedDisciplines.GetCount();
+        }
+
+        public async Task<FixedDiscipline> CreateAsync(FixedDiscipline fixedDiscipline)
+        {
+            return await _educationProcessClient.FixedDisciplines.CreateAsync(ConvertToFixedDisciplineRequest(fixedDiscipline));
+        }
+
+        public async Task<FixedDiscipline[]> CreateArrayAsync(FixedDiscipline[] fixedDisciplines)
         {
             FixedDisciplineRequest[] fixedDisciplineRequests =
                 fixedDisciplines.Select(ConvertToFixedDisciplineRequest).ToArray();
-            return await _educationProcessClient.FixedDisciplines.CreateFixedDisciplineArrayAsync(fixedDisciplineRequests);
+            return await _educationProcessClient.FixedDisciplines.CreateArrayAsync(fixedDisciplineRequests);
         }
 
-        public async Task<FixedDiscipline> UpdateFixedDisciplineAsync(FixedDiscipline fixedDiscipline)
+        public async Task<FixedDiscipline> UpdateAsync(FixedDiscipline fixedDiscipline)
         {
-            return await _educationProcessClient.FixedDisciplines.UpdateFixedDisciplineAsync(ConvertToFixedDisciplineRequest(fixedDiscipline));
+            return await _educationProcessClient.FixedDisciplines.UpdateAsync(ConvertToFixedDisciplineRequest(fixedDiscipline));
         }
 
-        public async Task<FixedDiscipline[]> UpdateFixedDisciplineArray(FixedDiscipline[] fixedDisciplines)
+        public async Task<FixedDiscipline[]> UpdateArray(FixedDiscipline[] fixedDisciplines)
         {
             FixedDisciplineRequest[] fixedDisciplineRequests =
                 fixedDisciplines.Select(ConvertToFixedDisciplineRequest).ToArray();
-            return await _educationProcessClient.FixedDisciplines.UpdateFixedDisciplineArrayAsync(fixedDisciplineRequests);
+            return await _educationProcessClient.FixedDisciplines.UpdateArrayAsync(fixedDisciplineRequests);
         }
 
         private FixedDisciplineRequest ConvertToFixedDisciplineRequest(FixedDiscipline fixedDiscipline)

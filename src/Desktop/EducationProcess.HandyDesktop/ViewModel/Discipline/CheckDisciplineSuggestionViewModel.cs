@@ -59,7 +59,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
             FixedDiscipline[] fixedDisciplines;
             try
             {
-                fixedDisciplines = await _fixedDisciplineService.GetAllFixedDisciplinesByTeacherIdAsync(2);
+                fixedDisciplines = await _fixedDisciplineService.GetAllByTeacherIdAsync(2);
             }
             catch (SocketException e)
             {
@@ -83,7 +83,8 @@ namespace EducationProcess.HandyDesktop.ViewModel
             {
                 x.SemesterDiscipline.DisciplineId,
                 x.GroupId,
-                x.FixingEmployeeId
+                x.FixingEmployeeId,
+                x.PublishedAt
             }))
             {
                 int min = item.Min(x => x.SemesterDiscipline.Semester.Number);

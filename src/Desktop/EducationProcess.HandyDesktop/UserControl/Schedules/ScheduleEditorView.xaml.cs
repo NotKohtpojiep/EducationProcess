@@ -1,8 +1,8 @@
 ﻿namespace EducationProcess.HandyDesktop.UserControl
 {
-    public partial class CourceScheduleView
+    public partial class ScheduleEditorView
     {
-        public CourceScheduleView()
+        public ScheduleEditorView()
         {
             InitializeComponent();
         }

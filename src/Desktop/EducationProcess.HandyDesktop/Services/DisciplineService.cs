@@ -18,7 +18,7 @@ namespace EducationProcess.HandyDesktop.Services
             return await _educationProcessClient.Disciplines.GetAllDisciplinesWithIncludeAsync();
         }
 
-        public async Task<Discipline> CreateDiscipline(Discipline discipline)
+        public Task<Discipline> CreateDiscipline(Discipline discipline)
         {
             throw new System.NotImplementedException();
         }

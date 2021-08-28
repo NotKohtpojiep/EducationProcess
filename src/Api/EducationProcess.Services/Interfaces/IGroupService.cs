@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using EducationProcess.Domain.Models;
 
 namespace EducationProcess.Services.Interfaces
@@ -7,6 +8,7 @@ namespace EducationProcess.Services.Interfaces
     {
         Task<Group> GetGroupByIdAsync(int groupId);
         Task<Group[]> GetAllGroupsAsync();
+        Task<Group[]> GetAllCurrentGroupsByDateAsync(DateTime date);
         Task<Group> AddGroupAsync(Group newGroup);
         Task<Group[]> AddRangeGroupAsync(Group[] newGroups);
         Task<Group> UpdateGroupAsync(Group newGroup);

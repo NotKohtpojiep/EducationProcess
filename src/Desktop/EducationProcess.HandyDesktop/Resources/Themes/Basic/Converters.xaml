@@ -3,8 +3,12 @@
                     xmlns:converter="clr-namespace:EducationProcess.HandyDesktop.Tools.Converter">
 
     <converter:PathConverter x:Key="PathConverter"/>
+    <converter:BoolEvenPairToStringConverter x:Key="BoolEvenPairToStringConverter"/>
     <converter:StringRepeatConverter x:Key="StringRepeatConverter"/>
-    <converter:String2BrushConverter x:Key="String2BrushConverter"/>
+    <converter:StringDayNameConverter x:Key="StringDayNameConverter"/>
+    <converter:StringDayAndMonthConverter x:Key="StringDayAndMonthConverter"/>
+    <converter:StringToBrushConverter x:Key="String2BrushConverter"/>
+    <converter:IntToBoolConverter x:Key="IntToBoolConverter"/>
     <converter:HatchBrushConverter x:Key="HatchBrushConverter"/>
 
 </ResourceDictionary>

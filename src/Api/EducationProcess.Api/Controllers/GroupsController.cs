@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Threading.Tasks;
@@ -31,7 +32,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(group);
         }
 
-        [HttpGet("array")]
+        [HttpGet]
         [ProducesResponseType(typeof(Group[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GetRange()
@@ -42,7 +43,18 @@ namespace EducationProcess.Api.Controllers
             return Ok(groups);
         }
 
-        [HttpPost]
+        [HttpGet("current")]
+        [ProducesResponseType(typeof(Group[]), (int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> GetCurrentGroups([FromQuery] DateTime date)
+        {
+            Group[] currentGroups = await _groupService.GetAllCurrentGroupsByDateAsync(date);
+            if (currentGroups.Length == 0)
+                return NotFound();
+            return Ok(currentGroups);
+        }
+
+        [HttpPost("{id:int}")]
         [ProducesResponseType(typeof(Group), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Group([FromBody] Group group)
@@ -53,7 +65,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(addedGroup);
         }
 
-        [HttpPost("array")]
+        [HttpPost]
         [ProducesResponseType(typeof(Group[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> GroupRange([FromBody] Group[] groups)
@@ -64,7 +76,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(addedGroups);
         }
 
-        [HttpPut]
+        [HttpPut("{id:int}")]
         [ProducesResponseType(typeof(Group), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Put([FromBody] Group group)
@@ -75,7 +87,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(updatedGroup);
         }
 
-        [HttpPut("array")]
+        [HttpPut]
         [ProducesResponseType(typeof(Group[]), (int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> PutRange([FromBody] Group[] groups)
@@ -86,7 +98,7 @@ namespace EducationProcess.Api.Controllers
             return Ok(updatedGroups);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id:int}")]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Delete([FromBody] Group group)
@@ -95,7 +107,7 @@ namespace EducationProcess.Api.Controllers
             return Ok();
         }
 
-        [HttpDelete("array")]
+        [HttpDelete]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [ProducesResponseType((int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> DeleteRange([FromBody] Group[] groups)

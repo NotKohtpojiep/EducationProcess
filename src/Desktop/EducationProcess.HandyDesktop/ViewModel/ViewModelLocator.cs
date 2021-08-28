@@ -19,6 +19,7 @@ namespace EducationProcess.HandyDesktop.ViewModel
             SimpleIoc.Default.Register<IEducationPlanService, EducationPlanService>();
             SimpleIoc.Default.Register<IEducationPlanSemesterDisciplineService, EducationPlanSemesterDisciplineService>();
             SimpleIoc.Default.Register<IFixedDisciplineService, FixedDisciplineService>();
+            SimpleIoc.Default.Register<IGroupService, GroupService>();
             SimpleIoc.Default.Register<ISemesterDisciplineService, SemesterDisciplineService>();
             SimpleIoc.Default.Register<IScheduleDisciplineService, ScheduleDisciplineService>();
 
@@ -29,6 +30,8 @@ namespace EducationProcess.HandyDesktop.ViewModel
             SimpleIoc.Default.Register<EducationPlanMenuViewModel>();
             SimpleIoc.Default.Register<ChainDisciplineViewModel>();
             SimpleIoc.Default.Register<CheckDisciplineSuggestionViewModel>();
+            SimpleIoc.Default.Register<ScheduleViewModel>();
+            SimpleIoc.Default.Register<ScheduleEditorViewModel>();
             SimpleIoc.Default.Register<TeacherScheduleViewModel>();
         }
 
@@ -50,6 +53,10 @@ namespace EducationProcess.HandyDesktop.ViewModel
         public ChainDisciplineViewModel ChainDisciplineView => SimpleIoc.Default.GetInstance<ChainDisciplineViewModel>();
 
         public CheckDisciplineSuggestionViewModel CheckDisciplineSuggestionView => SimpleIoc.Default.GetInstance<CheckDisciplineSuggestionViewModel>();
+
+        public ScheduleViewModel ScheduleView => SimpleIoc.Default.GetInstance<ScheduleViewModel>();
+
+        public ScheduleEditorViewModel ScheduleEditorView => SimpleIoc.Default.GetInstance<ScheduleEditorViewModel>();
 
         public TeacherScheduleViewModel TeacherScheduleView => SimpleIoc.Default.GetInstance<TeacherScheduleViewModel>();
 

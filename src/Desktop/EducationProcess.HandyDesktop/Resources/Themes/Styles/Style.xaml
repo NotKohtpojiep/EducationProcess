@@ -94,7 +94,6 @@
         <Setter Property="OtherButtonHoverForeground" Value="White"/>
         <Setter Property="NonClientAreaForeground" Value="White"/>
         <Setter Property="CloseButtonForeground" Value="White"/>
-        <Setter Property="Icon" Value="/EducationProcess.HandyDesktop;component/Resources/Img/icon.ico"/>
     </Style>
 
 
@@ -207,6 +206,22 @@
                 <ControlTemplate TargetType="GroupItem">
                     <hc:SimpleStackPanel>
                         <hc:Divider Content="{ex:Lang Key={Binding Name}}" LineStrokeDashArray="2, 2" Padding="16,0" Margin="0,16,0,10"/>
+                        <ItemsPresenter Margin="{TemplateBinding Padding}"/>
+                    </hc:SimpleStackPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="DateGroupItemStyle" TargetType="GroupItem">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="GroupItem">
+                    <hc:SimpleStackPanel>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                            <Label FontSize="32" VerticalAlignment="Top" Content="{Binding Date, Converter={StaticResource StringDayAndMonthConverter}}"/>
+                            <Label FontSize="32" VerticalAlignment="Top" Content="{Binding Date, Converter={StaticResource StringDayNameConverter}}"/>
+                        </StackPanel>
                         <ItemsPresenter Margin="{TemplateBinding Padding}"/>
                     </hc:SimpleStackPanel>
                 </ControlTemplate>

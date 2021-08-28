@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using EducationProcess.ApiClient.Clients.Interfaces;
 using EducationProcess.ApiClient.Internal.Http;
@@ -19,25 +20,28 @@ namespace EducationProcess.ApiClient.Clients
             await _httpFacade.Get<Group>($"Groups/{groupId}");
 
         public async Task<Group[]> GetAllGroupsAsync() =>
-            await _httpFacade.Get<Group[]>($"Groups/array");
+            await _httpFacade.Get<Group[]>($"Groups");
+
+        public async Task<Group[]> GetAllCurrentGroupsByDateAsync(DateTime date) =>
+            await _httpFacade.Get<Group[]>($"Groups/current?date={date:yyyy-MM-dd}");
 
 
         public async Task<Group> CreateGroupAsync(GroupRequest group) =>
-            await _httpFacade.Post<Group>($"Groups", group);
+            await _httpFacade.Post<Group>($"Groups/{group.GroupId}", group);
 
         public async Task<Group[]> CreateGroupArrayAsync(GroupRequest[] groups) =>
             await _httpFacade.Post<Group[]>($"Groups", groups);
 
 
         public async Task<Group> UpdateGroupAsync(GroupRequest group) =>
-            await _httpFacade.Put<Group>($"Groups", group);
+            await _httpFacade.Put<Group>($"Groups/{group.GroupId}", group);
 
         public async Task<Group[]> UpdateGroupArrayAsync(GroupRequest[] groups) =>
             await _httpFacade.Put<Group[]>($"Groups", groups);
 
 
         public async Task DeleteGroupAsync(GroupRequest group) =>
-            await _httpFacade.Delete($"Groups", group);
+            await _httpFacade.Delete($"Groups/{group.GroupId}", group);
 
         public async Task DeleteGroupArrayAsync(GroupRequest[] groups) =>
             await _httpFacade.Delete($"Groups", groups);
