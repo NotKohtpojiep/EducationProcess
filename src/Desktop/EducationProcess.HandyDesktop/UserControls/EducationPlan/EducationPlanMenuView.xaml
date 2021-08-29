@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="EducationProcess.HandyDesktop.UserControls.EducationPlanMenuView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             DataContext="{Binding EducationPlanMenuView, Source={StaticResource Locator}}"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Horizontal">
+                <Label  Content="Список учебных планов" VerticalAlignment="Center" Margin="10" FontSize="24"></Label>
+            </StackPanel>
+
+            <Grid Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBox Grid.Column="0"
+                             Margin="10"
+                             HorizontalContentAlignment="Stretch"
+                             SpellCheck.IsEnabled="True"
+                             ToolTip="Введите слово для поиска">
+                    </TextBox>
+                    <ComboBox Grid.Column="1" Margin="10"/>
+                </Grid>
+                <DockPanel Grid.Column="1" LastChildFill="False" >
+                    <Button  DockPanel.Dock="Right" Margin="10" Background="Tomato" ToolTip="Удалить учебный план"
+                             Command="{Binding DeleteEducationPlanCommand}">
+                        <iconPacks:PackIconModern Width="20" Height="20" Kind="Delete" Foreground="White"  />
+                    </Button>
+                    <Button  DockPanel.Dock="Right" Margin="10" Background="DarkOrange" ToolTip="Редактировать учебный план"
+                             Command="{Binding EditEducationPlanCommand}" CommandParameter="{Binding EducationPlanSelected}">
+                        <iconPacks:PackIconModern Width="20" Height="20" Kind="Edit" Foreground="White" />
+                    </Button>
+                    <Button  DockPanel.Dock="Right" Margin="10" Background="LimeGreen" ToolTip="Создать новый учебный план"
+                             Command="{Binding AddEducationPlanCommand}">
+                        <iconPacks:PackIconModern Width="20" Height="20" Kind="Add" Foreground="White" />
+                    </Button>
+                    <Button  DockPanel.Dock="Right" Margin="10" Background="LightSkyBlue" ToolTip="Просмотр учебного плана"
+                             Command="{Binding ViewSelectedEducationPlanDisciplinesCommand}">
+                        <iconPacks:PackIconModern Width="20" Height="20" Kind="Eye" Foreground="White" />
+                    </Button>
+                    <Button  DockPanel.Dock="Right" Margin="10" Background="MediumPurple" ToolTip="Закреплённые группы"
+                             Command="{Binding ViewSelectedEducationPlanGroupsCommand}" >
+                        <iconPacks:PackIconFontAwesome Width="20" Height="20" Kind="LinkSolid" Foreground="White" />
+                    </Button>
+                </DockPanel>
+            </Grid>
+        </Grid>
+
+        <hc:ToggleBlock
+            Grid.Row="1"
+            IsChecked="{Binding DataGot}" 
+            VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+            <hc:ToggleBlock.UnCheckedContent>
+                <hc:LoadingCircle IsRunning="{Binding DataGot,Converter={StaticResource Boolean2BooleanReConverter}}"/>
+            </hc:ToggleBlock.UnCheckedContent>
+            <hc:ToggleBlock.CheckedContent>
+                <DataGrid x:Name="SemesterDisciplinesDataGrid" 
+                  Grid.Row="1" IsReadOnly="True"
+                  ItemsSource="{Binding EducationPlanCollection}"
+                  SelectedValue="{Binding EducationPlanSelected}"
+                  AutoGenerateColumns="False"  CanUserAddRows="false" 
+                  Margin="10">
+                    <DataGrid.InputBindings>
+                        <MouseBinding Gesture="LeftDoubleClick" 
+                              Command="{Binding ViewSelectedEducationPlanDisciplinesCommand}" 
+                              CommandParameter="{Binding ElementName=UsersDataGrid, Path=SelectedItem}" />
+                    </DataGrid.InputBindings>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Название" Width="2*" Binding="{Binding Name}"/>
+                        <DataGridTextColumn Header="Специальность" Width="*" Binding="{Binding   FsesCategoryPatition}"/>
+                        <DataGridTextColumn Header="Учебный год" Binding="{Binding AcademicYear}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </hc:ToggleBlock.CheckedContent>
+        </hc:ToggleBlock>
+    </Grid>
+</UserControl>

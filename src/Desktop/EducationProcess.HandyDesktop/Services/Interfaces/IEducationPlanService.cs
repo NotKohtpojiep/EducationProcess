@@ -7,5 +7,6 @@ namespace EducationProcess.HandyDesktop.Services
     {
         Task<EducationPlan[]> GetAllEducationPlans();
         Task<EducationPlan> CreateEducationPlan(EducationPlan educationPlan);
+        Task<EducationPlan> UpdateEducationPlan(EducationPlan educationPlan);
     }
 }

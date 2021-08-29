@@ -6,8 +6,8 @@ using HandyControl.Controls;
 using HandyControl.Tools;
 using EducationProcess.HandyDesktop.Data;
 using EducationProcess.HandyDesktop.Tools;
-using EducationProcess.HandyDesktop.UserControl;
-using EducationProcess.HandyDesktop.ViewModel;
+using EducationProcess.HandyDesktop.UserControls;
+using EducationProcess.HandyDesktop.ViewModels;
 
 namespace EducationProcess.HandyDesktop
 {
@@ -35,7 +35,7 @@ namespace EducationProcess.HandyDesktop
             Dialog.SetToken(this, MessageToken.MainWindow);
             WindowAttach.SetIgnoreAltF4(this, true);
 
-            Messenger.Default.Send(AssemblyHelper.CreateInternalInstance($"UserControl.ChainDisciplineView"), MessageToken.LoadShowContent);
+            Messenger.Default.Send(AssemblyHelper.CreateInternalInstance($"UserControls.ChainDisciplineView"), MessageToken.LoadShowContent);
         }
     }
 }

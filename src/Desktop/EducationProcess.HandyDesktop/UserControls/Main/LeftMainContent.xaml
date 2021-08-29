@@ -1,0 +1,42 @@
+﻿<Border hc:ScrollViewer.IsInertiaEnabled="True"
+        x:Class="EducationProcess.HandyDesktop.UserControls.LeftMainContent"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Background="{DynamicResource RegionBrush}"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:langs="clr-namespace:EducationProcess.HandyDesktop.Properties.Langs"
+        xmlns:ex="clr-namespace:EducationProcess.HandyDesktop.Tools.Extension"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        DataContext="{Binding Main,Source={StaticResource Locator}}"
+        Margin="0,0,0,16"
+        CornerRadius="0,0,10,0"
+        Effect="{StaticResource EffectShadow4}">
+    <DockPanel>
+        <Label DockPanel.Dock="Top" HorizontalAlignment="Stretch" Margin="10,10,10,4" 
+               Content="{ex:Lang Key={x:Static langs:LangKeys.Menu}}" BorderThickness="0" Background="{DynamicResource SecondaryRegionBrush}"/>
+
+        <ListBox Margin="10,0,10,0" Name="ListBoxDemo" ScrollViewer.CanContentScroll="False" 
+                 VirtualizingStackPanel.IsVirtualizing="True" 
+                 ItemsSource="{Binding SideMenuModels}" 
+                 BorderThickness="0" 
+                 SelectionMode="Single" 
+                 Style="{StaticResource ListBoxTransparent}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="16" Height="16" Source="{Binding ImgPath}"/>
+                        <TextBlock Margin="6,0,0,0" Text="{ex:Lang Key={Binding Name}}"/>
+                        <Path Visibility="{Binding IsNew,Converter={StaticResource Boolean2VisibilityConverter}}" VerticalAlignment="Center" Data="{StaticResource NewGeometry}" Stretch="Uniform" Margin="10,0,0,0" Width="30" Height="14" Fill="{DynamicResource DangerBrush}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+            <ListBox.GroupStyle>
+                <GroupStyle ContainerStyle="{StaticResource DemoGroupItemStyle}"/>
+            </ListBox.GroupStyle>
+            <hc:Interaction.Triggers>
+                <hc:EventTrigger EventName="SelectionChanged">
+                    <hc:EventToCommand Command="{Binding SwitchDemoCmd}" PassEventArgsToCommand="True" />
+                </hc:EventTrigger>
+            </hc:Interaction.Triggers>
+        </ListBox>
+    </DockPanel>
+</Border>

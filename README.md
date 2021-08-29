@@ -1,61 +1,70 @@
+![Banner](img/banner.jpg)
+
 # EducationProcess
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/NotKohtpojiep/EducationProcess?include_prereleases)
+![GitHub](https://img.shields.io/github/license/NotKohtpojiep/EducationProcess)
+![example workflow](https://github.com/NotKohtpojiep/EducationProcess/actions/workflows/main.yml/badge.svg)
+
 A project designed to correct a misunderstanding with getting a schedule from college, as well as replace routine work with automation
 
-## Whats Including In This Repository
+## Table of contents
+* [Features](#features)
+* [Using tools](#using-tools)
+* [Illustrations](#illustrations)
+* [Run The Project](#run-the-project)
+* [Quickstart](#quickstart)
+  * [Launch Api](#launch-api)
+* [License](#license)
 
-#### Api/EducationProcess.* which includes; 
-* **ASP.NET** Web API application
-* REST API principles
-* **Swagger** Open API implementation	
-* **Repository** Pattern implementation
-* **UnitOfWork** Pattern implementation
-* Using **Entity Framework Core** ORM
-* Using **AutoMapper** Object Mapping 
-* Using **FluentValidation**
-* Using **Fluent Assertions** for **xUnit** unit testing
+
+## Features
+
+- Support for multiple departments is enabled
+- View and interact with the college schedule
+- Working with the education plan, as well as uploading it to an Excel spreadsheet
+- Accounting of the conducted disciplines
+
+> Note: not ready yet
+
+## Using tools
+
+- NET 5
+- ASP.NET Core WEB Api
+- WPF
+- MySQL Community Server 8.0
+
+## Illustrations
+
+### WPF-Client
+#### Schedule
+![schedule](img/schedule.png)
+#### Education Plan 
+![education-plan](img/education-plan.png)
 
 ## Run The Project
 You will need the following tools:
 
 * [Visual Studio 2019](https://visualstudio.microsoft.com/downloads/)
-* [.Net 5](https://dotnet.microsoft.com/download/dotnet/5.0)
-* [dotnet-ef](https://docs.microsoft.com/en-us/ef/core/cli/dotnet)
-* [Git Bash](https://git-scm.com/downloads)
-* [MySQL Community Server 8.0 or above](https://dev.mysql.com/downloads/mysql/)
+* [.NET 5](https://dotnet.microsoft.com/download/dotnet/5.0)
+* [Docker Desktop](https://www.docker.com/products/docker-desktop)
 
-### Configuration
-Follow these steps to get your development environment set up: (Before building this project)
-1. Clone this repository:
-```
-git clone https://github.com/NotKohtpojiep/EducationProcess
-```
-2. Go to *EducationProcess/src* folder and restore nuget-packages:
-```
-cd EducationProcess/src
-dotnet restore EducationProcess.sln
-```
-3. Make sure that the database connection strings are correct in _EducationProcess/src/Api/EducationProcess.Api/_**appsettings.Development.json**:
-```json
-...
-"ConnectionStrings": {
-    "ConnectionDbContext": "server=localhost;user=root;password=1234;database=EducationProcess;",
-    "IdentityServerUrl": "https://localhost:5001"
-  }
-...
-```
-4. Migrate database into your MySQL server:
-```
-cd Api/EducationProcess.DataAccess
-dotnet-ef database update -s ../EducationProcess.Api
-```
-5. Back to *EducationProcess/src* folder, build and run
-```
-cd ../..
-dotnet build EducationProcess.sln
-start /d "." dotnet run --project ./Api/EducationProcess.Api/EducationProcess.Api.csproj
-start /d "." dotnet run --project ./Identity/Identity.Api.csproj
-```
-6. You can **connect** using below urls:
 
-* **EducationProcess.API: https://localhost:5005/swagger/index.html**
-* **Identity.API: https://localhost:5001/auth**
+## Quickstart
+
+### Launch Api
+1. Clone the repository
+2. At the ***src*** directory which include **docker-compose.yml** files, run below command:
+```
+docker-compose -f docker-compose.yml -f docker-compose.override.yml up -d
+```
+
+>Note: Be sure that 8000 port is free
+
+3. Wait for docker compose finish
+4. You can launch api as: http://localhost:8000/swagger/index.html
+
+## License
+
+[The MIT License (MIT)](https://mit-license.org/)
+
+[(Back to top)](#educationprocess)

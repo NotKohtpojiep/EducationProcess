@@ -30,5 +30,18 @@ namespace EducationProcess.HandyDesktop.Services
             };
             return await _educationProcessClient.EducationPlans.CreateEducationPlanAsync(educationPlanRequest);
         }
+
+        public async Task<EducationPlan> UpdateEducationPlan(EducationPlan educationPlan)
+        {
+            EducationPlanRequest educationPlanRequest = new EducationPlanRequest()
+            {
+                EducationPlanId = educationPlan.EducationPlanId,
+                Name = educationPlan.Name,
+                Description = educationPlan.Description,
+                AcademicYearId = educationPlan.AcademicYearId,
+                FsesCategoryPartitionId = educationPlan.FsesCategoryPartitionId
+            };
+            return await _educationProcessClient.EducationPlans.UpdateEducationPlanAsync(educationPlanRequest);
+        }
     }
 }

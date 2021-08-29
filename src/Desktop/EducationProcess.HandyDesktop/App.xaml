@@ -1,7 +1,7 @@
 ﻿<Application x:Class="EducationProcess.HandyDesktop.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:viewModel="clr-namespace:EducationProcess.HandyDesktop.ViewModel"
+             xmlns:viewModel="clr-namespace:EducationProcess.HandyDesktop.ViewModels"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:d1P1="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:hc="https://handyorg.github.io/handycontrol"

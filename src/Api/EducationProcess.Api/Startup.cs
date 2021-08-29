@@ -5,13 +5,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Text;
+using EducationProcess.Api.Security;
 using EducationProcess.DataAccess;
 using EducationProcess.DataAccess.Repositories;
 using EducationProcess.DataAccess.Repositories.Interfaces;
 using EducationProcess.Services;
 using EducationProcess.Services.Interfaces;
 using EducationProcess.Services.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace EducationProcess.Api
 {
@@ -58,6 +62,21 @@ namespace EducationProcess.Api
             });
             */
 
+            /*
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["TokenKey"]));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(
+                    opt =>
+                    {
+                        opt.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuerSigningKey = true,
+                            IssuerSigningKey = key,
+                            ValidateAudience = false,
+                            ValidateIssuer = false,
+                        };
+                    });
+            */
             services.AddDbContext<EducationProcessContext>(optionsBuilder =>
                 optionsBuilder.UseMySql(Configuration.GetConnectionString("ConnectionDbContext"), new MySqlServerVersion(new Version(8, 0, 22))));
             //services.BuildServiceProvider().GetService<EducationProcessContext>()?.Database.Migrate();
@@ -131,6 +150,8 @@ namespace EducationProcess.Api
             services.AddScoped<ISemesterService, SemesterService>();
 
             #endregion
+
+            services.AddScoped<IJwtGenerator, JwtGenerator>();
 
             services.AddSwaggerGen(c =>
             {
